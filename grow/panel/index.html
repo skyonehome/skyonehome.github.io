@@ -29,6 +29,7 @@ main{padding:26px 4vw 60px}
 .tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
 .tools input,.tools select{background:#ffffff0d;border:1px solid #ffffff26;border-radius:8px;padding:10px 12px;outline:none}
 .tools input{flex:1 1 240px}
+.tools select{flex:0 0 auto}
 .tools select option{background:#141821}
 .wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
 table{width:100%;border-collapse:collapse;font-size:14px;min-width:980px}
@@ -51,6 +52,25 @@ tr:hover td{background:#ffffff05}
 .gBox .b{width:100%;justify-content:center;margin-top:12px;padding:12px}
 .err{color:var(--bad);font-size:13px;min-height:18px;margin-top:8px}
 .empty{padding:40px;text-align:center;color:var(--mute)}
+
+.cards{display:none}
+.ac{background:var(--bg2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:10px}
+.ac .top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;margin-bottom:10px}
+.ac .top b{font-size:16px}.ac .top small{display:block;color:var(--mute);font-size:12px;margin-top:2px}
+.ac .top a{color:#7cc4ff;font-size:12px;text-decoration:none;white-space:nowrap}
+.ac .qs{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:10px 0}
+.ac .qs div{text-align:center;font-size:10px;color:var(--mute);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.ac .qs .n{display:block;margin-top:4px;width:100%}
+.ac .foot{display:flex;justify-content:space-between;gap:8px;font-size:12px;color:var(--mute);flex-wrap:wrap}
+@media (max-width:700px){
+  header{flex-wrap:wrap;padding:14px 4vw;gap:10px}
+  header .hR{margin-left:0;width:100%;}
+  header .hR .b{flex:1;justify-content:center;padding:9px 8px;font-size:13px}
+  main{padding:18px 4vw 50px}
+  .kpis{gap:10px}.kpi{padding:12px 14px}.kpi b{font-size:26px}.kpi span{font-size:10.5px}
+}
+@media (max-width:1000px){.wrap{display:none}.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:10px}.ac{margin:0}}
+
 @media (max-width:800px){.kpis{grid-template-columns:1fr 1fr}header small{display:none}}
 </style>
 </head>
@@ -80,6 +100,7 @@ tr:hover td{background:#ffffff05}
     <th data-k="Mentalidad %">Mentalidad</th><th data-k="Sistema %">Sistema</th><th data-k="Alquileres %">Alquileres</th><th data-k="Clientes y comisiones %">Clientes</th>
     <th data-k="Cuestionarios aprobados">Aprobados</th><th data-k="Certificado">Certificado</th><th data-k="Último acceso">Último acceso</th>
   </tr></thead><tbody id="tb"></tbody></table></div>
+  <div class="cards" id="cards"></div>
   <p class="muted" style="margin-top:12px">Se actualiza cada vez que un asesor ve una clase, rinde un cuestionario o descarga su certificado.</p>
 </main>
 
@@ -110,6 +131,11 @@ function draw(){
     <td><b>${+a["Cuestionarios aprobados"]||0}/4</b></td>
     <td>${a.Certificado?`<span class="cert">🎓 ${fd(a.Certificado)}</span>`:`<span class="cert na">Pendiente</span>`}</td>
     <td class="muted">${fd(a["Último acceso"])}</td></tr>`}).join(""):`<tr><td colspan="9" class="empty">${DATA.length?"Ningún asesor coincide con el filtro.":"Todavía no se registró ningún asesor. Compartí skyonehome.github.io/grow con tu equipo."}</td></tr>`;
+  $("#cards").innerHTML=L.length?L.map(a=>{const c=+a["Clases vistas"]||0;const wa=String(a.WhatsApp||"").replace(/\D/g,"");const waL=wa?(wa.startsWith("0")?"595"+wa.slice(1):wa):"";
+    return `<div class="ac"><div class="top"><div><b>${esc(a.Asesor)}</b><small>${esc(a.WhatsApp||"")}</small></div>${waL?`<a href="https://wa.me/${waL}" target="_blank" rel="noopener">WhatsApp ↗</a>`:""}</div>
+    <div class="prog"><div class="bar"><i style="width:${c/TOTAL*100}%"></i></div><span>${c}/${TOTAL} clases</span></div>
+    <div class="qs"><div>Mentalidad${nota(a["Mentalidad %"])}</div><div>Sistema${nota(a["Sistema %"])}</div><div>Alquileres${nota(a["Alquileres %"])}</div><div>Clientes${nota(a["Clientes y comisiones %"])}</div></div>
+    <div class="foot"><span>${a.Certificado?`<span class="cert">🎓 Certificado ${fd(a.Certificado)}</span>`:`Aprobados ${+a["Cuestionarios aprobados"]||0}/4`}</span><span>Último acceso: ${fd(a["Último acceso"])}</span></div></div>`}).join(""):`<p class="empty">${DATA.length?"Ningún asesor coincide con el filtro.":"Todavía no se registró ningún asesor."}</p>`;
   $("#hR").innerHTML=`${SHEET?`<a class="b" href="${esc(SHEET)}" target="_blank" rel="noopener">Abrir planilla ↗</a>`:""}<button class="b w" id="rf">↻ Actualizar</button><button class="b" id="out">Salir</button>`;
   $("#rf").onclick=async()=>{ $("#rf").textContent="Cargando…"; try{await load(sessionStorage.getItem("growpin"));}catch(e){} draw(); };
   $("#out").onclick=()=>{ try{sessionStorage.removeItem("growpin");}catch(e){} location.reload(); };

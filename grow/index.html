@@ -82,7 +82,7 @@ main{position:relative;z-index:3;margin-top:-9vh;padding-bottom:60px}
 .rowH h2{font-size:clamp(17px,1.6vw,22px);font-weight:700}
 .rowH span{font-size:13px;color:var(--mute)}
 .track{position:relative}
-.scroller{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 4vw 18px;scrollbar-width:none}
+.scroller{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 4vw;padding:6px 4vw 18px;scrollbar-width:none}
 .scroller::-webkit-scrollbar{display:none}
 .arrow{position:absolute;top:6px;bottom:18px;width:4vw;min-width:34px;z-index:5;display:flex;align-items:center;justify-content:center;
   background:rgba(11,13,18,.6);opacity:0;transition:.2s}
@@ -90,7 +90,7 @@ main{position:relative;z-index:3;margin-top:-9vh;padding-bottom:60px}
 .arrow.l{left:0}.arrow.r{right:0}
 .arrow svg{width:28px;height:28px}
 
-.card{flex:0 0 auto;width:clamp(230px,23vw,330px);scroll-snap-align:start;background:var(--card);border-radius:8px;overflow:hidden;
+.card{flex:0 0 auto;width:clamp(230px,22vw,400px);scroll-snap-align:start;background:var(--card);border-radius:8px;overflow:hidden;
   transition:transform .25s,box-shadow .25s;text-align:left;position:relative}
 .card:hover{transform:scale(1.05);box-shadow:0 18px 40px #000a;z-index:4}
 .thumb{position:relative;aspect-ratio:16/9;background:#222 center/cover}
@@ -111,7 +111,7 @@ main{position:relative;z-index:3;margin-top:-9vh;padding-bottom:60px}
 .rank{flex:0 0 auto;padding-left:14px;display:flex;align-items:flex-end;scroll-snap-align:start;text-align:left}
 .rank .num{font-size:clamp(120px,12vw,170px);font-weight:900;line-height:.78;letter-spacing:-.08em;color:var(--bg);
   -webkit-text-stroke:3px #5b6577;margin-right:-18px;position:relative;z-index:1;user-select:none}
-.rank .card{width:clamp(170px,15vw,220px);position:relative;z-index:2}
+.rank .card{width:clamp(150px,14vw,260px);position:relative;z-index:2}
 .rank .card .thumb{aspect-ratio:3/4;background-size:cover;background-position:center}
 .rank .card .cBody{position:absolute;inset:auto 0 0 0;background:linear-gradient(0deg,#000e,#0000);padding:30px 10px 10px}
 .rank .card .cBody{display:none}
@@ -199,10 +199,64 @@ main{position:relative;z-index:3;margin-top:-9vh;padding-bottom:60px}
 .certBox .btns{margin-left:auto}
 .certBox.lock{background:#141821;border-color:var(--line)}.certBox.lock .medal{filter:grayscale(1);opacity:.5}
 
+
+a.btn{text-decoration:none}
+.vMore{display:block;margin:16px auto 0;padding:12px 22px;border-radius:8px;border:1px solid #ffffff40;font-weight:700;font-size:14px}
+.vMore:hover{border-color:#fff}
+@media (min-width:1600px){html{font-size:17px}.rowH h2{font-size:24px}.card{width:clamp(260px,19vw,420px)}}
+@media (max-width:1100px){
+  .stats{display:none}
+  .hero{height:min(80vh,720px);min-height:540px;padding-bottom:14vh}
+  .word{top:22%;transform:none}
+}
+@media (max-width:600px){
+  .nav{gap:12px;padding:12px 4vw}
+  .hero{padding-bottom:40px!important}
+  .who{display:none}
+  .hero{height:auto;min-height:0;padding:120px 5vw 70px}
+  .btns{flex-wrap:nowrap;gap:10px}
+  .btns .btn{flex:1;justify-content:center;padding:12px 8px;font-size:15px}
+  .btns .btn svg{width:18px;height:18px}
+  main{margin-top:0}
+  .panel{display:grid;grid-template-columns:1fr auto;gap:10px 14px;padding:18px}
+  .panel>div:first-child{grid-column:1/-1}
+  .panel .pct{font-size:22px}
+  .panel>div:last-child{grid-column:1/-1}
+  .certBox{padding:18px;gap:12px}
+  .certBox .medal{font-size:36px}
+  .certBox .btns{margin-left:0;width:100%}
+  .certBox .btn{width:100%;justify-content:center}
+  .rowH{padding:0 5vw}
+  .modal{padding:0}
+  .sheet{border-radius:0;min-height:100%;width:100%}
+  .qm{padding:0;align-items:stretch}
+  .qBox{border-radius:0;max-height:none;min-height:100%}
+  .vTools{gap:8px}.vChip{padding:7px 11px;font-size:12px}
+  .qCard{min-height:0}
+  footer{padding:24px 5vw 40px}
+}
+@media (max-width:380px){.btns .btn{font-size:14px}.hero h1{font-size:32px}}
+
+
+@media (min-width:1100px){
+  .topics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 2.2vw;padding:0 4vw;margin-bottom:8px}
+  .topics .row{margin-bottom:34px;min-width:0}
+  .topics .rowH{padding:0;flex-wrap:wrap}
+  .topics .track .arrow{display:none}
+  .topics .scroller{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;overflow:visible;padding:6px 0 10px}
+  .topics .card{width:auto}
+  .topics .card:hover{transform:scale(1.03)}
+}
+@media (min-width:1500px){
+  .topics{grid-template-columns:repeat(4,minmax(0,1fr));gap:0 1.6vw}
+  .topics .scroller{grid-template-columns:1fr}
+  .topics .rowH{flex-direction:column;gap:2px}
+}
+
 /* MODAL */
 .modal{position:fixed;inset:0;z-index:100;background:#000c;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:4vh 3vw}
 .modal.show{display:flex}
-.sheet{width:min(960px,100%);background:var(--bg2);border-radius:10px;overflow:hidden;box-shadow:0 30px 80px #000;position:relative;animation:pop .25s ease}
+.sheet{width:min(1000px,100%,112vh);background:var(--bg2);border-radius:10px;overflow:hidden;box-shadow:0 30px 80px #000;position:relative;animation:pop .25s ease}
 @keyframes pop{from{transform:scale(.96);opacity:0}}
 .player{position:relative;aspect-ratio:16/9;background:#000}
 .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
@@ -218,7 +272,7 @@ main{position:relative;z-index:3;margin-top:-9vh;padding-bottom:60px}
 .gBtn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:7px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
 .gBtn.y{background:#ffd23f;color:#111}.gBtn.y:hover{background:#ffe27a}
 .gBtn.o{border:1px solid #ffffff4d}.gBtn.o:hover{border-color:#fff}
-.cardPdf{position:absolute;left:8px;bottom:10px;font-size:10px;font-weight:800;letter-spacing:.06em;background:#ffd23f;color:#111;padding:2px 6px;border-radius:3px}
+.cardPdf{position:absolute;right:8px;bottom:10px;font-size:10px;font-weight:800;letter-spacing:.06em;background:#ffd23f;color:#111;padding:2px 6px;border-radius:3px}
 .mBody{padding:22px 28px 30px;display:grid;grid-template-columns:2fr 1fr;gap:28px}
 .mBody h2{font-size:26px;font-weight:800;margin:6px 0 10px}
 .mBody p{color:#d4d9e2;line-height:1.6;font-size:15px}
@@ -425,9 +479,11 @@ function render(){
   const cont=VIDEOS.filter(v=>!ST.done[v.id] && (ST.p[v.id]||0)>3);
   if(cont.length) h+=row("seguir","Seguir viendo","Retomá donde quedaste",cont.map(card).join(""));
   h+=row("ruta","Ruta del nuevo asesor","Las 9 clases en el orden recomendado",VIDEOS.map(rank).join(""));
+  h+=`<div class="topics">`;
   for(const k in CATS){
     h+=row(k,CATS[k].name,CATS[k].sub,VIDEOS.filter(v=>v.cat===k).map(card).join(""));
   }
+  h+=`</div>`;
   h+=row("todas","Todas las clases","Capacitación SkyOne Home",VIDEOS.map(card).join(""));
   h+=quizSection();
   h+=vocabSection();
@@ -654,20 +710,23 @@ $("#regF").addEventListener("submit",e=>{
 });
 
 // ---- vocabulario ----
-let vq="", vc="";
+let vq="", vc="", vAll=false;
 function vocabSection(){
   return `<section class="row" id="vocabulario"><div class="rowH"><h2>Vocabulario inmobiliario</h2><span>${VOCAB.length} términos que usamos en SkyOne Home</span></div>
   <div class="vTools"><input id="vIn" placeholder="Buscar un término… (ej.: SEPRELAD, garante, regalías)" value="${esc(vq)}">
    <button class="vChip ${vc?"":"on"}" data-c="">Todos</button>${Object.keys(CATS).map(k=>`<button class="vChip ${vc===k?"on":""}" data-c="${k}">${CATS[k].name}</button>`).join("")}</div>
-  <div class="vGrid" id="vGrid"></div></section>`;
+  <div class="vGrid" id="vGrid"></div><button class="vMore" id="vMore"></button></section>`;
 }
 function drawVocab(){
   const q=vq.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
   const L=VOCAB.filter(x=>(!vc||x.c===vc)&&(!q||(x.t+" "+x.d).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").includes(q)));
-  $("#vGrid").innerHTML=L.length?L.map(x=>{const c=CATS[x.c];return `<div class="vCard" style="--vc:${c?c.color:"#9aa3b2"}"><b>${esc(x.t)}</b><p>${esc(x.d)}</p><small>${c?c.name:"General"}</small></div>`}).join(""):`<p class="vEmpty">No encontramos ese término.</p>`;
+  const filt=!!(q||vc); const shown=(filt||vAll)?L:L.slice(0,9);
+  $("#vGrid").innerHTML=shown.length?shown.map(x=>{const c=CATS[x.c];return `<div class="vCard" style="--vc:${c?c.color:"#9aa3b2"}"><b>${esc(x.t)}</b><p>${esc(x.d)}</p><small>${c?c.name:"General"}</small></div>`}).join(""):`<p class="vEmpty">No encontramos ese término.</p>`;
+  const mb=$("#vMore"); if(mb){ mb.style.display=(filt||L.length<=9)?"none":""; mb.textContent=vAll?"Ver menos":`Ver los ${L.length} términos`; }
 }
 function bindVocab(){
   drawVocab();
+  $("#vMore").onclick=()=>{vAll=!vAll;drawVocab();if(!vAll)document.getElementById("vocabulario").scrollIntoView({behavior:"smooth"});};
   $("#vIn").addEventListener("input",e=>{vq=e.target.value;drawVocab();});
   document.querySelectorAll(".vChip").forEach(b=>b.onclick=()=>{vc=b.dataset.c;document.querySelectorAll(".vChip").forEach(x=>x.classList.toggle("on",x===b));drawVocab();});
 }
