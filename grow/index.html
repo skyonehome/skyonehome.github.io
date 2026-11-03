@@ -24,10 +24,6 @@ a{color:inherit}
 .logo{display:flex;align-items:baseline;gap:6px;font-weight:900;letter-spacing:.04em;font-size:22px;white-space:nowrap}
 .logo .sky{color:var(--txt)}.logo .play{color:var(--accent)}
 .logo small{font-size:10px;font-weight:600;color:var(--mute);letter-spacing:.18em;margin-left:4px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
-.brand img{height:40px;width:auto;display:block}
-.brand .sep{width:1px;height:30px;background:var(--line)}
-footer .flogo{height:46px;width:auto;display:block;margin-bottom:14px;opacity:.85}
 .links{display:flex;gap:20px;font-size:14px;color:#cfd5df}
 .links a{text-decoration:none;opacity:.85}.links a:hover{opacity:1}
 .navR{margin-left:auto;display:flex;align-items:center;gap:14px}
@@ -134,6 +130,17 @@ main{position:relative;z-index:3;margin-top:-9vh;padding-bottom:60px}
 .player iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 .close{position:absolute;top:12px;right:12px;z-index:5;width:38px;height:38px;border-radius:50%;background:#000b;display:flex;align-items:center;justify-content:center}
 .close svg{width:20px;height:20px}
+.guide{display:flex;align-items:center;gap:16px;margin:18px 28px 0;padding:14px 16px;border-radius:12px;
+  background:linear-gradient(110deg,#ffd23f1f,#2f8cff14 60%,transparent);border:1px solid #ffd23f55}
+.gIco{flex:0 0 52px;height:62px;border-radius:8px;background:#fff;color:#111;position:relative;display:flex;align-items:flex-end;justify-content:center;padding-bottom:8px;font:900 12px Inter;box-shadow:0 8px 20px #0007}
+.gIco:before{content:"";position:absolute;right:0;top:0;border-style:solid;border-width:0 14px 14px 0;border-color:transparent #0b0d12 #c9ced8 transparent}
+.gIco b{position:absolute;top:12px;left:8px;right:8px;height:4px;background:#ffd23f;border-radius:2px;box-shadow:0 8px 0 #d7dbe3,0 16px 0 #d7dbe3}
+.gTxt{flex:1;min-width:0}.gTxt b{display:block;font-size:16px}.gTxt span{font-size:13px;color:var(--mute)}
+.gBtns{display:flex;gap:8px;flex-wrap:wrap}
+.gBtn{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;border-radius:7px;font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap}
+.gBtn.y{background:#ffd23f;color:#111}.gBtn.y:hover{background:#ffe27a}
+.gBtn.o{border:1px solid #ffffff4d}.gBtn.o:hover{border-color:#fff}
+.cardPdf{position:absolute;left:8px;bottom:10px;font-size:10px;font-weight:800;letter-spacing:.06em;background:#ffd23f;color:#111;padding:2px 6px;border-radius:3px}
 .mBody{padding:22px 28px 30px;display:grid;grid-template-columns:2fr 1fr;gap:28px}
 .mBody h2{font-size:26px;font-weight:800;margin:6px 0 10px}
 .mBody p{color:#d4d9e2;line-height:1.6;font-size:15px}
@@ -155,7 +162,6 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 
 @media (max-width:760px){
   .links{display:none}
-  .brand img{height:32px}.brand .sep{height:24px}.logo small{display:none}
   .hero{height:78vh;padding-bottom:16vh}
   .hero::after{background:linear-gradient(0deg,var(--bg) 6%,rgba(7,9,14,.5) 55%,rgba(7,9,14,.15))}
   .word{top:9%;left:50%;right:auto;transform:translateX(-50%);font-size:34vw}
@@ -166,6 +172,7 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
   .search.open input{width:120px}
   .pill{display:none}
   .mBody{grid-template-columns:1fr;padding:18px}
+  .guide{margin:14px 14px 0;flex-wrap:wrap}.gBtns{width:100%}.gBtn{flex:1;justify-content:center}
   .next{padding:16px 18px 22px}
   .nItem .t{width:120px}
   .arrow{display:none}
@@ -176,7 +183,7 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 <body>
 
 <nav class="nav" id="nav">
-  <a class="brand" href="#inicio" aria-label="SkyOne Home · Sistema GROW"><img src="logo-skyone-home.png" alt="SkyOne Home"><span class="sep"></span><div class="logo"><span class="sky">SISTEMA</span><span class="play">GROW</span><small>SKYONE HOME</small></div></a>
+  <div class="logo"><span class="sky">SISTEMA</span><span class="play">GROW</span><small>SKYONE HOME</small></div>
   <div class="links">
     <a href="#inicio">Inicio</a><a href="#ruta">Ruta del asesor</a><a href="#mentalidad">Mentalidad</a><a href="#sistema">Sistema</a><a href="#alquileres">Alquileres</a><a href="#clientes">Clientes y comisiones</a>
   </div>
@@ -206,12 +213,17 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 
 <main id="main"></main>
 
-<footer><img class="flogo" src="logo-skyone-home.png" alt="SkyOne Home">Sistema GROW · SkyOne Home · Plataforma interna de capacitación para asesores inmobiliarios. Tu avance se guarda en este navegador.</footer>
+<footer>Sistema GROW · SkyOne Home · Plataforma interna de capacitación para asesores inmobiliarios. Tu avance se guarda en este navegador.</footer>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true">
   <div class="sheet">
     <button class="close" id="mClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
     <div class="player" id="player"></div>
+    <div class="guide">
+      <div class="gIco"><b></b>PDF</div>
+      <div class="gTxt"><b id="gTitle">Guía de la clase</b><span>Puntos importantes, pasos a seguir y checklist</span></div>
+      <div class="gBtns"><a class="gBtn y" id="gView" href="#" target="_blank" rel="noopener">📄 Ver guía</a><a class="gBtn o" id="gDown" href="#" download>⬇ Descargar</a></div>
+    </div>
     <div class="mBody">
       <div>
         <div class="meta"><span class="ep" id="mEp"></span><span id="mDur"></span><span class="box">HD</span></div>
@@ -264,7 +276,8 @@ const VIDEOS = [
   {id:"1242892075", t:"Cómo calcular tu comisión", d:101, cat:"clientes",
    desc:"Cómo se calcula lo que cobrás en cada operación, para que sepas exactamente cuánto ganás antes de cerrar.", key:"Tus números"}
 ];
-VIDEOS.forEach((v,i)=>{v.n=i+1; v.img=THUMBS[v.id]; v.vert=VERT[v.id];});
+const PDFS = {"1242892097": "01-Mentalidad-del-Asesor.pdf", "1242892099": "02-Imagen-del-Asesor-Profesional.pdf", "1242892094": "03-Captador-y-Colocador.pdf", "1242892101": "04-Filtrar-clientes-antes-de-la-visita.pdf", "1242892100": "05-Cargar-una-propiedad-al-sistema.pdf", "1242892103": "06-Cerrar-una-propiedad-en-el-sistema.pdf", "1242892096": "07-Que-se-paga-para-ingresar-a-un-alquiler.pdf", "1242892095": "08-Documentacion-de-Alquiler.pdf", "1242892075": "09-Como-calcular-tu-comision.pdf"};
+VIDEOS.forEach((v,i)=>{v.pdf='guias/'+PDFS[v.id]; v.n=i+1; v.img=THUMBS[v.id]; v.vert=VERT[v.id];});
 
 // ---- estado (solo en este navegador) ----
 const SKEY="skyoneplay.v1";
@@ -279,7 +292,7 @@ const PLAY='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 4.5v15a1 1 
 
 function card(v){
   return `<button class="card ${ST.done[v.id]?"done":""}" data-id="${v.id}" aria-label="${esc(v.t)}">
-    <div class="thumb" style="background-image:url('${v.img}')"><span class="seen">✓ VISTA</span><span class="dur">${fmt(v.d)}</span><div class="ov"><span>${PLAY}</span></div></div>
+    <div class="thumb" style="background-image:url('${v.img}')"><span class="seen">✓ VISTA</span><span class="dur">${fmt(v.d)}</span><span class="cardPdf">+ GUÍA PDF</span><div class="ov"><span>${PLAY}</span></div></div>
     <div class="prog"><i style="width:${pct(v)}%"></i></div>
     <div class="cBody"><div class="cat">${CATS[v.cat].name}</div><h3>${esc(v.t)}</h3></div></button>`;
 }
@@ -358,6 +371,8 @@ function openV(id,autoplay=true){
   $("#mCat").textContent=CATS[v.cat].name;
   $("#mKey").textContent=v.key;
   $("#mVimeo").href=`https://vimeo.com/${v.id}`;
+  $("#gTitle").textContent=`Guía de la clase ${String(v.n).padStart(2,"0")}`;
+  $("#gView").href=v.pdf; $("#gDown").href=v.pdf;
   doneBtn();
   const nx=VIDEOS.filter(x=>x.n>v.n).slice(0,3);
   $("#nextWrap").style.display=nx.length?"":"none";
