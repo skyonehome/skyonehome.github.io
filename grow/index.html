@@ -635,7 +635,7 @@ const VOCAB = [
 ];
 
 // ---- registro y envío de avance ----
-const API="";
+const API="https://script.google.com/macros/s/AKfycbxtE205op2cUnn-jceR_vQYjKkDzu9NBY7PPgqZBYwfXXN8zPRbMEkFxWqHFOUOgxECJA/exec";
 function uid(){return "a"+Date.now().toString(36)+Math.random().toString(36).slice(2,8);}
 function estado(){return {vistas:VIDEOS.filter(v=>ST.done[v.id]).map(v=>v.n),quiz:ST.quiz};}
 function send(tipo,detalle,valor){
