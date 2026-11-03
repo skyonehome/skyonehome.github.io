@@ -685,19 +685,19 @@ async function makeCert(){
   const W=2400,H=1697,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
   try{await Promise.all(["700 90px Cinzel","500 30px Cinzel","italic 500 50px 'Cormorant Garamond'","700 140px 'Cormorant Garamond'","500 46px 'Cormorant Garamond'"].map(f=>document.fonts.load(f)));}catch(e){}
   const SER="'Cormorant Garamond', Georgia, serif", CIN="Cinzel, 'Cormorant Garamond', Georgia, serif";
-  const gold=(y0,y1)=>{const g=x.createLinearGradient(0,y0,0,y1);g.addColorStop(0,"#f7e7b4");g.addColorStop(.45,"#d4af5a");g.addColorStop(.55,"#b8892e");g.addColorStop(1,"#f1d98f");return g;};
-  const goldH=(x0,x1)=>{const g=x.createLinearGradient(x0,0,x1,0);g.addColorStop(0,"#8a6a2a00");g.addColorStop(.2,"#c9a14e");g.addColorStop(.5,"#f5e2a8");g.addColorStop(.8,"#c9a14e");g.addColorStop(1,"#8a6a2a00");return g;};
+  const gold=(y0,y1)=>{const g=x.createLinearGradient(0,y0,0,y1);g.addColorStop(0,"#ffffff");g.addColorStop(.42,"#e3e8ef");g.addColorStop(.55,"#9aa5b6");g.addColorStop(1,"#f3f6fa");return g;};
+  const goldH=(x0,x1)=>{const g=x.createLinearGradient(x0,0,x1,0);g.addColorStop(0,"#9aa5b600");g.addColorStop(.2,"#b9c3d1");g.addColorStop(.5,"#ffffff");g.addColorStop(.8,"#b9c3d1");g.addColorStop(1,"#9aa5b600");return g;};
   // fondo
-  x.fillStyle="#07070a";x.fillRect(0,0,W,H);
-  let g=x.createRadialGradient(W/2,H*.38,40,W/2,H*.38,W*.62);g.addColorStop(0,"#2a2214");g.addColorStop(.5,"#120f0b");g.addColorStop(1,"#050507");x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.fillStyle="#050c1f";x.fillRect(0,0,W,H);
+  let g=x.createRadialGradient(W/2,H*.38,40,W/2,H*.38,W*.62);g.addColorStop(0,"#1b3a7a");g.addColorStop(.5,"#0c1c45");g.addColorStop(1,"#040a1c");x.fillStyle=g;x.fillRect(0,0,W,H);
   // guilloché
-  x.save();x.translate(W/2,H/2);x.strokeStyle="rgba(212,175,90,.055)";x.lineWidth=1.2;
+  x.save();x.translate(W/2,H/2);x.strokeStyle="rgba(210,222,240,.06)";x.lineWidth=1.2;
   for(let k=0;k<70;k++){x.beginPath();x.ellipse(0,0,240+k*14,150+k*9,k*0.045,0,Math.PI*2);x.stroke();}
   x.restore();
   // marco
   const m1=56,m2=84;
   x.lineWidth=5;x.strokeStyle=gold(0,H);x.strokeRect(m1,m1,W-2*m1,H-2*m1);
-  x.lineWidth=1.5;x.strokeStyle="rgba(230,200,130,.6)";x.strokeRect(m2,m2,W-2*m2,H-2*m2);
+  x.lineWidth=1.5;x.strokeStyle="rgba(215,225,240,.6)";x.strokeRect(m2,m2,W-2*m2,H-2*m2);
   // esquinas ornamentales
   const corner=(cx,cy,sx,sy)=>{x.save();x.translate(cx,cy);x.scale(sx,sy);x.strokeStyle=gold(0,200);x.fillStyle=gold(0,200);x.lineWidth=3;
     x.beginPath();x.moveTo(0,150);x.lineTo(0,0);x.lineTo(150,0);x.stroke();
@@ -711,16 +711,16 @@ async function makeCert(){
   const spaced=(t,y,font,fill,sp)=>{x.font=font;x.fillStyle=fill;if("letterSpacing" in x){x.letterSpacing=sp+"px";x.fillText(t,W/2+sp/2,y);x.letterSpacing="0px";}else x.fillText(t.split("").join(" "),W/2,y);};
   const draw=(logo)=>{
     if(logo){const h2=118,w2=logo.width*h2/logo.height;x.drawImage(logo,W/2-w2/2,170,w2,h2);}
-    spaced("SISTEMA GROW  ·  SKYONE HOME",370,`500 30px ${CIN}`,"#cdb27a",10);
+    spaced("SISTEMA GROW  ·  SKYONE HOME",370,`500 30px ${CIN}`,"#c6cfdd",10);
     spaced("CERTIFICADO",505,`700 112px ${CIN}`,gold(420,510),14);
-    spaced("DE EXCELENCIA",572,`500 38px ${CIN}`,"#e2cc93",16);
+    spaced("DE EXCELENCIA",572,`500 38px ${CIN}`,"#e1e7f0",16);
     diamondLine(625,250);
-    x.font=`italic 500 54px ${SER}`;x.fillStyle="#cfc3a6";x.fillText("Otorgado a",W/2,722);
+    x.font=`italic 500 54px ${SER}`;x.fillStyle="#c3cddc";x.fillText("Otorgado a",W/2,722);
     let fs=150;x.font=`700 ${fs}px ${SER}`;while(x.measureText(ST.user.nombre).width>W-560&&fs>70){fs-=4;x.font=`700 ${fs}px ${SER}`;}
-    x.fillStyle="#f7f0de";x.shadowColor="rgba(212,175,90,.35)";x.shadowBlur=30;x.fillText(ST.user.nombre,W/2,880);x.shadowBlur=0;
+    x.fillStyle="#ffffff";x.shadowColor="rgba(190,210,245,.45)";x.shadowBlur=30;x.fillText(ST.user.nombre,W/2,880);x.shadowBlur=0;
     const nw=Math.min(x.measureText(ST.user.nombre).width+160,W-500);
     x.strokeStyle=goldH(W/2-nw/2,W/2+nw/2);x.lineWidth=3;x.beginPath();x.moveTo(W/2-nw/2,925);x.lineTo(W/2+nw/2,925);x.stroke();
-    x.font=`500 46px ${SER}`;x.fillStyle="#ddd4c0";
+    x.font=`500 46px ${SER}`;x.fillStyle="#d6deea";
     x.fillText("por haber completado con éxito la Ruta del Asesor Inmobiliario",W/2,1020);
     x.fillText("y aprobado las cuatro evaluaciones del programa de formación.",W/2,1080);
     // título
@@ -730,20 +730,20 @@ async function makeCert(){
     // pie: fecha (izq) y n.º (der)
     const f=new Date().toLocaleDateString("es-PY",{day:"numeric",month:"long",year:"numeric"});
     const num="GROW-"+new Date().getFullYear()+"-"+(ST.user.uid||"").replace(/[^a-z0-9]/gi,"").slice(-6).toUpperCase();
-    const foot=(cx,val,lab)=>{x.font=`500 40px ${SER}`;x.fillStyle="#efe6cf";x.fillText(val,cx,1420);
-      x.strokeStyle="rgba(212,175,90,.7)";x.lineWidth=1.5;x.beginPath();x.moveTo(cx-230,1448);x.lineTo(cx+230,1448);x.stroke();
-      x.font=`500 22px ${CIN}`;x.fillStyle="#a8925f";if("letterSpacing" in x)x.letterSpacing="5px";x.fillText(lab,cx,1488);if("letterSpacing" in x)x.letterSpacing="0px";};
+    const foot=(cx,val,lab)=>{x.font=`500 40px ${SER}`;x.fillStyle="#eef2f8";x.fillText(val,cx,1420);
+      x.strokeStyle="rgba(200,212,230,.7)";x.lineWidth=1.5;x.beginPath();x.moveTo(cx-230,1448);x.lineTo(cx+230,1448);x.stroke();
+      x.font=`500 22px ${CIN}`;x.fillStyle="#9eabbf";if("letterSpacing" in x)x.letterSpacing="5px";x.fillText(lab,cx,1488);if("letterSpacing" in x)x.letterSpacing="0px";};
     foot(560,"Asunción, "+f,"FECHA DE EMISIÓN");
     foot(W-560,num,"N.º DE CERTIFICADO");
     // sello
     const sx=W/2,sy=1430,R=118;
     x.save();x.translate(sx,sy);
     for(let i=0;i<48;i++){x.rotate(Math.PI*2/48);x.fillStyle=gold(-R-14,R+14);x.beginPath();x.moveTo(0,-R-16);x.lineTo(7,-R+2);x.lineTo(-7,-R+2);x.closePath();x.fill();}
-    g=x.createRadialGradient(-30,-40,10,0,0,R);g.addColorStop(0,"#f8e6ad");g.addColorStop(.6,"#c99a40");g.addColorStop(1,"#8c6524");
+    g=x.createRadialGradient(-30,-40,10,0,0,R);g.addColorStop(0,"#ffffff");g.addColorStop(.55,"#c3cad6");g.addColorStop(1,"#6f7a8d");
     x.fillStyle=g;x.beginPath();x.arc(0,0,R,0,Math.PI*2);x.fill();
-    x.strokeStyle="#6e4e1a";x.lineWidth=2;x.beginPath();x.arc(0,0,R-14,0,Math.PI*2);x.stroke();
+    x.strokeStyle="#56627a";x.lineWidth=2;x.beginPath();x.arc(0,0,R-14,0,Math.PI*2);x.stroke();
     x.beginPath();x.arc(0,0,R-50,0,Math.PI*2);x.stroke();
-    x.fillStyle="#3b2a0d";x.font=`700 19px ${CIN}`;x.textBaseline="middle";
+    x.fillStyle="#16203a";x.font=`700 19px ${CIN}`;x.textBaseline="middle";
     const ring="SKYONE HOME  ★  SISTEMA GROW  ★  ";const step=Math.PI*2/ring.length;
     for(let i=0;i<ring.length;i++){x.save();x.rotate(i*step-Math.PI/2+step/2);x.translate(0,-(R-32));x.fillText(ring[i],0,0);x.restore();}
     x.font=`700 34px ${CIN}`;x.fillText("GROW",0,-4);x.font=`500 15px ${CIN}`;x.fillText("★ ★ ★",0,26);
