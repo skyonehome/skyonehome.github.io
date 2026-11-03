@@ -676,7 +676,7 @@ function bindVocab(){
 function aprobados(){return Object.keys(CATS).filter(k=>(ST.quiz[k]||0)>=80).length;}
 function certBox(){
   const a=aprobados(), ok=a===4;
-  return `<div class="certBox ${ok?"":"lock"}"><div class="medal">🎓</div><div><h2>${ok?"¡Ya sos Asesor GROW!":"Certificado Asesor GROW"}</h2>
+  return `<div class="certBox ${ok?"":"lock"}"><div class="medal">🎓</div><div><h2>${ok?"¡Ya sos Asesor HOME!":"Certificado Asesor HOME"}</h2>
    <p>${ok?"Aprobaste los 4 cuestionarios. Descargá tu certificado y compartilo.":`Aprobá los 4 cuestionarios para obtenerlo · llevás ${a}/4`}</p></div>
    <div class="btns">${ok?`<button class="btn play" id="certPng">⬇ Descargar certificado</button>`:`<a class="btn info" href="#cuestionarios">Ir a los cuestionarios</a>`}</div></div>`;
 }
@@ -724,7 +724,7 @@ async function makeCert(){
     x.fillText("por haber completado con éxito la Ruta del Asesor Inmobiliario",W/2,1020);
     x.fillText("y aprobado las cuatro evaluaciones del programa de formación.",W/2,1080);
     // título
-    spaced("ASESOR GROW",1205,`700 64px ${CIN}`,gold(1150,1210),12);
+    spaced("ASESOR HOME",1205,`700 64px ${CIN}`,gold(1150,1210),12);
     x.strokeStyle=goldH(W/2-560,W/2-300);x.lineWidth=2;x.beginPath();x.moveTo(W/2-560,1183);x.lineTo(W/2-300,1183);x.stroke();
     x.strokeStyle=goldH(W/2+300,W/2+560);x.beginPath();x.moveTo(W/2+300,1183);x.lineTo(W/2+560,1183);x.stroke();
     // pie: fecha (izq) y n.º (der)
@@ -748,9 +748,9 @@ async function makeCert(){
     for(let i=0;i<ring.length;i++){x.save();x.rotate(i*step-Math.PI/2+step/2);x.translate(0,-(R-32));x.fillText(ring[i],0,0);x.restore();}
     x.font=`700 34px ${CIN}`;x.fillText("GROW",0,-4);x.font=`500 15px ${CIN}`;x.fillText("★ ★ ★",0,26);
     x.restore();x.textBaseline="alphabetic";
-    const a=document.createElement("a");a.download=`Certificado-Asesor-GROW-${ST.user.nombre.replace(/\s+/g,"-")}.png`;
+    const a=document.createElement("a");a.download=`Certificado-Asesor-HOME-${ST.user.nombre.replace(/\s+/g,"-")}.png`;
     c.toBlob(b=>{a.href=URL.createObjectURL(b);document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},2000);},"image/png");
-    if(!ST.cert){ST.cert=1;save();} send("certificado","Asesor GROW","");
+    if(!ST.cert){ST.cert=1;save();} send("certificado","Asesor HOME","");
   };
   const img=new Image();img.onload=()=>draw(img);img.onerror=()=>draw(null);img.src="logo-skyone-home.png";
 }
