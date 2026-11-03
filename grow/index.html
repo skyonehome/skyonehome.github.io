@@ -121,6 +121,51 @@ main{position:relative;z-index:3;margin-top:-9vh;padding-bottom:60px}
 .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--ok));transition:width .6s}
 .pct{font-size:28px;font-weight:900}
 
+.qGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;padding:0 4vw}
+.qCard{position:relative;overflow:hidden;text-align:left;border-radius:14px;padding:20px 20px 18px;min-height:190px;display:flex;flex-direction:column;
+  background:radial-gradient(120% 120% at 100% 0%,var(--qc) 0%,#0e1119 62%);border:1px solid #ffffff1a;transition:transform .2s,box-shadow .2s}
+.qCard:hover{transform:translateY(-4px);box-shadow:0 18px 40px #000a}
+.qCard:after{content:"?";position:absolute;right:10px;bottom:-34px;font:900 150px/1 Inter;color:#ffffff10}
+.qCard small{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#ffffffb0}
+.qCard h3{font-size:20px;font-weight:800;margin:6px 0 4px;line-height:1.2}
+.qCard p{font-size:13px;color:#c5cddb}
+.qCard .qSt{margin-top:auto;padding-top:14px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700}
+.qCard .qGo{background:#fff;color:#000;padding:7px 12px;border-radius:6px}
+.qCard .ok{color:var(--ok)}
+.qm{position:fixed;inset:0;z-index:110;background:#000d;display:none;align-items:center;justify-content:center;padding:4vh 4vw}
+.qm.show{display:flex}
+.qBox{width:min(680px,100%);max-height:92vh;overflow:auto;background:var(--bg2);border-radius:14px;border:1px solid var(--line);position:relative;animation:pop .25s ease}
+.qHead{padding:20px 24px 0;display:flex;align-items:center;gap:12px}
+.qHead b{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--qc)}
+.qHead span{margin-left:auto;font-size:13px;color:var(--mute);margin-right:40px}
+.qBar{height:5px;background:#ffffff14;margin:14px 24px 0;border-radius:9px;overflow:hidden}.qBar i{display:block;height:100%;background:var(--qc);transition:width .3s}
+.qBody{padding:22px 24px 26px}
+.qBody h2{font-size:22px;line-height:1.3;margin-bottom:18px}
+.opt{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:14px 16px;border-radius:10px;border:1.5px solid #ffffff1f;background:#ffffff08;margin-bottom:10px;font-size:15px;font-weight:600;transition:.15s}
+.opt:hover:not([disabled]){border-color:#ffffff66;background:#ffffff12}
+.opt .L{flex:0 0 28px;height:28px;border-radius:7px;background:#ffffff14;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:13px}
+.opt.right{border-color:var(--ok);background:#3ccf8e1f}.opt.right .L{background:var(--ok);color:#04130c}
+.opt.wrong{border-color:#ff5d5d;background:#ff5d5d1a}.opt.wrong .L{background:#ff5d5d;color:#fff}
+.opt[disabled]{cursor:default}
+.fb{display:none;margin-top:6px;padding:14px 16px;border-radius:10px;background:#ffffff0a;font-size:14px;line-height:1.5}
+.fb.show{display:block}.fb b{display:block;margin-bottom:2px}
+.fb.good b{color:var(--ok)}.fb.bad b{color:#ff7b7b}
+.qNext{margin-top:16px;display:none;width:100%;padding:13px;border-radius:9px;background:#fff;color:#000;font-weight:800;font-size:15px}
+.qNext.show{display:block}
+.res{text-align:center;padding:10px 0 4px}
+.ring{width:150px;height:150px;margin:0 auto 16px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  background:conic-gradient(var(--rc) calc(var(--p)*1%),#ffffff14 0)}
+.ring div{width:120px;height:120px;border-radius:50%;background:var(--bg2);display:flex;flex-direction:column;align-items:center;justify-content:center}
+.ring b{font-size:34px;font-weight:900}.ring span{font-size:12px;color:var(--mute)}
+.res h2{margin-bottom:6px}.res p{color:var(--mute);margin-bottom:18px}
+.res .btns{justify-content:center}
+.rev{text-align:left;margin-top:20px;border-top:1px solid var(--line);padding-top:14px}
+.rev div{font-size:13px;padding:8px 0;border-bottom:1px solid #ffffff0d}.rev em{font-style:normal;color:var(--ok);font-weight:700}
+.qClose{position:absolute;top:14px;right:14px;width:34px;height:34px;border-radius:50%;background:#ffffff14;display:flex;align-items:center;justify-content:center}
+.qClose svg{width:18px;height:18px}
+@media (max-width:1000px){.qGrid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.qGrid{grid-template-columns:1fr}.qCard{min-height:150px}.qBody h2{font-size:19px}}
+
 /* MODAL */
 .modal{position:fixed;inset:0;z-index:100;background:#000c;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:4vh 3vw}
 .modal.show{display:flex}
@@ -185,7 +230,7 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 <nav class="nav" id="nav">
   <div class="logo"><span class="sky">SISTEMA</span><span class="play">GROW</span><small>SKYONE HOME</small></div>
   <div class="links">
-    <a href="#inicio">Inicio</a><a href="#ruta">Ruta del asesor</a><a href="#mentalidad">Mentalidad</a><a href="#sistema">Sistema</a><a href="#alquileres">Alquileres</a><a href="#clientes">Clientes y comisiones</a>
+    <a href="#inicio">Inicio</a><a href="#ruta">Ruta del asesor</a><a href="#mentalidad">Mentalidad</a><a href="#sistema">Sistema</a><a href="#alquileres">Alquileres</a><a href="#clientes">Clientes y comisiones</a><a href="#cuestionarios">Cuestionarios</a>
   </div>
   <div class="navR">
     <div class="search" id="search">
@@ -215,6 +260,12 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 
 <footer>Sistema GROW · SkyOne Home · Plataforma interna de capacitación para asesores inmobiliarios. Tu avance se guarda en este navegador.</footer>
 
+<div class="qm" id="qm" role="dialog" aria-modal="true"><div class="qBox" id="qBox">
+  <button class="qClose" id="qClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div class="qHead"><b id="qCat"></b><span id="qCount"></span></div>
+  <div class="qBar"><i id="qBarI"></i></div>
+  <div class="qBody" id="qBody"></div>
+</div></div>
 <div class="modal" id="modal" role="dialog" aria-modal="true">
   <div class="sheet">
     <button class="close" id="mClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
@@ -281,8 +332,9 @@ VIDEOS.forEach((v,i)=>{v.pdf='guias/'+PDFS[v.id]; v.n=i+1; v.img=THUMBS[v.id]; v
 
 // ---- estado (solo en este navegador) ----
 const SKEY="skyoneplay.v1";
-let ST={p:{},done:{}};
+let ST={p:{},done:{},quiz:{}};
 try{ST=Object.assign(ST,JSON.parse(localStorage.getItem(SKEY)||"{}"));}catch(e){}
+ST.quiz=ST.quiz||{};
 function save(){try{localStorage.setItem(SKEY,JSON.stringify(ST));}catch(e){}}
 const pct=v=>ST.done[v.id]?100:Math.min(100,Math.round((ST.p[v.id]||0)/v.d*100));
 const fmt=s=>s>=60?`${Math.floor(s/60)} min ${s%60?String(s%60).padStart(2,"0")+" s":""}`.trim():`${s} s`;
@@ -323,7 +375,8 @@ function render(){
     $("#main").innerHTML=h; bind(); return;
   }
   h+=`<div class="panel"><div><h2>Tu avance en la capacitación</h2><p>${doneN===total?"¡Completaste toda la ruta del asesor SkyOne!":`Te faltan ${total-doneN} clase${total-doneN===1?"":"s"} para completar la ruta.`}</p></div>
-     <div class="bar"><i style="width:${P}%"></i></div><div class="pct">${P}%</div></div>`;
+     <div class="bar"><i style="width:${P}%"></i></div><div class="pct">${P}%</div>
+     <div style="flex-basis:100%;font-size:13px;color:var(--mute)">Cuestionarios aprobados: <b style="color:var(--ok)">${Object.keys(CATS).filter(k=>(ST.quiz[k]||0)>=80).length}/4</b> · <a href="#cuestionarios" style="color:var(--accent2)">Ir a los cuestionarios ↓</a></div></div>`;
   const cont=VIDEOS.filter(v=>!ST.done[v.id] && (ST.p[v.id]||0)>3);
   if(cont.length) h+=row("seguir","Seguir viendo","Retomá donde quedaste",cont.map(card).join(""));
   h+=row("ruta","Ruta del nuevo asesor","Las 9 clases en el orden recomendado",VIDEOS.map(rank).join(""));
@@ -331,10 +384,12 @@ function render(){
     h+=row(k,CATS[k].name,CATS[k].sub,VIDEOS.filter(v=>v.cat===k).map(card).join(""));
   }
   h+=row("todas","Todas las clases","Capacitación SkyOne Home",VIDEOS.map(card).join(""));
+  h+=quizSection();
   $("#main").innerHTML=h; bind(); hero();
 }
 function bind(){
   document.querySelectorAll("#main .card").forEach(c=>c.onclick=()=>openV(c.dataset.id));
+  document.querySelectorAll(".qCard").forEach(c=>c.onclick=()=>startQ(c.dataset.cat));
   document.querySelectorAll(".track").forEach(t=>{
     const s=t.querySelector(".scroller");
     t.querySelector(".arrow.l").onclick=()=>s.scrollBy({left:-s.clientWidth*.85,behavior:"smooth"});
@@ -401,6 +456,97 @@ addEventListener("message",e=>{
   if(d.event==="timeupdate" && d.data){ ST.p[cur.id]=d.data.seconds; if(d.data.percent>=.92) ST.done[cur.id]=1; save(); doneBtn(); }
   if(d.event==="ended"){ ST.done[cur.id]=1; save(); doneBtn(); }
 });
+
+const QUIZ = {
+  mentalidad: [
+    {q:"¿Cuáles son las 4 bases de la mentalidad del asesor?", o:["Actitud, disciplina, humildad y obsesión","Carisma, suerte, contactos y precio","Actitud, talento, dinero y tiempo","Disciplina, simpatía, rapidez y paciencia"], a:0, e:"Son las cuatro bases fundamentales que se ven en la Clase 1."},
+    {q:"En los meses malos, ¿qué es lo que mantiene un flujo constante de ingresos?", o:["Esperar a que el mercado mejore","La disciplina (junto con la actitud)","Bajar los precios de las propiedades","Cambiar de rubro"], a:1, e:"En ventas nada es fijo: la disciplina es lo que te sostiene cuando el mes viene flojo."},
+    {q:"¿Por qué es importante la humildad?", o:["Para cobrar menos comisión","Para no hablar con los clientes","Para recordar de dónde venimos y seguir aprendiendo","No es importante"], a:2, e:"Nadie lo sabe todo: hay que recordar cómo empezamos y querer seguir aprendiendo."},
+    {q:"¿Cuál de estas prendas NO corresponde para una visita?", o:["Camisa","Polo","Zapatos","Calzado deportivo"], a:3, e:"Ropa deportiva, calzado deportivo, remera casual y jeans rotos no van."},
+    {q:"¿Qué dice el dicho que hay que tener en cuenta sobre la imagen?", o:["“El cliente siempre tiene razón”","“Cómo nos ven, nos tratan”","“El que busca encuentra”","“Tiempo es dinero”"], a:1, e:"Tu imagen comunica éxito antes de que digas una palabra."},
+    {q:"Según la clase, ¿cómo hay que vestirse?", o:["Como si ya tuviéramos el éxito que queremos alcanzar","Lo más cómodo posible","Igual que el cliente","Da lo mismo si la propiedad es buena"], a:0, e:"Hay que vestirse como si ya tuviéramos éxito para poder alcanzarlo."}
+  ],
+  clientes: [
+    {q:"¿Quién debe estar presente en las visitas sí o sí?", o:["El colocador","El captador","El broker manager","El propietario"], a:1, e:"El captador, porque es quien conoce la propiedad."},
+    {q:"¿Quién filtra las visitas y recibe la documentación del cliente?", o:["El colocador","El captador","El propietario","Nadie"], a:0, e:"Filtrar, recibir documentos y explicar el proceso le toca al colocador."},
+    {q:"¿Qué formulario es obligatorio firmar, tanto en alquiler como en venta?", o:["El formulario SEPRELAD","El título de propiedad","La factura","Ninguno"], a:0, e:"El colocador hace firmar el SEPRELAD obligatoriamente en alquiler y en venta."},
+    {q:"Te escriben por WhatsApp: ¿cuál es una de las primeras preguntas para filtrar?", o:["¿Cuánto gana por mes?","¿Sería para usted?","¿Dónde trabaja?","¿Tiene auto?"], a:1, e:"Así sabés si es cliente directo o un asesor independiente."},
+    {q:"¿Por qué hay que preguntar si tiene mascotas?", o:["Por curiosidad","Para saber si la propiedad las acepta","Para cobrar más","No hace falta preguntar"], a:1, e:"Antes de la visita hay que saber si esa casa o departamento acepta mascotas."},
+    {q:"En un alquiler de Gs. 5.000.000, ¿cuánto cobra el lado colocador?", o:["Gs. 5.000.000","Gs. 1.000.000","Gs. 2.500.000","Gs. 500.000"], a:2, e:"La comisión se divide: 2,5 millones el lado captador y 2,5 millones el lado colocador."},
+    {q:"¿Qué porcentaje se descuenta de regalías para SkyOne Paraguay?", o:["5 %","10 %","20 %","50 %"], a:1, e:"Se descuenta el 10 % de regalías y lo que queda se multiplica por tu categoría."},
+    {q:"Venta de Gs. 400.000.000: ¿cuál es la comisión total?", o:["Gs. 22.000.000 (5,5 %)","Gs. 40.000.000 (10 %)","Gs. 11.000.000 (2,75 %)","Gs. 200.000.000 (50 %)"], a:0, e:"5,5 % de 400 millones son 22 millones: 11 para cada lado."}
+  ],
+  sistema: [
+    {q:"¿Por dónde se carga una propiedad nueva en el CRM?", o:["Colocación → Vincular interesado","Captación → Nueva propiedad","Seguimiento → Proceso de cierre","Perfil → Configuración"], a:1, e:"Captación → Nueva propiedad, y empezás por la ubicación."},
+    {q:"¿Cuántas fotos de la propiedad podés subir?", o:["Hasta 5","Hasta 10","Hasta 15","Sin límite"], a:2, e:"El sistema permite subir hasta 15 imágenes de la propiedad."},
+    {q:"En los documentos del contrato, ¿qué formato se puede subir?", o:["Solo fotos","PDF","Word","Cualquiera"], a:0, e:"Hasta 5 imágenes y solamente en formato foto: no PDF ni Word."},
+    {q:"¿Cuándo podés compartir la propiedad en los grupos de WhatsApp?", o:["Apenas la cargás","Cuando el broker assistant o el broker manager la aprueban","Nunca","Antes de cargarla"], a:1, e:"Primero queda en borrador; recién después de la aprobación se comparte."},
+    {q:"¿Para qué sirve el número de ID de la propiedad?", o:["No sirve para nada","Para que los colegas de la marca la encuentren fácil","Para cobrar la comisión","Es la contraseña del sistema"], a:1, e:"Ponelo siempre en la descripción cuando la compartas."},
+    {q:"Al cerrar un ALQUILER, el sistema viene con 5,5 % por defecto. ¿Qué hacés?", o:["Lo dejo así","Lo cambio a 50 %","Lo cambio a 10 %","Lo borro"], a:1, e:"El 5,5 % es el de venta: en alquiler se cambia a 50 %."},
+    {q:"Vos sos captador y cerrás con un colega externo. ¿Qué rol le ponés al interesado?", o:["Cliente","Propietario","Asesor externo","Broker"], a:2, e:"Este paso es fundamental: rol del interesado = asesor externo."},
+    {q:"Vos sos colocador y el captador es externo. ¿Qué hacés primero?", o:["Cerrar directamente","Subir la propiedad al sistema como propiedad externa","Pedir la factura","Nada, no se registra"], a:1, e:"Se carga como propiedad externa, vinculando al asesor externo como propietario."}
+  ],
+  alquileres: [
+    {q:"Alquiler de USD 1.000: ¿cuánto necesita el cliente para ingresar?", o:["USD 1.000","USD 1.500","USD 2.000","USD 2.500"], a:3, e:"Mes adelantado (1.000) + garantía (1.000) + comisión 50 % (500) = 2.500."},
+    {q:"¿Cuánto es la comisión inmobiliaria en un alquiler?", o:["5,5 %","10 %","50 % de un mes","Un mes completo"], a:2, e:"La comisión es el 50 % del alquiler mensual."},
+    {q:"Un extranjero sin garante, ¿qué alternativa tiene?", o:["No puede alquilar","Doble garantía o seguro de garantía (Sancor)","Pagar un año adelantado","Traer un pariente"], a:1, e:"El garante se puede reemplazar por doble garantía o un seguro como Sancor."},
+    {q:"¿Qué es lo PRIMERO que se completa en una carpeta de alquiler?", o:["El contrato de locación","La solicitud de alquiler","Los recibos de sueldo","La factura"], a:1, e:"La solicitud autoriza a revisar el informe crediticio (Criterium / Informconf)."},
+    {q:"¿Qué comprobantes de ingresos se piden a una persona física?", o:["El último recibo","Los últimos 6 IVA o 6 recibos de salario, o IPS","La cédula","Ninguno"], a:1, e:"Seis últimos IVA o comprobantes de salario, o IPS. Para titular y garante."},
+    {q:"Para una empresa (persona jurídica), ¿qué documento extra se pide?", o:["Acta de la última asamblea","Licencia de conducir","Partida de nacimiento","Ninguno"], a:0, e:"Además: comprobante de ingresos, CI de firmantes y garante persona física."},
+    {q:"¿Quién elabora el contrato de locación?", o:["El colocador","El captador","El cliente","El garante"], a:1, e:"El contrato lo elabora el captador; el SEPRELAD lo hace firmar el colocador."}
+  ]
+};
+
+const PASS=80;
+function quizSection(){
+  return `<section class="row" id="cuestionarios"><div class="rowH"><h2>Cuestionarios</h2><span>Comprobá lo que aprendiste en cada sección · se aprueba con ${PASS}%</span></div>
+  <div class="qGrid">${Object.keys(CATS).map(k=>{const best=ST.quiz[k];const n=QUIZ[k].length;const vids=VIDEOS.filter(v=>v.cat===k).length;
+    return `<button class="qCard" data-cat="${k}" style="--qc:${CATS[k].color}"><small>Sección · ${vids} clase${vids>1?"s":""}</small><h3>${CATS[k].name}</h3><p>${n} preguntas de opción múltiple</p>
+    <div class="qSt">${best==null?`<span class="qGo">Empezar ▶</span>`:best>=PASS?`<span class="ok">✓ Aprobado · ${best}%</span><span class="qGo">Repetir</span>`:`<span>Mejor nota: ${best}%</span><span class="qGo">Reintentar</span>`}</div></button>`}).join("")}</div></section>`;
+}
+let Q=null;
+function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function startQ(cat){
+  const qs=shuffle(QUIZ[cat]).map(x=>{const ord=shuffle(x.o.map((t,i)=>({t,i})));return {...x,ord};});
+  Q={cat,qs,i:0,ok:0,ans:[]};
+  $("#qBox").style.setProperty("--qc",CATS[cat].color);
+  $("#qCat").textContent="Cuestionario · "+CATS[cat].name;
+  $("#qm").classList.add("show"); document.body.style.overflow="hidden"; showQ();
+}
+function showQ(){
+  const x=Q.qs[Q.i], L="ABCD";
+  $("#qCount").textContent=`Pregunta ${Q.i+1} de ${Q.qs.length}`;
+  $("#qBarI").style.width=(Q.i/Q.qs.length*100)+"%";
+  $("#qBody").innerHTML=`<h2>${esc(x.q)}</h2>${x.ord.map((o,k)=>`<button class="opt" data-i="${o.i}"><span class="L">${L[k]}</span>${esc(o.t)}</button>`).join("")}
+    <div class="fb" id="fb"></div><button class="qNext" id="qNext">${Q.i+1<Q.qs.length?"Siguiente →":"Ver resultado"}</button>`;
+  document.querySelectorAll(".opt").forEach(b=>b.onclick=()=>pick(+b.dataset.i));
+  $("#qNext").onclick=()=>{Q.i++; Q.i<Q.qs.length?showQ():result();};
+}
+function pick(i){
+  const x=Q.qs[Q.i], good=i===x.a;
+  if(good)Q.ok++; Q.ans.push({q:x.q,good,right:x.o[x.a]});
+  document.querySelectorAll(".opt").forEach(b=>{b.disabled=true;const bi=+b.dataset.i;if(bi===x.a)b.classList.add("right");else if(bi===i)b.classList.add("wrong");});
+  const fb=$("#fb"); fb.className="fb show "+(good?"good":"bad");
+  fb.innerHTML=`<b>${good?"¡Correcto!":"No es correcto"}</b>${esc(x.e)}`;
+  $("#qNext").classList.add("show"); $("#qBarI").style.width=((Q.i+1)/Q.qs.length*100)+"%";
+}
+function result(){
+  const p=Math.round(Q.ok/Q.qs.length*100), pass=p>=PASS;
+  ST.quiz[Q.cat]=Math.max(ST.quiz[Q.cat]||0,p); save();
+  $("#qCount").textContent="Resultado";
+  const vids=VIDEOS.filter(v=>v.cat===Q.cat);
+  $("#qBody").innerHTML=`<div class="res"><div class="ring" style="--p:${p};--rc:${pass?"var(--ok)":"#ff7b7b"}"><div><b>${p}%</b><span>${Q.ok} de ${Q.qs.length}</span></div></div>
+    <h2>${pass?"¡Aprobado! 🎉":"Todavía no 💪"}</h2>
+    <p>${pass?"Dominás esta sección. Seguí con la próxima.":`Necesitás ${PASS}% para aprobar. Repasá las clases y volvé a intentarlo.`}</p>
+    <div class="btns"><button class="btn play" id="qRetry">↻ Reintentar</button>${pass?"":`<button class="btn info" id="qRev">Repasar clase</button>`}</div>
+    <div class="rev">${Q.ans.map((a,k)=>`<div>${a.good?"✅":"❌"} ${k+1}. ${esc(a.q)}${a.good?"":`<br><em>Respuesta correcta: ${esc(a.right)}</em>`}</div>`).join("")}</div></div>`;
+  $("#qRetry").onclick=()=>startQ(Q.cat);
+  if(!pass) $("#qRev").onclick=()=>{closeQ(); openV(vids[0].id,false);};
+}
+function closeQ(){ $("#qm").classList.remove("show"); document.body.style.overflow=""; Q=null; render(); }
+$("#qClose").onclick=closeQ;
+$("#qm").onclick=e=>{ if(e.target.id==="qm") closeQ(); };
+addEventListener("keydown",e=>{ if(e.key==="Escape" && $("#qm").classList.contains("show")) closeQ(); });
 
 // ---- nav / búsqueda ----
 addEventListener("scroll",()=>$("#nav").classList.toggle("solid",scrollY>40),{passive:true});
