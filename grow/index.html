@@ -24,6 +24,10 @@ a{color:inherit}
 .logo{display:flex;align-items:baseline;gap:6px;font-weight:900;letter-spacing:.04em;font-size:22px;white-space:nowrap}
 .logo .sky{color:var(--txt)}.logo .play{color:var(--accent)}
 .logo small{font-size:10px;font-weight:600;color:var(--mute);letter-spacing:.18em;margin-left:4px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+.brand img{height:40px;width:auto;display:block}
+.brand .sep{width:1px;height:30px;background:var(--line)}
+footer .flogo{height:46px;width:auto;display:block;margin-bottom:14px;opacity:.85}
 .links{display:flex;gap:20px;font-size:14px;color:#cfd5df}
 .links a{text-decoration:none;opacity:.85}.links a:hover{opacity:1}
 .navR{margin-left:auto;display:flex;align-items:center;gap:14px}
@@ -151,6 +155,7 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 
 @media (max-width:760px){
   .links{display:none}
+  .brand img{height:32px}.brand .sep{height:24px}.logo small{display:none}
   .hero{height:78vh;padding-bottom:16vh}
   .hero::after{background:linear-gradient(0deg,var(--bg) 6%,rgba(7,9,14,.5) 55%,rgba(7,9,14,.15))}
   .word{top:9%;left:50%;right:auto;transform:translateX(-50%);font-size:34vw}
@@ -171,7 +176,7 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 <body>
 
 <nav class="nav" id="nav">
-  <div class="logo"><span class="sky">SISTEMA</span><span class="play">GROW</span><small>SKYONE HOME</small></div>
+  <a class="brand" href="#inicio" aria-label="SkyOne Home · Sistema GROW"><img src="logo-skyone-home.png" alt="SkyOne Home"><span class="sep"></span><div class="logo"><span class="sky">SISTEMA</span><span class="play">GROW</span><small>SKYONE HOME</small></div></a>
   <div class="links">
     <a href="#inicio">Inicio</a><a href="#ruta">Ruta del asesor</a><a href="#mentalidad">Mentalidad</a><a href="#sistema">Sistema</a><a href="#alquileres">Alquileres</a><a href="#clientes">Clientes y comisiones</a>
   </div>
@@ -201,7 +206,7 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 
 <main id="main"></main>
 
-<footer>Sistema GROW · SkyOne Home · Plataforma interna de capacitación para asesores inmobiliarios. Tu avance se guarda en este navegador.</footer>
+<footer><img class="flogo" src="logo-skyone-home.png" alt="SkyOne Home">Sistema GROW · SkyOne Home · Plataforma interna de capacitación para asesores inmobiliarios. Tu avance se guarda en este navegador.</footer>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true">
   <div class="sheet">
