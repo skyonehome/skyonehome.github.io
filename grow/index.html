@@ -170,6 +170,35 @@ main{position:relative;z-index:3;margin-top:-9vh;padding-bottom:60px}
 @media (max-width:1000px){.qGrid{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.qGrid{grid-template-columns:1fr}.qCard{min-height:150px}.qBody h2{font-size:19px}}
 
+.vTools{display:flex;gap:10px;flex-wrap:wrap;padding:0 4vw;margin-bottom:14px}
+.vTools input{flex:1 1 240px;background:#ffffff0d;border:1px solid #ffffff26;border-radius:8px;padding:11px 14px;color:var(--txt);font:inherit;font-size:15px;outline:none}
+.vTools input:focus{border-color:var(--accent)}
+.vChip{padding:9px 14px;border-radius:999px;border:1px solid #ffffff26;font-size:13px;font-weight:700}
+.vChip.on{background:#fff;color:#000;border-color:#fff}
+.vGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:12px;padding:0 4vw}
+.vCard{background:var(--card);border:1px solid #ffffff12;border-left:4px solid var(--vc);border-radius:10px;padding:14px 16px}
+.vCard b{display:block;font-size:16px;margin-bottom:4px}.vCard p{font-size:14px;color:#c9d0dc;line-height:1.5}
+.vCard small{display:inline-block;margin-top:8px;font-size:10.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--vc)}
+.vEmpty{padding:0 4vw;color:var(--mute)}
+.who{font-size:13px;font-weight:600;color:#cfd5df;white-space:nowrap}.who b{color:#fff}
+.who button{color:var(--accent2);font-size:12px;margin-left:6px;text-decoration:underline}
+.reg{position:fixed;inset:0;z-index:120;background:radial-gradient(80% 80% at 80% 0%,#1d4ed855,transparent),#07090ef2;display:none;align-items:center;justify-content:center;padding:5vw}
+.reg.show{display:flex}
+.regBox{width:min(460px,100%);background:var(--bg2);border:1px solid var(--line);border-radius:16px;padding:30px 28px;animation:pop .25s ease}
+.regBox img{height:44px;margin-bottom:18px}
+.regBox h2{font-size:26px;line-height:1.15;margin-bottom:8px}.regBox h2 span{color:var(--accent)}
+.regBox p{color:var(--mute);font-size:14px;margin-bottom:18px;line-height:1.5}
+.regBox label{display:block;font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#aab3c2;margin:12px 0 6px}
+.regBox input{width:100%;background:#ffffff0d;border:1px solid #ffffff2e;border-radius:8px;padding:13px 14px;color:var(--txt);font:inherit;font-size:16px;outline:none}
+.regBox input:focus{border-color:var(--accent)}
+.regBox .err{color:#ff7b7b;font-size:13px;min-height:18px;margin-top:6px}
+.regBox .btn{width:100%;justify-content:center;margin-top:8px}
+.certBox{margin:0 4vw 46px;border-radius:14px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;
+  background:linear-gradient(110deg,#ffd23f26,#141821 55%);border:1px solid #ffd23f66}
+.certBox .medal{font-size:46px}.certBox h2{font-size:20px;margin-bottom:4px}.certBox p{color:#d5dbe5;font-size:14px}
+.certBox .btns{margin-left:auto}
+.certBox.lock{background:#141821;border-color:var(--line)}.certBox.lock .medal{filter:grayscale(1);opacity:.5}
+
 /* MODAL */
 .modal{position:fixed;inset:0;z-index:100;background:#000c;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:4vh 3vw}
 .modal.show{display:flex}
@@ -209,8 +238,9 @@ main{position:relative;z-index:3;margin-top:-9vh;padding-bottom:60px}
 .empty{padding:0 4vw;color:var(--mute);font-size:15px}
 footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #1b202b}
 
+@media (max-width:1100px){.links{display:none}}
 @media (max-width:760px){
-  .links{display:none}
+  .who button{display:none}
   .brand img{height:32px}.brand .sep{height:24px}.logo small{display:none}
   .hero{height:78vh;padding-bottom:16vh}
   .hero::after{background:linear-gradient(0deg,var(--bg) 6%,rgba(7,9,14,.5) 55%,rgba(7,9,14,.15))}
@@ -235,14 +265,14 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 <nav class="nav" id="nav">
   <a class="brand" href="#inicio" aria-label="SkyOne Home · Sistema GROW"><img src="logo-skyone-home.png" alt="SkyOne Home"><span class="sep"></span><div class="logo"><span class="sky">SISTEMA</span><span class="play">GROW</span><small>SKYONE HOME</small></div></a>
   <div class="links">
-    <a href="#inicio">Inicio</a><a href="#ruta">Ruta del asesor</a><a href="#mentalidad">Mentalidad</a><a href="#sistema">Sistema</a><a href="#alquileres">Alquileres</a><a href="#clientes">Clientes y comisiones</a><a href="#cuestionarios">Cuestionarios</a>
+    <a href="#inicio">Inicio</a><a href="#ruta">Ruta del asesor</a><a href="#todas">Clases</a><a href="#cuestionarios">Cuestionarios</a><a href="#vocabulario">Vocabulario</a>
   </div>
   <div class="navR">
     <div class="search" id="search">
       <button aria-label="Buscar" id="sBtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
       <input id="sIn" placeholder="Buscar clase…" autocomplete="off">
     </div>
-    <span class="pill" id="pill"><b>0</b>/9 vistas</span>
+    <span class="who" id="who"></span><span class="pill" id="pill"><b>0</b>/9 vistas</span>
   </div>
 </nav>
 
@@ -265,6 +295,15 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 
 <footer><img class="flogo" src="logo-skyone-home.png" alt="SkyOne Home">Sistema GROW · SkyOne Home · Plataforma interna de capacitación para asesores inmobiliarios. Tu avance se guarda en este navegador.</footer>
 
+<div class="reg" id="reg"><form class="regBox" id="regF" autocomplete="on">
+  <img src="logo-skyone-home.png" alt="SkyOne Home">
+  <h2>Bienvenido a <span>Sistema GROW</span></h2>
+  <p>La capacitación para asesores de SkyOne Home. Ingresá tus datos para guardar tu avance y recibir tu certificado.</p>
+  <label for="rN">Nombre y apellido</label><input id="rN" name="name" autocomplete="name" required placeholder="Ej.: María González">
+  <label for="rW">WhatsApp</label><input id="rW" name="tel" type="tel" autocomplete="tel" placeholder="Ej.: 0981 123 456">
+  <div class="err" id="rE"></div>
+  <button class="btn play" type="submit">Empezar la capacitación →</button>
+</form></div>
 <div class="qm" id="qm" role="dialog" aria-modal="true"><div class="qBox" id="qBox">
   <button class="qClose" id="qClose" aria-label="Cerrar"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <div class="qHead"><b id="qCat"></b><span id="qCount"></span></div>
@@ -382,6 +421,7 @@ function render(){
   h+=`<div class="panel"><div><h2>Tu avance en la capacitación</h2><p>${doneN===total?"¡Completaste toda la ruta del asesor SkyOne!":`Te faltan ${total-doneN} clase${total-doneN===1?"":"s"} para completar la ruta.`}</p></div>
      <div class="bar"><i style="width:${P}%"></i></div><div class="pct">${P}%</div>
      <div style="flex-basis:100%;font-size:13px;color:var(--mute)">Cuestionarios aprobados: <b style="color:var(--ok)">${Object.keys(CATS).filter(k=>(ST.quiz[k]||0)>=80).length}/4</b> · <a href="#cuestionarios" style="color:var(--accent2)">Ir a los cuestionarios ↓</a></div></div>`;
+  h+=certBox();
   const cont=VIDEOS.filter(v=>!ST.done[v.id] && (ST.p[v.id]||0)>3);
   if(cont.length) h+=row("seguir","Seguir viendo","Retomá donde quedaste",cont.map(card).join(""));
   h+=row("ruta","Ruta del nuevo asesor","Las 9 clases en el orden recomendado",VIDEOS.map(rank).join(""));
@@ -390,7 +430,8 @@ function render(){
   }
   h+=row("todas","Todas las clases","Capacitación SkyOne Home",VIDEOS.map(card).join(""));
   h+=quizSection();
-  $("#main").innerHTML=h; bind(); hero();
+  h+=vocabSection();
+  $("#main").innerHTML=h; bindVocab(); bindCert(); bind(); hero();
 }
 function bind(){
   document.querySelectorAll("#main .card").forEach(c=>c.onclick=()=>openV(c.dataset.id));
@@ -446,7 +487,7 @@ function doneBtn(){
   $("#mDone").classList.toggle("on",on);
   $("#mDone").textContent=on?"✓ Vista":"✓ Marcar como vista";
 }
-$("#mDone").onclick=()=>{ if(ST.done[cur.id]) delete ST.done[cur.id]; else ST.done[cur.id]=1; save(); doneBtn(); };
+$("#mDone").onclick=()=>{ if(ST.done[cur.id]) { delete ST.done[cur.id]; send("clase desmarcada",cur.t); } else markDone(cur); save(); doneBtn(); };
 function closeM(){ $("#modal").classList.remove("show"); $("#player").innerHTML=""; document.body.style.overflow=""; cur=null; render(); }
 $("#mClose").onclick=closeM;
 $("#modal").onclick=e=>{ if(e.target.id==="modal") closeM(); };
@@ -458,8 +499,8 @@ addEventListener("message",e=>{
   const f=$("#player iframe"); if(!f) return;
   const post=m=>f.contentWindow.postMessage(JSON.stringify(m),"*");
   if(d.event==="ready"){ post({method:"addEventListener",value:"timeupdate"}); post({method:"addEventListener",value:"ended"}); }
-  if(d.event==="timeupdate" && d.data){ ST.p[cur.id]=d.data.seconds; if(d.data.percent>=.92) ST.done[cur.id]=1; save(); doneBtn(); }
-  if(d.event==="ended"){ ST.done[cur.id]=1; save(); doneBtn(); }
+  if(d.event==="timeupdate" && d.data){ ST.p[cur.id]=d.data.seconds; if(d.data.percent>=.92) markDone(cur); save(); doneBtn(); }
+  if(d.event==="ended"){ markDone(cur); save(); doneBtn(); }
 });
 
 const QUIZ = {
@@ -538,6 +579,7 @@ function pick(i){
 function result(){
   const p=Math.round(Q.ok/Q.qs.length*100), pass=p>=PASS;
   ST.quiz[Q.cat]=Math.max(ST.quiz[Q.cat]||0,p); save();
+  send("cuestionario",CATS[Q.cat].name,p);
   $("#qCount").textContent="Resultado";
   const vids=VIDEOS.filter(v=>v.cat===Q.cat);
   $("#qBody").innerHTML=`<div class="res"><div class="ring" style="--p:${p};--rc:${pass?"var(--ok)":"#ff7b7b"}"><div><b>${p}%</b><span>${Q.ok} de ${Q.qs.length}</span></div></div>
@@ -553,6 +595,122 @@ $("#qClose").onclick=closeQ;
 $("#qm").onclick=e=>{ if(e.target.id==="qm") closeQ(); };
 addEventListener("keydown",e=>{ if(e.key==="Escape" && $("#qm").classList.contains("show")) closeQ(); });
 
+const VOCAB = [
+ {t:"Acta de asamblea", d:"Documento de la empresa (persona jurídica) que se pide en la carpeta de alquiler: el acta de su última asamblea.", c:"alquileres"},
+ {t:"Asesor externo", d:"Colega que no pertenece a la red SkyOne. En el sistema se marca con ese rol al cerrar una operación compartida.", c:"sistema"},
+ {t:"Autorización", d:"Permiso del propietario para comercializar su propiedad sin exclusividad. Se sube como foto (por ejemplo, la captura del WhatsApp del propietario).", c:"sistema"},
+ {t:"Borrador", d:"Estado de una propiedad recién cargada. Queda así hasta que el broker assistant o el broker manager la revisan y aprueban.", c:"sistema"},
+ {t:"Broker assistant / Broker manager", d:"Quienes revisan y aprueban las propiedades cargadas y acompañan la gestión de la oficina.", c:"sistema"},
+ {t:"Broker owner", d:"Dueño de la oficina dentro de la red SkyOne.", c:"general"},
+ {t:"Captación", d:"Propiedad que un asesor consigue para comercializar. También es la pestaña del CRM donde se cargan las propiedades.", c:"sistema"},
+ {t:"Captador", d:"Asesor que tiene la propiedad: trata con el propietario, la sube al sistema, prepara la documentación y el contrato, y está en las visitas.", c:"clientes"},
+ {t:"Categoría (junior, senior, elite)", d:"Nivel del asesor. Define el porcentaje que le corresponde de la comisión después de regalías.", c:"clientes"},
+ {t:"Cierre exitoso", d:"Último paso en el sistema para registrar que la operación se concretó. Después queda en pendiente de cobro.", c:"sistema"},
+ {t:"Club One", d:"Reconocimiento de la red SkyOne para asesores y oficinas que alcanzan una meta de facturación.", c:"clientes"},
+ {t:"Colocación", d:"Pestaña del CRM donde se vinculan interesados y se cierran operaciones.", c:"sistema"},
+ {t:"Colocador", d:"Asesor que trae al cliente: lo filtra, recibe su documentación, le explica el proceso, hace firmar el SEPRELAD y cierra en el sistema.", c:"clientes"},
+ {t:"Comisión inmobiliaria", d:"Honorario por la operación. En alquiler es el 50 % de un mes; en venta, el 5,5 % del precio. Se reparte entre el lado captador y el lado colocador.", c:"clientes"},
+ {t:"Contrato de locación", d:"Contrato de alquiler. Lo elabora siempre el captador.", c:"alquileres"},
+ {t:"CRM", d:"Sistema de SkyOne donde se cargan propiedades, clientes y cierres.", c:"sistema"},
+ {t:"Criterium / Informconf", d:"Informes crediticios que se revisan antes de avanzar con un alquiler. Para pedirlos, el cliente firma la solicitud de alquiler.", c:"alquileres"},
+ {t:"Doble garantía", d:"Alternativa cuando el inquilino no tiene garante (frecuente en extranjeros): se deja el doble de garantía.", c:"alquileres"},
+ {t:"Exclusividad", d:"Acuerdo firmado con el propietario para comercializar su propiedad solo con vos. Se sube con título, CI y el documento firmado.", c:"sistema"},
+ {t:"Garante", d:"Persona física que respalda al inquilino. Presenta los mismos requisitos que el titular: informe limpio y comprobantes de ingresos.", c:"alquileres"},
+ {t:"Garantía", d:"Monto que se deja al ingresar a un alquiler, normalmente igual a un mes. Se puede negociar en cuotas.", c:"alquileres"},
+ {t:"Grupales / red", d:"Grupos de WhatsApp de la red donde se comparten las propiedades aprobadas, siempre con su ID.", c:"sistema"},
+ {t:"Gross commission", d:"Comisión bruta que genera el asesor. Es la que cuenta para subir de categoría y llegar al Club One.", c:"clientes"},
+ {t:"ID de propiedad", d:"Número que el sistema asigna a cada propiedad. Permite que los colegas la encuentren rápido; va siempre en la descripción.", c:"sistema"},
+ {t:"IPS / IVA", d:"Comprobantes de ingresos que se piden en un alquiler: los últimos 6 IVA, 6 recibos de salario o el IPS.", c:"alquileres"},
+ {t:"Lead", d:"Contacto interesado (cliente o propietario) que se registra en el CRM con nombre y celular.", c:"sistema"},
+ {t:"Mes adelantado", d:"Primer mes de alquiler que el inquilino paga al ingresar.", c:"alquileres"},
+ {t:"No negociable", d:"Lo que el cliente necesita sí o sí (cochera, piscina, zona). Se pregunta al filtrar para ofrecer la propiedad justa.", c:"clientes"},
+ {t:"Pendiente de cobro", d:"Estado de una operación ya cerrada en el sistema mientras se espera el pago de la comisión.", c:"sistema"},
+ {t:"Persona física / jurídica", d:"Física es un individuo; jurídica, una empresa. Cada una tiene su propia lista de documentos para alquilar.", c:"alquileres"},
+ {t:"Presentación de cliente", d:"Registro de que el colocador presentó a su cliente. En ventas resguarda la comisión de ambos asesores.", c:"clientes"},
+ {t:"Propiedad externa", d:"Propiedad de un asesor fuera de la red. Para cerrarla como colocador, primero se carga en el sistema con ese tipo.", c:"sistema"},
+ {t:"Regalías", d:"10 % de la comisión que corresponde a SkyOne Paraguay. Se descuenta antes de aplicar tu categoría.", c:"clientes"},
+ {t:"Seguro de garantía (Sancor)", d:"Seguro que puede reemplazar al garante, por ejemplo en extranjeros o empresas no radicadas en el país.", c:"alquileres"},
+ {t:"SEPRELAD", d:"Formulario de prevención de lavado de dinero. El colocador lo hace firmar, obligatoriamente, en alquileres y ventas.", c:"alquileres"},
+ {t:"Solicitud de alquiler", d:"Primer documento de la carpeta. Tiene los datos del cliente y autoriza a revisar su informe crediticio.", c:"alquileres"}
+];
+
+// ---- registro y envío de avance ----
+const API="";
+function uid(){return "a"+Date.now().toString(36)+Math.random().toString(36).slice(2,8);}
+function estado(){return {vistas:VIDEOS.filter(v=>ST.done[v.id]).map(v=>v.n),quiz:ST.quiz};}
+function send(tipo,detalle,valor){
+  if(!ST.user||!API||API.indexOf("http")!==0) return;
+  const body=JSON.stringify({uid:ST.user.uid,nombre:ST.user.nombre,wa:ST.user.wa,tipo,detalle,valor,estado:estado()});
+  try{fetch(API,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body,keepalive:true}).catch(()=>{});}catch(e){}
+}
+function markDone(v){ if(!ST.done[v.id]){ ST.done[v.id]=1; save(); send("clase vista",`${v.n}. ${v.t}`); } }
+function who(){ $("#who").innerHTML=ST.user?`Hola, <b>${esc(ST.user.nombre.split(" ")[0])}</b><button id="whoX" title="Editar mis datos">editar</button>`:""; const x=$("#whoX"); if(x) x.onclick=()=>{ $("#rN").value=ST.user.nombre; $("#rW").value=ST.user.wa||""; $("#reg").classList.add("show"); }; }
+$("#regF").addEventListener("submit",e=>{
+  e.preventDefault();
+  const n=$("#rN").value.trim().replace(/\s+/g," "), w=$("#rW").value.trim();
+  if(n.split(" ").length<2||n.length<5){ $("#rE").textContent="Escribí tu nombre y apellido."; return; }
+  const first=!ST.user; ST.user={uid:ST.user?ST.user.uid:uid(),nombre:n,wa:w};
+  save(); $("#reg").classList.remove("show"); who(); send(first?"registro":"datos actualizados","");
+});
+
+// ---- vocabulario ----
+let vq="", vc="";
+function vocabSection(){
+  return `<section class="row" id="vocabulario"><div class="rowH"><h2>Vocabulario inmobiliario</h2><span>${VOCAB.length} términos que usamos en SkyOne Home</span></div>
+  <div class="vTools"><input id="vIn" placeholder="Buscar un término… (ej.: SEPRELAD, garante, regalías)" value="${esc(vq)}">
+   <button class="vChip ${vc?"":"on"}" data-c="">Todos</button>${Object.keys(CATS).map(k=>`<button class="vChip ${vc===k?"on":""}" data-c="${k}">${CATS[k].name}</button>`).join("")}</div>
+  <div class="vGrid" id="vGrid"></div></section>`;
+}
+function drawVocab(){
+  const q=vq.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");
+  const L=VOCAB.filter(x=>(!vc||x.c===vc)&&(!q||(x.t+" "+x.d).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"").includes(q)));
+  $("#vGrid").innerHTML=L.length?L.map(x=>{const c=CATS[x.c];return `<div class="vCard" style="--vc:${c?c.color:"#9aa3b2"}"><b>${esc(x.t)}</b><p>${esc(x.d)}</p><small>${c?c.name:"General"}</small></div>`}).join(""):`<p class="vEmpty">No encontramos ese término.</p>`;
+}
+function bindVocab(){
+  drawVocab();
+  $("#vIn").addEventListener("input",e=>{vq=e.target.value;drawVocab();});
+  document.querySelectorAll(".vChip").forEach(b=>b.onclick=()=>{vc=b.dataset.c;document.querySelectorAll(".vChip").forEach(x=>x.classList.toggle("on",x===b));drawVocab();});
+}
+
+// ---- certificado ----
+function aprobados(){return Object.keys(CATS).filter(k=>(ST.quiz[k]||0)>=80).length;}
+function certBox(){
+  const a=aprobados(), ok=a===4;
+  return `<div class="certBox ${ok?"":"lock"}"><div class="medal">🎓</div><div><h2>${ok?"¡Ya sos Asesor GROW!":"Certificado Asesor GROW"}</h2>
+   <p>${ok?"Aprobaste los 4 cuestionarios. Descargá tu certificado y compartilo.":`Aprobá los 4 cuestionarios para obtenerlo · llevás ${a}/4`}</p></div>
+   <div class="btns">${ok?`<button class="btn play" id="certPng">⬇ Descargar certificado</button>`:`<a class="btn info" href="#cuestionarios">Ir a los cuestionarios</a>`}</div></div>`;
+}
+function bindCert(){ const b=$("#certPng"); if(b) b.onclick=makeCert; }
+function makeCert(){
+  const W=2000,H=1414,c=document.createElement("canvas");c.width=W;c.height=H;const x=c.getContext("2d");
+  const g=x.createRadialGradient(W*.85,0,50,W*.85,0,W*.9);g.addColorStop(0,"#1d4ed8");g.addColorStop(.45,"#0b1430");g.addColorStop(1,"#07090e");
+  x.fillStyle=g;x.fillRect(0,0,W,H);
+  x.strokeStyle="#ffffff10";x.lineWidth=1;for(let i=0;i<W;i+=70){x.beginPath();x.moveTo(i,0);x.lineTo(i,H);x.stroke();}for(let j=0;j<H;j+=70){x.beginPath();x.moveTo(0,j);x.lineTo(W,j);x.stroke();}
+  x.strokeStyle="#ffd23f";x.lineWidth=6;x.strokeRect(60,60,W-120,H-120);x.strokeStyle="#ffd23f66";x.lineWidth=2;x.strokeRect(84,84,W-168,H-168);
+  x.font="900 520px Inter, sans-serif";x.fillStyle="#ffffff08";x.textAlign="right";x.fillText("GROW",W-120,H-150);
+  const done=()=>{
+    x.textAlign="center";x.fillStyle="#ffd23f";x.font="800 34px Inter, sans-serif";
+    x.fillText("S I S T E M A   G R O W   ·   S K Y O N E   H O M E",W/2,330);
+    x.fillStyle="#fff";x.font="900 120px Inter, sans-serif";x.fillText("CERTIFICADO",W/2,470);
+    x.font="600 40px Inter, sans-serif";x.fillStyle="#c9d0dc";x.fillText("Se otorga a",W/2,580);
+    let fs=118;x.font=`900 ${fs}px Inter, sans-serif`;while(x.measureText(ST.user.nombre).width>W-420&&fs>60){fs-=4;x.font=`900 ${fs}px Inter, sans-serif`;}
+    x.fillStyle="#fff";x.fillText(ST.user.nombre,W/2,720);
+    x.fillStyle="#ffd23f";x.fillRect(W/2-260,760,520,6);
+    x.fillStyle="#e6ebf3";x.font="600 42px Inter, sans-serif";
+    x.fillText("por completar la Ruta del Asesor Inmobiliario",W/2,860);
+    const prom=Math.round(Object.keys(CATS).reduce((s,k)=>s+(ST.quiz[k]||0),0)/4);
+    x.fillText(`y aprobar los 4 cuestionarios con un promedio de ${prom} %`,W/2,920);
+    x.font="800 46px Inter, sans-serif";x.fillStyle="#fff";
+    x.fillText("ASESOR GROW",W/2,1030);
+    const f=new Date().toLocaleDateString("es-PY",{day:"numeric",month:"long",year:"numeric"});
+    x.font="600 34px Inter, sans-serif";x.fillStyle="#aab3c2";x.fillText(`Asunción, ${f}`,W/2,1170);
+    const a=document.createElement("a");a.download=`Certificado-Asesor-GROW-${ST.user.nombre.replace(/\s+/g,"-")}.png`;
+    c.toBlob(b=>{a.href=URL.createObjectURL(b);document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},2000);},"image/png");
+    if(!ST.cert){ST.cert=1;save();} send("certificado","Asesor GROW",prom);
+  };
+  const img=new Image();img.onload=()=>{const h2=120,w2=img.width*h2/img.height;x.drawImage(img,W/2-w2/2,150,w2,h2);done();};img.onerror=done;img.src="logo-skyone-home.png";
+}
+
 // ---- nav / búsqueda ----
 addEventListener("scroll",()=>$("#nav").classList.toggle("solid",scrollY>40),{passive:true});
 $("#sBtn").onclick=()=>{ $("#search").classList.add("open"); $("#sIn").focus(); };
@@ -560,7 +718,8 @@ $("#sIn").addEventListener("input",e=>{ query=e.target.value.trim(); render(); i
 $("#sIn").addEventListener("blur",()=>{ if(!$("#sIn").value) $("#search").classList.remove("open"); });
 
 $("#totMin").textContent=Math.round(VIDEOS.reduce((a,v)=>a+v.d,0)/60);
-render();
+render(); who();
+if(!ST.user) $("#reg").classList.add("show");
 </script>
 </body>
 </html>
