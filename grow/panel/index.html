@@ -97,7 +97,7 @@ tr:hover td{background:#ffffff05}
   </div>
   <div class="wrap"><table><thead><tr>
     <th data-k="Asesor">Asesor</th><th data-k="Clases vistas">Clases</th>
-    <th data-k="Mentalidad %">Mentalidad</th><th data-k="Captación %">Captación</th><th data-k="Clientes y comisiones %">Clientes</th><th data-k="Alquileres %">Alquileres</th><th data-k="Ventas %">Ventas</th><th data-k="Sistema %">Sistema</th>
+    <th data-k="Mentalidad %">Mentalidad</th><th data-k="Seguimiento %">Seguimiento</th><th data-k="Captación %">Captación</th><th data-k="Clientes y comisiones %">Clientes</th><th data-k="Alquileres %">Alquileres</th><th data-k="Ventas %">Ventas</th><th data-k="Sistema %">Sistema</th>
     <th data-k="Cuestionarios aprobados">Aprobados</th><th data-k="Certificado">Certificado</th><th data-k="Último acceso">Último acceso</th>
   </tr></thead><tbody id="tb"></tbody></table></div>
   <div class="cards" id="cards"></div>
@@ -106,7 +106,7 @@ tr:hover td{background:#ffffff05}
 
 <script>
 const API="https://script.google.com/macros/s/AKfycbxtE205op2cUnn-jceR_vQYjKkDzu9NBY7PPgqZBYwfXXN8zPRbMEkFxWqHFOUOgxECJA/exec", TOTAL=21, PASS=80;
-const QCOLS=[["Mentalidad %","Mentalidad"],["Captación %","Captación"],["Clientes y comisiones %","Clientes"],["Alquileres %","Alquileres"],["Ventas %","Ventas"],["Sistema %","Sistema"]], NQ=QCOLS.length;
+const QCOLS=[["Mentalidad %","Mentalidad"],["Seguimiento %","Seguimiento"],["Captación %","Captación"],["Clientes y comisiones %","Clientes"],["Alquileres %","Alquileres"],["Ventas %","Ventas"],["Sistema %","Sistema"]], NQ=QCOLS.length;
 const $=s=>document.querySelector(s);
 const esc=s=>String(s==null?"":s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 let DATA=[], SHEET="", sortK="Último acceso", sortD=-1;
@@ -131,7 +131,7 @@ function draw(){
     ${QCOLS.map(q=>`<td>${nota(a[q[0]])}</td>`).join("")}
     <td><b>${+a["Cuestionarios aprobados"]||0}/${NQ}</b></td>
     <td>${a.Certificado?`<span class="cert">🎓 ${fd(a.Certificado)}</span>`:`<span class="cert na">Pendiente</span>`}</td>
-    <td class="muted">${fd(a["Último acceso"])}</td></tr>`}).join(""):`<tr><td colspan="11" class="empty">${DATA.length?"Ningún asesor coincide con el filtro.":"Todavía no se registró ningún asesor. Compartí skyonehome.github.io/grow con tu equipo."}</td></tr>`;
+    <td class="muted">${fd(a["Último acceso"])}</td></tr>`}).join(""):`<tr><td colspan="12" class="empty">${DATA.length?"Ningún asesor coincide con el filtro.":"Todavía no se registró ningún asesor. Compartí skyonehome.github.io/grow con tu equipo."}</td></tr>`;
   $("#cards").innerHTML=L.length?L.map(a=>{const c=+a["Clases vistas"]||0;const wa=String(a.WhatsApp||"").replace(/\D/g,"");const waL=wa?(wa.startsWith("0")?"595"+wa.slice(1):wa):"";
     return `<div class="ac"><div class="top"><div><b>${esc(a.Asesor)}</b><small>${esc(a.WhatsApp||"")}</small></div>${waL?`<a href="https://wa.me/${waL}" target="_blank" rel="noopener">WhatsApp ↗</a>`:""}</div>
     <div class="prog"><div class="bar"><i style="width:${c/TOTAL*100}%"></i></div><span>${c}/${TOTAL} clases</span></div>
