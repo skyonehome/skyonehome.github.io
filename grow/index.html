@@ -668,6 +668,30 @@ a.tile:hover{border-color:#ffffff33;transform:translateY(-2px)}
 .iPills span b{color:#fff;margin-left:2px}.iPills span.cur{border-color:var(--accent);color:#fff}.iPills span.ok{border-color:#22c55e88;color:#86efac}
 .iMore{display:block;width:100%;margin-top:14px;padding:11px;border-radius:9px;border:1px solid #ffffff26;background:#ffffff08;font-weight:700;font-size:14px;color:#fff}
 #iFold{color:var(--accent2);font-weight:700;font-size:13px}
+/* ---- resumen de la hoja de ruta (arriba) ---- */
+.rMini{margin-top:-7vh;position:relative;z-index:4;margin-bottom:40px}
+.rmBox{background:linear-gradient(160deg,#141a26f2,#0e121bf2);border:1px solid #ffffff1c;border-radius:18px;padding:18px 18px 16px;box-shadow:0 20px 50px #0009;backdrop-filter:blur(10px)}
+.rmH{display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+.rmH small{display:block;font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--accent2);margin-bottom:4px}
+.rmH>div>b{font-size:clamp(17px,1.6vw,21px);font-weight:800}
+.rmStats{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--mute)}.rmStats b{color:#fff;font-size:15px}
+.rmRow{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px}
+.rmS{position:relative;display:flex;flex-direction:column;gap:8px;padding:12px 10px 14px;border-radius:12px;background:#ffffff07;border:1px solid #ffffff12;text-decoration:none;color:#fff;transition:.18s;min-width:0}
+.rmS:hover{border-color:var(--ec,#ffd23f);transform:translateY(-2px)}
+.rmD{width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;font:900 14px Inter;background:#ffffff12;color:#cfd5df}
+.rmS.cur{background:color-mix(in srgb,var(--ec) 16%,#0e121b);border-color:var(--ec);box-shadow:0 0 0 1px var(--ec),0 10px 30px color-mix(in srgb,var(--ec) 30%,transparent)}
+.rmS.cur .rmD,.rmS.ok .rmD{background:var(--ec);color:#fff}
+.rmS.fin .rmD{background:#ffd23f22}.rmS.fin.ok .rmD{background:#ffd23f}
+.rmT b{display:block;font-size:13px;line-height:1.2}.rmT small{display:block;font-size:11.5px;color:var(--mute);margin-top:3px}
+.rmT em{font-style:normal;color:#fff;font-weight:800}
+.rmB{position:absolute;left:10px;right:10px;bottom:7px;height:3px;border-radius:2px;background:#ffffff14;overflow:hidden}.rmB i{display:block;height:100%;background:var(--ec)}
+@media (max-width:1240px) and (min-width:601px){.eGrid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:12px;scrollbar-width:none;margin-right:-18px;padding-right:18px}.eGrid::-webkit-scrollbar{display:none}.eGrid .card{flex:0 0 41%;scroll-snap-align:start}}
+@media (min-width:1101px){.hero{height:80vh;max-height:800px;padding-bottom:16vh}}
+@media (max-width:600px){.hero{padding-top:100px!important;padding-bottom:56px!important}}
+.moreH{display:flex;align-items:center;gap:14px;margin:10px 4vw 26px;color:#8b94a5;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase}
+.moreH:before,.moreH:after{content:"";flex:1;height:1px;background:#ffffff1a}
+@media (max-width:1240px){.rmRow{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -18px;padding:2px 18px 4px}.rmRow::-webkit-scrollbar{display:none}.rmS{flex:0 0 150px;scroll-snap-align:center}}
+@media (max-width:600px){.rMini{margin-top:0;margin-bottom:28px}.rmBox{padding:14px 14px 12px}.rmRow{margin:0 -14px;padding:2px 14px 4px}.rmS{flex-basis:136px}.rmStats{gap:12px;font-size:12px}}
 .cardPdf{position:absolute;right:8px;bottom:10px;font-size:10px;font-weight:800;letter-spacing:.06em;background:#ffd23f;color:#111;padding:2px 6px;border-radius:3px}
 .mBody{padding:22px 28px 30px;display:grid;grid-template-columns:2fr 1fr;gap:28px}
 .mBody h2{font-size:26px;font-weight:800;margin:6px 0 10px}
@@ -919,19 +943,21 @@ function render(){
     $("#main").innerHTML=h; bind(); return;
   }
   const cont=VIDEOS.filter(v=>!ST.done[v.id] && (ST.p[v.id]||0)>3);
-  h+=dashSection();
+  h+=roadMini();
+  if(cont.length) h+=row("seguir","Seguir viendo","Retomá donde quedaste",cont.map(card).join(""));
+  h+=roadSection();
+  h+=`<div class="moreH"><span>Más para tu trabajo</span></div>`;
   h+=quickSection();
   h+=novStrip();
   h+=`<section class="sec">${induSection()}</section>`;
   h+=`<section class="sec">${formSection()}</section>`;
-  if(cont.length) h+=row("seguir","Seguir viendo","Retomá donde quedaste",cont.map(card).join(""));
-  h+=roadSection();
   h+=manualesSection();
   h+=docsSection();
   h+=faqSection();
   if(TESTIMONIOS.length) h+=casosSection();
   h+=vocabSection();
   $("#main").innerHTML=h; bindVocab(); bindCert(); bind(); bindRoad(); bindDocs(); bindNov(); hero(); requestAnimationFrame(spy);
+  const rr=$("#rmRow"), rc=rr&&rr.querySelector(".rmS.cur"); if(rc&&rr.scrollWidth>rr.clientWidth) rr.scrollLeft=rc.offsetLeft-rr.clientWidth/2+rc.offsetWidth/2;
 }
 function bind(){
   document.querySelectorAll("#main .card").forEach(c=>c.onclick=()=>openV(c.dataset.id));
@@ -1524,10 +1550,10 @@ function roadSection(){
         <div class="eHead"><div><small>Etapa ${i+1} · ${I.vs.length} clase${I.vs.length>1?"s":""} · ${I.min} min ${st==="cur"?'<span class="here">Estás acá</span>':""}${I.ok?'<span class="okc">✓ Completa</span>':""}</small>
           <h3>${esc(c.name)}</h3><p>${esc(e.t)}</p></div>
           <div class="eProg"><div class="t"><span>Clases vistas</span><span>${I.d}/${I.vs.length}</span></div><div class="bar"><i style="width:${Math.round(I.d/I.vs.length*100)}%"></i></div></div></div>
-        ${collapsed?`<div class="eClosed"><button class="eToggle" data-et="${e.cat}" data-open="0">▶ Ver las ${I.vs.length} clases${qn?" y el cuestionario":""}</button>${hasProc?`<button class="eToggle alt" data-et="${e.cat}" data-open="0" data-proc="1">📋 Proceso y checklist de cierre</button>`:""}</div>`:`<div class="eGrid">${I.vs.map(card).join("")}</div>
-        ${qn?`<div class="eQuiz ${I.q>=PASS?"ok":""}"><div class="qi">${I.q>=PASS?"✅":"📝"}</div><div><b>Cuestionario de la etapa ${i+1}</b><span>${qtxt}</span></div><button class="btn ${I.q>=PASS?"ghost":"play"} qGoBtn" data-cat="${e.cat}">${I.q==null?"Rendir cuestionario":I.q>=PASS?"Repetir":"Reintentar"}</button></div>`:""}
+        <div class="eGrid">${I.vs.map(card).join("")}</div>
+        ${collapsed?`<div class="eClosed">${qn?`<button class="eToggle" data-et="${e.cat}" data-open="0">📝 Cuestionario de la etapa ${i+1}${I.q>=PASS?" · ✓ aprobado":""}</button>`:""}${hasProc?`<button class="eToggle alt" data-et="${e.cat}" data-open="0" data-proc="1">📋 Proceso y checklist de cierre</button>`:""}</div>`:`${qn?`<div class="eQuiz ${I.q>=PASS?"ok":""}"><div class="qi">${I.q>=PASS?"✅":"📝"}</div><div><b>Cuestionario de la etapa ${i+1}</b><span>${qtxt}</span></div><button class="btn ${I.q>=PASS?"ghost":"play"} qGoBtn" data-cat="${e.cat}">${I.q==null?"Rendir cuestionario":I.q>=PASS?"Repetir":"Reintentar"}</button></div>`:""}
         ${procBlock(e.cat)}
-        <button class="eToggle hide" data-et="${e.cat}" data-open="1">Ocultar etapa ↑</button>`}
+        <button class="eToggle hide" data-et="${e.cat}" data-open="1">Ocultar cuestionario${hasProc?" y proceso":""} ↑</button>`}
       </div></div></div>`;
   }).join("");
   const ap=aprobados(), all=ap===Object.keys(CATS).length;
@@ -1536,8 +1562,8 @@ function roadSection(){
      <div class="eProg">${all?`<button class="btn play" id="certPng">⬇ Descargar certificado</button>`:`<div class="t"><span>Cuestionarios</span><span>${ap}/${Object.keys(CATS).length}</span></div><div class="bar"><i style="width:${Math.round(ap/Object.keys(CATS).length*100)}%;background:#ffd23f"></i></div>`}</div></div>
    </div></div></div>`;
   return `<section class="sec" id="hoja-de-ruta"><span id="cuestionarios"></span><span id="ruta"></span>
-    <div class="secH"><div><span class="ey">Hoja de ruta del asesor</span><h2>Tu camino, etapa por etapa</h2>
-    <p>Seguí las etapas en orden: mirá las clases de cada una y al final rendí su cuestionario. Cada clase tiene su guía PDF.</p></div></div>
+    <div class="secH"><div><span class="ey">Videos de capacitación</span><h2>Las clases, etapa por etapa</h2>
+    <p>Mirá las clases de cada etapa en orden y al final rendí su cuestionario. Cada clase tiene su guía PDF y sus documentos.</p></div></div>
     <div class="road">${items}${fin}</div></section>`;
 }
 function bindRoad(){
@@ -1662,8 +1688,20 @@ function faqSection(){
   const groups=[...new Set(FAQ.map(f=>f.g))];
   return `<section class="sec" id="preguntas"><div class="secH"><div><span class="ey">Cómo trabajamos</span><h2>Preguntas frecuentes</h2>
     <p>Lo que más se consulta en la oficina: visitas, consultas, facturas y cierres.</p></div></div>
-    ${groups.map(g=>`<div class="faqG"><h3>${esc(g)}</h3><div class="faqL">${FAQ.filter(f=>f.g===g).map(f=>`<details class="faq"><summary>${esc(f.q)}</summary><div class="fa">${esc(f.a)}${f.go?`<br><a href="${f.go}">${esc(f.gl||"Ver más")} →</a>`:""}</div></details>`).join("")}</div></div>`).join("")}
+    ${groups.map(g=>`<div class="faqG"><h3>${esc(g)}</h3><div class="faqL">${FAQ.filter(f=>f.g===g).map(f=>`<details class="faq"><summary>${esc(f.q)}</summary><div class="fa">${esc(f.a)}${f.go?`<br><a href="${f.go}"${f.go.startsWith("#etapa-")?' data-qp="1"':""}>${esc(f.gl||"Ver más")} →</a>`:""}</div></details>`).join("")}</div></div>`).join("")}
   </section>`;
+}
+// ---- hoja de ruta (resumen arriba de todo) ----
+function roadMini(){
+  const tot=VIDEOS.length, dn=VIDEOS.filter(v=>ST.done[v.id]).length, P=Math.round(dn/tot*100);
+  const ci=curEtapa(), ap=aprobados(), nq=Object.keys(CATS).length;
+  const st=ETAPAS.map((e,i)=>{ const c=CATS[e.cat], I=etapaInfo(e), cls=I.ok?"ok":i===ci?"cur":"";
+    return `<a class="rmS ${cls}" href="#etapa-${e.cat}" style="--ec:${c.color}"><span class="rmD">${I.ok?"✓":i+1}</span><span class="rmT"><b>${esc(c.name)}</b><small>${i===ci?'<em>Estás acá</em> · ':""}${I.d}/${I.vs.length} clases</small></span><i class="rmB"><i style="width:${Math.round(I.d/I.vs.length*100)}%"></i></i></a>`;}).join("");
+  return `<section class="sec rMini" id="ruta-resumen"><div class="rmBox">
+    <div class="rmH"><div><small>Tu hoja de ruta</small><b>${ci<0?"¡Completaste la ruta!":`Etapa ${ci+1} de ${ETAPAS.length} · ${esc(CATS[ETAPAS[ci].cat].name)}`}</b></div>
+      <div class="rmStats"><span><b>${P}%</b> completado</span><span><b>${dn}</b>/${tot} clases</span><span><b>${ap}</b>/${nq} cuestionarios</span></div></div>
+    <div class="rmRow" id="rmRow">${st}<a class="rmS fin ${ap===nq?"ok":""}" href="#certificado"><span class="rmD">🎓</span><span class="rmT"><b>Certificado</b><small>Asesor HOME</small></span></a></div>
+  </div></section>`;
 }
 // ---- accesos rápidos ----
 function quickSection(){
@@ -1678,12 +1716,12 @@ function quickSection(){
   return `<section class="sec quick" aria-label="Accesos rápidos"><div class="qRow">${Q.map(q=>`<a class="qa" ${q.a} style="--qc:${q.c}"><span class="qi2">${q.i}</span><span><b>${esc(q.t)}</b><small>${esc(q.s)}</small></span></a>`).join("")}</div></section>`;
 }
 // abre una etapa y baja hasta ella (o hasta su proceso)
-function goEtapa(k,proc){ openEt[k]=true; render(); const el=document.querySelector(proc?`#etapa-${k} .proc`:`#etapa-${k}`)||document.getElementById("etapa-"+k); if(el) setTimeout(()=>el.scrollIntoView({behavior:"smooth",block:"start"}),40); }
+function goEtapa(k,proc){ if(proc) openEt[k]=true; render(); const el=document.querySelector(proc?`#etapa-${k} .proc`:`#etapa-${k}`)||document.getElementById("etapa-"+k); if(el) setTimeout(()=>el.scrollIntoView({behavior:"smooth",block:"start"}),40); }
 document.addEventListener("click",e=>{
   const a=e.target.closest("a[href^='#'],[data-qv]"); if(!a) return;
   if(a.dataset.qv){ e.preventDefault(); openV(a.dataset.qv); return; }
   const h=a.getAttribute("href"); closeSheet();
-  if(h.startsWith("#etapa-")){ e.preventDefault(); goEtapa(h.slice(7), !!a.dataset.qp || h==="#etapa-ventas"||h==="#etapa-alquileres"); }
+  if(h.startsWith("#etapa-")){ e.preventDefault(); goEtapa(h.slice(7), !!a.dataset.qp); }
 });
 // ---- barra inferior (celular y tablet) y menú ----
 function closeSheet(){ const sh=$("#sheet"); if(sh) sh.classList.remove("show"); }
@@ -1692,10 +1730,11 @@ $("#sheet").onclick=e=>{ if(e.target.id==="sheet") closeSheet(); };
 $("#shNov").onclick=()=>{ closeSheet(); scrollTo(0,0); setTimeout(()=>$("#bell").click(),150); };
 $("#shSearch").onclick=()=>{ closeSheet(); scrollTo(0,0); $("#search").classList.add("open"); $("#sIn").focus(); };
 // ---- sección activa en el menú ----
-const SPY=["inicio","induccion","hoja-de-ruta","manuales","documentos","preguntas","casos","vocabulario","formulario-semanal"];
+const SPY=["inicio","ruta-resumen","induccion","hoja-de-ruta","manuales","documentos","preguntas","casos","vocabulario","formulario-semanal"];
 function spy(){
   let cur="inicio", best=-1e9; const y=innerHeight*.35;
   SPY.forEach(id=>{ const el=document.getElementById(id); if(!el) return; const t=el.getBoundingClientRect().top; if(t<y&&t>best){ best=t; cur=id; } });
+  if(cur==="ruta-resumen") cur="hoja-de-ruta";
   document.querySelectorAll(".links a, .bnav a, .bnav button").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+cur||(a.dataset.alt||"").split(" ").includes(cur)));
   $("#toTop").classList.toggle("show",scrollY>1400);
 }
