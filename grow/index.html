@@ -299,6 +299,53 @@ a.chip{text-decoration:none}
 }
 @media (min-width:761px) and (max-width:1000px){.tBox{grid-template-columns:1fr}.tPlayer{height:70vh;margin:0 auto}}
 
+
+/* INDUCCIÓN */
+.indu{margin:0 4vw 46px;border-radius:16px;padding:24px;background:radial-gradient(90% 140% at 100% 0%,#1d3a7a66,transparent 60%),#121722;border:1px solid #2f8cff40}
+.iHead{display:flex;align-items:flex-end;gap:18px;flex-wrap:wrap;margin-bottom:20px}
+.iHead small{font-size:11px;font-weight:800;letter-spacing:.16em;color:#9fb6d9;text-transform:uppercase}
+.iHead h2{font-size:clamp(22px,2.4vw,30px);line-height:1.1;margin-top:4px}.iHead h2 span{color:#a9bbd6}
+.iHead p{color:var(--mute);font-size:14px;margin-top:4px}
+.iProg{margin-left:auto;min-width:220px;flex:0 1 320px}
+.iProg .t{display:flex;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:6px}.iProg .t b{color:var(--ok)}
+.iProg .bar{height:9px;border-radius:9px;background:#ffffff14;overflow:hidden}.iProg .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--ok));transition:width .5s}
+.iFlow{display:grid;grid-template-columns:1.25fr 34px 1.5fr 34px 1fr 34px .8fr;align-items:stretch;gap:0}
+.iArrow{display:flex;align-items:center;justify-content:center;color:#5d7aa8}
+.iArrow svg{width:26px;height:26px}
+.iArrow.done{color:var(--ok)}
+.phase{background:#0d121b;border:1px solid #ffffff14;border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.phase.cur{border-color:#2f8cff99;box-shadow:0 0 0 1px #2f8cff55,0 10px 30px #2f8cff1f}
+.phase.ok{border-color:#3ccf8e66}
+.pH{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.pH b{white-space:nowrap;background:#dfe6f0;color:#0b1430;font-size:12px;font-weight:900;letter-spacing:.14em;padding:5px 10px;border-radius:6px;text-transform:uppercase}
+.phase.ok .pH b{background:var(--ok);color:#04130c}
+.pH span{font-size:12px;color:var(--mute)}
+.pH em{margin-left:auto;font-style:normal;font-size:12px;font-weight:700;color:var(--mute)}
+.step{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;padding:10px 11px;border-radius:9px;background:#ffffff08;border:1px solid #ffffff10;transition:.15s}
+.step .ck{flex:0 0 24px;height:24px;border-radius:50%;border:2px solid #5d6b82;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900;color:#5d6b82;margin-top:1px}
+.step .tx b{display:block;font-size:14.5px;line-height:1.3}
+.step .tx small{display:block;font-size:12.5px;color:var(--mute);margin-top:2px;line-height:1.35}
+.step.next{background:#2f8cff1f;border-color:#2f8cff88;cursor:pointer}
+.step.next .ck{border-color:#7cc4ff;color:#7cc4ff}
+.step.next:hover{background:#2f8cff33}
+.step .go{display:none;margin-top:6px;font-size:11px;font-weight:800;letter-spacing:.08em;color:#7cc4ff;text-transform:uppercase}
+.step.next .go{display:block}
+.step.ok .ck{background:var(--ok);border-color:var(--ok);color:#04130c}
+.step.ok .tx b{color:#cfe9dd}
+.step.ok.last{cursor:pointer}
+.step.lock{opacity:.55;cursor:not-allowed}
+.goal{border-radius:12px;padding:16px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:6px;background:linear-gradient(160deg,#ffd23f26,#141821);border:1px dashed #ffd23f88}
+.goal .ic{font-size:34px}.goal b{font-size:17px;line-height:1.2}.goal small{font-size:12.5px;color:var(--mute)}
+.goal.ok{background:linear-gradient(160deg,#3ccf8e33,#141821);border:1px solid var(--ok)}
+.iFoot{margin-top:16px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--mute)}
+.iFoot button{color:var(--accent2);text-decoration:underline;font-size:13px}
+.indu.min .iFlow{display:none}
+@media (max-width:1100px){
+  .iFlow{grid-template-columns:1fr}
+  .iArrow{height:34px}.iArrow svg{transform:rotate(90deg)}
+}
+@media (max-width:600px){.indu{margin:0 4vw 36px;padding:18px 14px}.iProg{margin-left:0;flex:1 1 100%}}
+
 /* MODAL */
 .modal{position:fixed;inset:0;z-index:100;background:#000c;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:4vh 3vw}
 .modal.show{display:flex}
@@ -365,7 +412,7 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 <nav class="nav" id="nav">
   <a class="brand" href="#inicio" aria-label="SkyOne Home · Sistema GROW"><img src="logo-skyone-home.png" alt="SkyOne Home"><span class="sep"></span><div class="logo"><span class="sky">SISTEMA</span><span class="play">GROW</span><small>SKYONE HOME</small></div></a>
   <div class="links">
-    <a href="#inicio">Inicio</a><a href="#ruta">Ruta del asesor</a><a href="#todas">Clases</a><a href="#casos">Casos de éxito</a><a href="#cuestionarios">Cuestionarios</a><a href="#vocabulario">Vocabulario</a>
+    <a href="#inicio">Inicio</a><a href="#induccion">Inducción</a><a href="#ruta">Ruta del asesor</a><a href="#todas">Clases</a><a href="#casos">Casos de éxito</a><a href="#cuestionarios">Cuestionarios</a><a href="#vocabulario">Vocabulario</a>
   </div>
   <div class="navR">
     <div class="search" id="search">
@@ -533,6 +580,7 @@ function render(){
   h+=`<div class="panel"><div><h2>Tu avance en la capacitación</h2><p>${doneN===total?"¡Completaste toda la ruta del asesor SkyOne!":`Te faltan ${total-doneN} clase${total-doneN===1?"":"s"} para completar la ruta.`}</p></div>
      <div class="bar"><i style="width:${P}%"></i></div><div class="pct">${P}%</div>
      <div style="flex-basis:100%;font-size:13px;color:var(--mute)">Cuestionarios aprobados: <b style="color:var(--ok)">${Object.keys(CATS).filter(k=>(ST.quiz[k]||0)>=80).length}/${Object.keys(CATS).length}</b> · <a href="#cuestionarios" style="color:var(--accent2)">Ir a los cuestionarios ↓</a></div></div>`;
+  h+=induSection();
   h+=certBox();
   const cont=VIDEOS.filter(v=>!ST.done[v.id] && (ST.p[v.id]||0)>3);
   if(cont.length) h+=row("seguir","Seguir viendo","Retomá donde quedaste",cont.map(card).join(""));
@@ -550,6 +598,7 @@ function render(){
 }
 function bind(){
   document.querySelectorAll("#main .card").forEach(c=>c.onclick=()=>openV(c.dataset.id));
+  bindIndu();
   document.querySelectorAll("[data-t]").forEach(c=>c.onclick=()=>openT(c.dataset.t));
   document.querySelectorAll(".qCard").forEach(c=>c.onclick=()=>startQ(c.dataset.cat));
   document.querySelectorAll(".track").forEach(t=>{
@@ -935,6 +984,59 @@ function closeT(){ $("#tm").classList.remove("show"); $("#tPlayer").innerHTML=""
 $("#tClose").onclick=closeT;
 $("#tm").onclick=e=>{ if(e.target.id==="tm") closeT(); };
 addEventListener("keydown",e=>{ if(e.key==="Escape" && $("#tm").classList.contains("show")) closeT(); });
+
+
+// ---- inducción ----
+const INDU=[
+ {k:"d1",fase:"Día 1",sub:"Tu llegada",pasos:[
+   {k:"entrevista",t:"Entrevista"},{k:"contrato",t:"Firma de contrato"},{k:"crm",t:"CRM"},
+   {k:"whatsapp",t:"Grupos de WhatsApp"},{k:"bienvenida",t:"Bienvenida"},{k:"plataforma",t:"Acceso a plataforma educativa"}]},
+ {k:"s1",fase:"Semana 1",sub:"Tus primeros 7 días",pasos:[
+   {k:"videos",t:"Ver todos los videos de la plataforma",d:"En 7 días, y estar en la oficina publicando y capacitándote"},
+   {k:"redes",t:"Crear tu Instagram profesional y WhatsApp Business",d:"En los primeros días, con foto profesional"},
+   {k:"gestion",t:"Usar en tu día a día «Mi gestión como asesor»",d:"Tu herramienta de trabajo diaria"},
+   {k:"estrategia",t:"Ver e implementar la estrategia de cierre",d:"«Cómo lograr mi primer cierre en los primeros 30 días»"}]},
+ {k:"rs",fase:"Cada semana",sub:"Acompañamiento",pasos:[
+   {k:"reunion",t:"Reunión semanal de 20 min",d:"Impulsamos tu avance y crecimiento, y respondemos tus dudas"}]}
+];
+const IND_ALL=INDU.flatMap(f=>f.pasos.map(p=>({...p,fase:f.fase})));
+let induOpen=null;
+function induSection(){
+  ST.indu=ST.indu||{};
+  const done=IND_ALL.filter(p=>ST.indu[p.k]).length, tot=IND_ALL.length, all=done===tot;
+  const nextI=IND_ALL.findIndex(p=>!ST.indu[p.k]);
+  const lastI=nextI===-1?tot-1:nextI-1;
+  const vistas=VIDEOS.filter(v=>ST.done[v.id]).length;
+  const min=all&&induOpen!==true;
+  let gi=0;
+  const AR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>';
+  const phases=INDU.map((f,fi)=>{
+    const fd=f.pasos.filter(p=>ST.indu[p.k]).length, fok=fd===f.pasos.length;
+    const cur=!fok && nextI>=0 && f.pasos.some(p=>p.k===IND_ALL[nextI].k);
+    const steps=f.pasos.map(p=>{const i=gi++;const ok=!!ST.indu[p.k];const cls=ok?(i===lastI?"ok last":"ok"):(i===nextI?"next":"lock");
+      const extra=p.k==="videos"?`${p.d} · llevás ${vistas}/${VIDEOS.length} clases`:(p.d||"");
+      return `<button class="step ${cls}" data-ik="${p.k}" ${cls==="lock"?'aria-disabled="true"':""}><span class="ck">${ok?"✓":i+1}</span><span class="tx"><b>${esc(p.t)}</b>${extra?`<small>${esc(extra)}</small>`:""}<span class="go">Tocá cuando lo completes ✓</span></span></button>`;}).join("");
+    const arrow=`<div class="iArrow ${fok?"done":""}">${AR}</div>`;
+    return `<div class="phase ${fok?"ok":cur?"cur":""}"><div class="pH"><b>${f.fase}</b><span>${f.sub}</span><em>${fok?"✓ Completo":`${fd}/${f.pasos.length}`}</em></div>${steps}</div>${arrow}`;
+  }).join("");
+  const goal=`<div class="goal ${all?"ok":""}"><div class="ic">${all?"🎉":"🎯"}</div><b>${all?"¡Inducción completa!":"Tu primer cierre en 30 días"}</b><small>${all?"Ahora, a buscar tu primer cierre en 30 días.":"La meta de tu inducción"}</small></div>`;
+  return `<section class="indu ${min?"min":""}" id="induccion"><div class="iHead"><div><small>Proceso inductivo · SkyOne Home</small>
+    <h2>Tu primer cierre en <span>30 días</span></h2><p>${all?"Completaste todos los pasos de tu inducción.":"Así te acompañamos desde el primer día. Marcá cada paso a medida que lo completás."}</p></div>
+    <div class="iProg"><div class="t"><span>Tu inducción</span><b>${done}/${tot} pasos</b></div><div class="bar"><i style="width:${Math.round(done/tot*100)}%"></i></div></div></div>
+    <div class="iFlow">${phases}${goal}</div>
+    <div class="iFoot"><span>¿Dudas? Más info: 0986 809 911</span>${all?`<button id="iTog">${min?"Ver los pasos":"Ocultar los pasos"}</button>`:""}</div></section>`;
+}
+function bindIndu(){
+  document.querySelectorAll(".step").forEach(b=>b.onclick=()=>{
+    if(b.classList.contains("lock")) return;
+    const k=b.dataset.ik, p=IND_ALL.find(x=>x.k===k); ST.indu=ST.indu||{};
+    if(b.classList.contains("next")){ ST.indu[k]=Date.now(); save(); const n=IND_ALL.filter(x=>ST.indu[x.k]).length; send("inducción",`${p.fase}: ${p.t}`,`${n}/${IND_ALL.length}`); if(n===IND_ALL.length) induOpen=null; }
+    else if(b.classList.contains("last")){ delete ST.indu[k]; save(); send("inducción desmarcada",`${p.fase}: ${p.t}`,""); }
+    else return;
+    const y=scrollY; render(); scrollTo(0,y);
+  });
+  const t=$("#iTog"); if(t) t.onclick=()=>{ induOpen=induOpen===true?false:true; const y=scrollY; render(); scrollTo(0,y); };
+}
 
 // ---- nav / búsqueda ----
 addEventListener("scroll",()=>$("#nav").classList.toggle("solid",scrollY>40),{passive:true});
