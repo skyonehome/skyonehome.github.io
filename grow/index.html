@@ -1018,7 +1018,7 @@ const INDU=[
    {k:"gestion",t:"Usar en tu día a día «Mi gestión como asesor»",d:"Tu herramienta de trabajo diaria"},
    {k:"estrategia",t:"Ver e implementar la estrategia de cierre",d:"«Cómo lograr mi primer cierre en los primeros 30 días»"}]},
  {k:"rs",fase:"Cada semana",sub:"Acompañamiento",pasos:[
-   {k:"reunion",t:"Reunión semanal de 20 min",d:"Impulsamos tu avance y crecimiento, y respondemos tus dudas"}]}
+   {k:"reunion",t:"Reunión semanal de 20 min",d:"Impulsamos tu avance y crecimiento, y respondemos tus dudas. Se trabaja en base a tu formulario semanal."}]}
 ];
 const IND_ALL=INDU.flatMap(f=>f.pasos.map(p=>({...p,fase:f.fase})));
 let induOpen=null;
@@ -1062,10 +1062,10 @@ function bindIndu(){
 // ---- formulario semanal ----
 const FORM_URL="https://skyonehome.github.io/formulario/";
 function formSection(){
-  return `<section class="wform" id="formulario-semanal"><div class="ic">📝</div><div class="tx"><small>Antes de tu reunión semanal de 20 min</small>
+  return `<section class="wform" id="formulario-semanal"><div class="ic">📝</div><div class="tx"><small>Una vez por semana · antes de tu reunión de 20 min</small>
     <h2>Formulario semanal del asesor</h2>
-    <p>Contá cómo te fue en la semana: tus números, tus logros y tus inquietudes. Llegás a la reunión con todo listo para conversarlo.</p>
-    <ul><li>Tus números de la semana</li><li>Lo que te salió bien</li><li>Tus dudas e inquietudes</li></ul></div>
+    <p>Completalo una vez por semana para medir tu progreso: tus números, en qué avanzaste, dónde te trabaste y en qué tenés que apretar. <b>Tu reunión semanal de 20 minutos se trabaja en base a este formulario.</b></p>
+    <ul><li>Tus números de la semana</li><li>En qué avanzaste</li><li>Dónde te trabaste</li><li>En qué podés mejorar</li></ul></div>
     <a class="btn play" href="${FORM_URL}" target="_blank" rel="noopener" data-form>Completar mi formulario →</a></section>`;
 }
 function prepForm(){
