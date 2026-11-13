@@ -659,6 +659,15 @@ a.tile:hover{border-color:#ffffff33;transform:translateY(-2px)}
   .dCard{padding:12px}.dInfo span{font-size:12.5px;margin-bottom:8px}
   .eClosed .eToggle{flex:1 1 100%}
 }
+.iFold{margin-top:16px}
+.iNextL{font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:8px}.iNextL span{color:var(--mute);font-weight:600;letter-spacing:.02em;text-transform:none}
+.iFold .step{width:100%}
+.iFoldL{margin-top:8px;display:flex;flex-direction:column;gap:4px}
+.iPills{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.iPills span{font-size:12px;font-weight:700;padding:5px 10px;border-radius:20px;background:#ffffff0d;border:1px solid #ffffff1c;color:#c9d0db}
+.iPills span b{color:#fff;margin-left:2px}.iPills span.cur{border-color:var(--accent);color:#fff}.iPills span.ok{border-color:#22c55e88;color:#86efac}
+.iMore{display:block;width:100%;margin-top:14px;padding:11px;border-radius:9px;border:1px solid #ffffff26;background:#ffffff08;font-weight:700;font-size:14px;color:#fff}
+#iFold{color:var(--accent2);font-weight:700;font-size:13px}
 .cardPdf{position:absolute;right:8px;bottom:10px;font-size:10px;font-weight:800;letter-spacing:.06em;background:#ffd23f;color:#111;padding:2px 6px;border-radius:3px}
 .mBody{padding:22px 28px 30px;display:grid;grid-template-columns:2fr 1fr;gap:28px}
 .mBody h2{font-size:26px;font-weight:800;margin:6px 0 10px}
@@ -1414,7 +1423,7 @@ function induSection(){
   const lastI=nextI===-1?tot-1:nextI-1;
   const vistas=VIDEOS.filter(v=>ST.done[v.id]).length;
   const min=all&&induOpen!==true;
-  let gi=0;
+  let gi=0; const PH=[];
   const AR='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg>';
   const phases=INDU.map((f,fi)=>{
     const fd=f.pasos.filter(p=>ST.indu[p.k]).length, fok=fd===f.pasos.length;
@@ -1424,14 +1433,27 @@ function induSection(){
       return `<button class="step ${cls}" data-ik="${p.k}" aria-pressed="${ok}"><span class="ck">${ok?"✓":i+1}</span><span class="tx"><b>${esc(p.t)}</b>${extra?`<small>${esc(extra)}</small>`:""}<span class="go">Tocá cuando lo completes ✓</span></span></button>`;}).join("");
     const arrow=`<div class="iArrow ${fok?"done":""}">${AR}</div>`;
     const extraLink=f.k==="s1"?`<a class="stepLink" href="#hoja-de-ruta">▶ Ir a la hoja de ruta</a> <a class="stepLink" href="#" data-vid="1246646069">▶ Ver la clase de la estrategia de cierre</a>`:f.k==="rs"?`<a class="stepLink" href="${FORM_URL}" target="_blank" rel="noopener" data-form>📝 Completar mi formulario semanal →</a>`:"";
+    PH.push({f,fd,fok,cur,extraLink});
     return `<div class="phase ${fok?"ok":cur?"cur":""}"><div class="pH"><b>${f.fase}</b><span>${f.sub}</span><em>${fok?"✓ Completo":`${fd}/${f.pasos.length}`}</em></div>${steps}${extraLink}</div>${arrow}`;
   }).join("");
+  // celular y tablet: plegada, solo el paso que sigue
+  const fold=isMob()&&!all&&induOpen!==true;
+  let folded="";
+  if(fold){
+    const np=IND_ALL[nextI], ph=PH.find(x=>x.f.pasos.some(q=>q.k===np.k));
+    const extra=np.k==="videos"?`${np.d} · llevás ${vistas}/${VIDEOS.length} clases`:(np.d||"");
+    folded=`<div class="iFold"><div class="iNextL">Tu próximo paso · ${esc(ph.f.fase)} <span>${esc(ph.f.sub)}</span></div>
+      <button class="step next" data-ik="${np.k}" aria-pressed="false"><span class="ck">${nextI+1}</span><span class="tx"><b>${esc(np.t)}</b>${extra?`<small>${esc(extra)}</small>`:""}<span class="go">Tocá cuando lo completes ✓</span></span></button>
+      ${ph.extraLink?`<div class="iFoldL">${ph.extraLink}</div>`:""}
+      <div class="iPills">${PH.map(x=>`<span class="${x.fok?"ok":x.cur?"cur":""}">${x.fok?"✓ ":""}${esc(x.f.fase)} <b>${x.fd}/${x.f.pasos.length}</b></span>`).join("")}</div>
+      <button class="iMore" id="iOpen">Ver los ${tot} pasos ↓</button></div>`;
+  }
   const goal=`<div class="goal ${all?"ok":""}"><div class="ic">${all?"🎉":"🎯"}</div><b>${all?"¡Inducción completa!":"Tu primer cierre en 30 días"}</b><small>${all?"Ahora, a buscar tu primer cierre en 30 días.":"La meta de tu inducción"}</small></div>`;
   return `<section class="indu ${min?"min":""}" id="induccion"><div class="iHead"><div><small>Proceso inductivo · SkyOne Home</small>
     <h2>Tu primer cierre en <span>30 días</span></h2><p>${all?"Completaste todos los pasos de tu inducción.":"Así te acompañamos desde el primer día. Marcá cada paso cuando lo completes."}</p></div>
     <div class="iProg"><div class="t"><span>Tu inducción</span><b>${done}/${tot} pasos</b></div><div class="bar"><i style="width:${Math.round(done/tot*100)}%"></i></div></div></div>
-    <div class="iFlow">${phases}${goal}</div>
-    <div class="iFoot"><span>¿Dudas? Más info: 0986 809 911</span>${all?`<button id="iTog">${min?"Ver los pasos":"Ocultar los pasos"}</button>`:""}</div></section>`;
+    ${fold?folded:`<div class="iFlow">${phases}${goal}</div>`}
+    <div class="iFoot"><span>¿Dudas? Más info: 0986 809 911</span>${all?`<button id="iTog">${min?"Ver los pasos":"Ocultar los pasos"}</button>`:(!fold&&isMob()?`<button id="iFold">Plegar los pasos ↑</button>`:"")}</div></section>`;
 }
 function bindIndu(){
   document.querySelectorAll(".step").forEach(b=>b.onclick=()=>{
@@ -1442,6 +1464,8 @@ function bindIndu(){
   });
   document.querySelectorAll("[data-vid]").forEach(a=>a.onclick=e=>{e.preventDefault();openV(a.dataset.vid);});
   const t=$("#iTog"); if(t) t.onclick=()=>{ induOpen=induOpen===true?false:true; const y=scrollY; render(); scrollTo(0,y); };
+  const o=$("#iOpen"); if(o) o.onclick=()=>{ induOpen=true; const y=scrollY; render(); scrollTo(0,y); };
+  const fz=$("#iFold"); if(fz) fz.onclick=()=>{ induOpen=null; render(); document.getElementById("induccion").scrollIntoView({block:"start"}); };
 }
 
 
@@ -1683,6 +1707,7 @@ const DX = {"secs": [{"k": "captacion", "t": "Captación", "s": "Autorizaciones 
 const DSEC={}; DX.secs.forEach(x=>DSEC[x.k]=x);
 let dFil=""; const dOpen={};
 const isMob=()=>matchMedia("(max-width:1100px)").matches;
+try{ matchMedia("(max-width:1100px)").addEventListener("change",()=>{ const y=scrollY; render(); scrollTo(0,y); }); }catch(e){}
 const DT={docx:["w","Word","W"],pdf:["p","PDF","PDF"],xlsx:["x","Excel","XLS"],img:["i","Imagen","IMG"]};
 function dName(d,f){ return `${d.t.replace(/[·\/]/g,"-").replace(/\s+/g," ").trim()} - SkyOne Home${f.slice(f.lastIndexOf("."))}`; }
 function dCard(d){
