@@ -73,11 +73,13 @@ details.r .rb{padding:14px;display:flex;flex-direction:column;gap:12px}
 ul.tight{margin:4px 0 0;padding-left:20px}
 .act{border:1px solid var(--line);border-radius:12px;padding:12px;background:#f8fafd;display:flex;flex-direction:column;gap:10px}
 @media(max-width:420px){.opts{grid-template-columns:1fr}}
+.g3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
+@media(max-width:560px){.g3{grid-template-columns:1fr 1fr}.g3>label:first-child{grid-column:1/-1}}
 </style>
 </head>
 <body>
 <header class="top"><div class="top-in">
-  <div><h1>Sistema de Activación Comercial</h1><p>SkyOne Home · Formulario semanal del asesor</p></div>
+  <div><h1>Sistema de Activación Comercial</h1><p>SkyOne Home · Una meta mensual dividida en cuatro metas semanales</p></div>
   <nav class="tabs" id="tabs" aria-label="Secciones"></nav>
 </div></header>
 <main id="view"><div class="card">Cargando…</div></main>
@@ -165,10 +167,10 @@ function actFields(wk){const o={};(wk.actions||[]).forEach((a,i)=>{if(i<3){o['a'
 function prevActions(){const p=(S.me&&S.me.weeks||{})[addDays(F.week,-7)];return p&&p.actions?p.actions:[];}
 function prevActsHtml(){
   const l=prevActions();if(!l.length)return '';
-  return '<div class="act"><b>Las acciones que me comprometí a hacer esta semana</b><div class="sub">Poné cuánto lograste de cada una.</div>'+l.slice(0,3).map((a,i)=>'<div class="g2"><div><b>'+esc(a.what)+'</b><div class="sub">Meta: '+esc(a.qty)+(a.due?' · para el '+esc(dayLabel(a.due)):'')+'</div></div><label>Lo que logré<input data-f="r'+(i+1)+'" id="f_r'+(i+1)+'" type="number" min="0" inputmode="numeric" value="'+esc(F['r'+(i+1)])+'"></label></div>').join('')+'</div>';
+  return '<div class="act"><b>Mis acciones de esta semana: ¿cuánto logré?</b>'+l.slice(0,3).map((a,i)=>'<div class="g2"><div><b>'+esc(a.what)+'</b><div class="sub">Meta: '+esc(a.qty)+(a.due?' · para el '+esc(dayLabel(a.due)):'')+'</div></div><label>Lo que logré<input data-f="r'+(i+1)+'" id="f_r'+(i+1)+'" type="number" min="0" inputmode="numeric" value="'+esc(F['r'+(i+1)])+'"></label></div>').join('')+'</div>';
 }
 function examplesHtml(){
-  return '<details class="r"><summary><b>Ver ejemplos de metas enlazadas</b><span class="pill">Mes → semana → acciones</span></summary><div class="rb"><div class="note">Se enlazan así: cada acción tiene un número y una fecha. Las acciones cumplen la meta de la semana, y cuatro metas semanales suman la meta del mes. Adaptá los números a tu realidad.</div>'
+  return '<details class="r"><summary><b>Ver ejemplos</b><span class="pill">Mes → semana → acciones</span></summary><div class="rb"><div class="note">Se enlazan así: cada acción tiene un número y una fecha. Las acciones cumplen la meta de la semana, y cuatro metas semanales suman la meta del mes. Adaptá los números a tu realidad.</div>'
   +EX.map((x,i)=>'<div><h3>'+esc(x.t)+'</h3><ul class="tight"><li><b>Meta del mes:</b> '+esc(x.month)+'</li><li><b>Meta de la semana:</b> '+esc(x.week)+'</li><li><b>Acciones medibles:</b><ul class="tight">'+x.acts.map(a=>'<li>'+esc(a[0])+' · '+a[1]+' · para el '+DAYN[a[2]]+'</li>').join('')+'</ul></li></ul><p style="margin:8px 0 0"><button class="btn ghost sm" type="button" data-a="ex" data-i="'+i+'">Usar este ejemplo</button></p></div>').join('')+'</div></details>';
 }
 
@@ -202,38 +204,37 @@ function keyCard(){
 const opt=(name,val,label,cls)=>'<label class="opt '+(F[name]===val?'on '+(cls||''):'')+'"><input type="radio" name="'+name+'" value="'+val+'" data-f="'+name+'"'+(F[name]===val?' checked':'')+'>'+label+'</label>';
 const fld=(k,lab,hint,type,extra)=>'<label>'+lab+(hint?' <span class="hint">'+hint+'</span>':'')+'<input id="f_'+k+'" data-f="'+k+'" type="'+(type||'text')+'" value="'+esc(F[k])+'"'+(extra||'')+'></label>';
 const area=(k,lab,hint)=>'<label>'+lab+(hint?' <span class="hint">'+hint+'</span>':'')+'<textarea id="f_'+k+'" data-f="'+k+'">'+esc(F[k])+'</textarea></label>';
+function weekNum(w){const mk=monthKey(w);let d=w,n=1;while(monthKey(addDays(d,-7))===mk){d=addDays(d,-7);n++;}return n;}
 function vForm(){
   if(S.done)return confirmCard();
   const w0=mondayOf(todayStr());const weeks=[0,1,2].map(i=>addDays(w0,-7*i));if(!weeks.includes(F.week))weeks.push(F.week);
-  const si=stageInfo(F.stage);
-  const stageSel=F.track&&F.track!=='none'?'<label>¿En qué paso exacto?<select id="f_stage" data-f="stage"><option value="">Elegí el paso</option>'+['Generar','Contactar','Convertir','Dar seguimiento','Calificar','Proponer','Visitar','Evaluar','Negociar','Cerrar y seguir'].map(g=>{const l=TRACKS[F.track].stages.filter(s=>s[1]===g);return l.length?'<optgroup label="'+g+'">'+l.map(s=>'<option value="'+s[0]+'"'+(F.stage===s[0]?' selected':'')+'>'+esc(s[2])+'</option>').join('')+'</optgroup>':'';}).join('')+'</select></label>':'';
-  const tip=si&&F.track!=='none'?'<div class="note"><b>Si te trabás en este paso:</b> '+esc(si.tip)+'</div>':'';
+  const sec=t=>'<div class="sec"><h3>'+t+'</h3></div>';
   return (S.isBM?'<div class="note warn"><b>Vista previa.</b> Así lo ven los asesores. Lo que completes acá no se guarda.</div>':'')
-  +'<div class="note">Tarda unos cinco minutos. Lo que completes es la base de nuestra reunión de 20 minutos, para mejorar y seguir avanzando.</div>'
-  +'<div class="card"><div class="sec"><b>1</b><h3>Sobre vos</h3></div><div class="g2">'+fld('name','Nombre y apellido','','text',' autocomplete="name"')
-  +'<label>Semana<select id="f_week" data-f="week">'+weeks.map(w=>'<option value="'+w+'"'+(w===F.week?' selected':'')+'>'+esc(weekLabel(w))+'</option>').join('')+'</select></label></div></div>'
-  +'<div class="card"><div class="sec"><b>2</b><h3>Mi meta del mes ('+esc(monthLabel(monthKey(F.week)))+')</h3></div><div class="sub">Si ya la definiste este mes, solo revisala.</div>'+examplesHtml()
-  +fld('monthGoal','Mi meta del mes')+area('why','¿Por qué quiero lograrla?')+area('forWhat','¿Para qué?')+'</div>'
-  +'<div class="card"><div class="sec"><b>3</b><h3>Mi semana</h3></div>'
-  +fld('weekGoal','Mi meta semanal','(la que te pusiste para esta semana)')
-  +fld('meetDate','Fecha de esta reunión','','date')+prevActsHtml()
-  +'<div role="radiogroup" aria-label="¿Llegué a la meta?"><div style="font-size:14px;font-weight:600;margin-bottom:6px">¿Llegué a la meta?</div><div class="opts">'+opt('hit','si','Sí, llegué','yes')+opt('hit','no','No llegué','no')+'</div></div>'
-  +area('stuck','¿En qué me trabé?','(si llegaste, contá qué te ayudó)')
-  +area('help','¿En qué necesito ayuda?')
-  +area('doubts','Dudas o consultas para la reunión','(opcional)')+'</div>'
-  +'<div class="card"><div class="sec"><b>4</b><h3>¿En qué parte del proceso me trabé?</h3></div>'
-  +'<label>Tipo de trabajo<select id="f_track" data-f="track"><option value="none"'+(F.track==='none'?' selected':'')+'>No me trabé esta semana</option><option value="cap"'+(F.track==='cap'?' selected':'')+'>Captación de propiedades</option><option value="cli"'+(F.track==='cli'?' selected':'')+'>Seguimiento de compradores e inquilinos</option></select></label>'+stageSel+tip+'</div>'
-  +'<div class="card"><div class="sec"><b>5</b><h3>Mis números de la semana</h3></div><div class="sub">Opcional, pero nos ayuda a ver dónde se enfría el proceso. Poné 0 si no hubo.</div><div class="g5">'
-  +fld('nLeads','Leads nuevos','','number',' min="0" inputmode="numeric"')+fld('nCli','Leads que pasaron a cliente','','number',' min="0" inputmode="numeric"')+fld('nVis','Visitas realizadas','','number',' min="0" inputmode="numeric"')+fld('nCie','Cierres','','number',' min="0" inputmode="numeric"')+fld('nCap','Captaciones exclusivas','','number',' min="0" inputmode="numeric"')+'</div></div>'
-  +'<div class="card"><div class="sec"><b>6</b><h3>Mi plan de la próxima semana</h3></div>'
-  +'<div class="note"><b>Meta de mi mes:</b> '+esc(F.monthGoal||'definila arriba, en el punto 2')+'<br>Mi meta de la semana tiene que sumar a esa meta, y cada acción necesita un número y una fecha.</div>'
-  +fld('nextGoal','Mi meta de la próxima semana','(fácil de cumplir y que suponga un avance)')
-  +[1,2,3].map(i=>'<div class="act"><b>Acción medible '+i+(i===1?'':' <span class="hint" style="font-weight:400">(opcional)</span>')+'</b><label>¿Qué voy a hacer?<input data-f="a'+i+'" id="f_a'+i+'" value="'+esc(F['a'+i])+'" placeholder="Ej: Contactar a 15 propietarios potenciales"></label><div class="g2"><label>Cantidad<input data-f="q'+i+'" id="f_q'+i+'" type="number" min="1" inputmode="numeric" value="'+esc(F['q'+i])+'"></label><label>Para qué día<input data-f="d'+i+'" id="f_d'+i+'" type="date" value="'+esc(F['d'+i])+'"></label></div></div>').join('')+'</div>'
-  +'<div class="card"><div class="sec"><b>7</b><h3>Nuestra próxima reunión</h3></div><div class="sub">Dejala fijada ahora para salir de la reunión con todo claro.</div><div class="g2">'+fld('nmDate','Fecha','','date')+fld('nmTime','Hora','','time')+'</div>'+(F.nmDate?'<div class="note">Nos vemos el <b>'+esc(meetingText(F.nmDate,F.nmTime))+'</b>.</div>':'')+'</div>'
-  +'<div class="card"><div class="sec"><b>8</b><h3>Cierre del mes</h3></div><label class="opt'+(F.closing?' on':'')+'" style="justify-content:flex-start"><input type="checkbox" id="f_closing" data-f="closing"'+(F.closing?' checked':'')+'>Es la última semana del mes, quiero completar el cierre</label>'
-  +(F.closing?'<div role="radiogroup" aria-label="¿Logré la meta mensual?"><div style="font-size:14px;font-weight:600;margin-bottom:6px">¿Logré la meta mensual?</div><div class="opts">'+opt('mHit','si','Sí, la logré','yes')+opt('mHit','no','No la logré','no')+'</div></div><div class="g2">'+fld('mResult','Resultado')+fld('mPct','% de cumplimiento','','number',' min="0" max="300" inputmode="numeric"')+'</div>'+area('mStuck','¿En qué parte del proceso me trabé?')+area('mPrio','Prioridad para el próximo mes'):'')+'</div>'
-  +'<div><button class="btn" id="send" data-a="send" style="width:100%">'+(S.isBM?'Ver cómo queda':(S.me&&S.me.weeks&&S.me.weeks[F.week]?'Actualizar mi formulario':'Enviar mi formulario'))+'</button></div><div class="foot">“Todo lo que se mide se puede mejorar.”</div>'+(S.isBM?'':'<div class="foot"><a href="#panel">Panel del Broker Manager</a></div>');
+  +'<div class="card"><div class="g2">'+fld('name','Asesor','','text',' autocomplete="name"')
+  +'<label>Semana<select id="f_week" data-f="week">'+weeks.map(w=>'<option value="'+w+'"'+(w===F.week?' selected':'')+'>Semana '+weekNum(w)+' · '+esc(weekLabel(w))+'</option>').join('')+'</select></label></div></div>'
+
+  +'<div class="card">'+sec('Meta mensual · '+esc(monthLabel(monthKey(F.week))))
+  +fld('monthGoal','Mi meta del mes')+'<div class="g2">'+area('why','¿Por qué quiero lograrla?')+area('forWhat','¿Para qué?')+'</div>'+examplesHtml()+'</div>'
+
+  +'<div class="card">'+sec('Mi semana · Semana '+weekNum(F.week))
+  +'<div class="g2">'+fld('weekGoal','Meta semanal')+fld('meetDate','Fecha de reunión','','date')+'</div>'+prevActsHtml()
+  +'<div role="radiogroup" aria-label="¿Llegué a la meta?"><div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:6px">¿Llegué a la meta?</div><div class="opts">'+opt('hit','si','Sí','yes')+opt('hit','no','No','no')+'</div></div>'
+  +'<div class="g2">'+area('stuck','¿En qué me trabé?')+area('help','¿En qué necesito ayuda?')+'</div></div>'
+
+  +'<div class="card">'+sec('Mis números de la semana')+'<div class="sub" style="margin-top:-6px">Poné 0 si no hubo.</div><div class="g5">'
+  +fld('nLeads','Leads','','number',' min="0" inputmode="numeric"')+fld('nCli','Clientes','','number',' min="0" inputmode="numeric"')+fld('nVis','Visitas','','number',' min="0" inputmode="numeric"')+fld('nCie','Cierres','','number',' min="0" inputmode="numeric"')+fld('nCap','Captaciones','','number',' min="0" inputmode="numeric"')+'</div></div>'
+
+  +'<div class="card">'+sec('Mi plan de la próxima semana')
+  +fld('nextGoal','Meta de la próxima semana','(que sume a mi meta del mes)')
+  +[1,2,3].map(i=>'<div class="g3"><label>Acción '+i+(i===1?'':' <span class="hint">(opcional)</span>')+'<input data-f="a'+i+'" id="f_a'+i+'" value="'+esc(F['a'+i])+'" placeholder="'+(i===1?'Ej: Contactar propietarios':'')+'"></label><label>Cantidad<input data-f="q'+i+'" id="f_q'+i+'" type="number" min="1" inputmode="numeric" value="'+esc(F['q'+i])+'"></label><label>Para el día<input data-f="d'+i+'" id="f_d'+i+'" type="date" value="'+esc(F['d'+i])+'"></label></div>').join('')+'</div>'
+
+  +'<div class="card">'+sec('Próxima reunión')+'<div class="g2">'+fld('nmDate','Fecha','','date')+fld('nmTime','Hora','','time')+'</div></div>'
+
+  +'<div><button class="btn" id="send" data-a="send" style="width:100%">'+(S.isBM?'Ver cómo queda':(S.me&&S.me.weeks&&S.me.weeks[F.week]?'Actualizar mi formulario':'Enviar mi formulario'))+'</button></div>'
+  +'<div class="foot">“Todo lo que se mide se puede mejorar.”</div>'
+  +(S.isBM?'':'<div class="foot"><a href="#panel">Panel del Broker Manager</a></div>');
 }
+
 function confirmCard(){
   const acts=[1,2,3].filter(i=>(F['a'+i]||'').trim()).map(i=>'<li>'+esc(F['a'+i])+' · '+esc(F['q'+i])+(F['d'+i]?' · para el '+esc(dayLabel(F['d'+i])):'')+'</li>').join('');
   return '<div class="card"><h2>'+(S.isBM?'Así quedaría tu envío':'Listo, recibimos tu formulario')+'</h2><div class="kv"><div><small>Semana</small><b style="font-size:15px">'+esc(weekLabel(F.week))+'</b></div><div><small>¿Llegué a la meta?</small><b>'+(F.hit==='si'?'Sí':'No')+'</b></div></div>'
