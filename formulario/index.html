@@ -282,7 +282,7 @@ function vForm(){
   +fld('nLeads','Leads','','number',' min="0" inputmode="numeric"')+fld('nCli','Clientes','','number',' min="0" inputmode="numeric"')+fld('nVis','Visitas','','number',' min="0" inputmode="numeric"')+fld('nCie','Cierres','','number',' min="0" inputmode="numeric"')+fld('nCap','Captaciones','','number',' min="0" inputmode="numeric"')+'</div></div>'
 
   +'<div class="card">'+sec('Mi plan de la próxima semana')
-  +fld('nextGoal','Meta de la próxima semana','(que sume a mi meta del mes)')
+  +'<div class="sub" style="margin-top:-6px">Acciones concretas, con cantidad y día, que suman a tu meta del mes.</div>'
   +[1,2,3].map(i=>'<div class="g3"><label>Acción '+i+(i===1?'':' <span class="hint">(opcional)</span>')+'<input data-f="a'+i+'" id="f_a'+i+'" value="'+esc(F['a'+i])+'" placeholder="'+(i===1?'Ej: Contactar propietarios':'')+'"></label><label>Cantidad<input data-f="q'+i+'" id="f_q'+i+'" type="number" min="1" inputmode="numeric" value="'+esc(F['q'+i])+'"></label><label>Para el día<input data-f="d'+i+'" id="f_d'+i+'" type="date" value="'+esc(F['d'+i])+'"></label></div>').join('')+'</div>'
 
   +'<div class="card">'+sec('Próxima reunión')+'<div class="g2">'+fld('nmDate','Fecha','','date')+fld('nmTime','Hora','','time')+'</div></div>'
@@ -296,7 +296,6 @@ function confirmCard(){
   const acts=[1,2,3].filter(i=>(F['a'+i]||'').trim()).map(i=>'<li>'+esc(F['a'+i])+' · '+esc(F['q'+i])+(F['d'+i]?' · para el '+esc(dayLabel(F['d'+i])):'')+'</li>').join('');
   return '<div class="card"><div class="done-ic">✓</div><h2>'+(S.isBM?'Así quedaría tu envío':'¡Listo! Recibimos tu formulario')+'</h2><div class="kv"><div><small>Semana</small><b style="font-size:15px">'+esc(weekLabel(F.week))+'</b></div><div><small>¿Llegué a la meta?</small><b>'+(F.hit==='si'?'Sí':'No')+'</b></div></div>'
   +'<div><b>Meta del mes</b><div>'+esc(F.monthGoal||'—')+'</div></div>'
-  +'<div><b>Meta de la próxima semana</b><div>'+esc(F.nextGoal)+'</div></div>'
   +'<div><b>Mis acciones medibles</b><ul class="tight">'+acts+'</ul></div>'
   +'<div class="note"><b>Próxima reunión:</b> '+esc(meetingText(F.nmDate,F.nmTime))+'</div>'
   +'<p class="sub" style="margin:0">En la reunión de 20 minutos vamos a trabajar sobre lo que completaste. Podés volver a abrir esta página y actualizar tus respuestas cuando quieras.</p>'
@@ -325,7 +324,6 @@ function vResp(){
     +(si?'<div class="note"><b>'+esc(si.track)+' · '+esc(si.group)+' · '+esc(si.name)+'</b><br>Guía para el asesor: '+esc(si.tip)+(si.sig?'<br><b>Señal:</b> '+esc(si.sig.sig)+'. <b>Revisar:</b> '+esc(si.sig.rev)+'. <b>Próxima acción:</b> '+esc(si.sig.act):'')+'</div>':'')
     +(e.n?'<div class="kv"><div><small>Leads</small><b>'+esc(n.leads)+'</b></div><div><small>A cliente</small><b>'+esc(n.clientes)+'</b></div><div><small>Visitas</small><b>'+esc(n.visitas)+'</b></div><div><small>Cierres</small><b>'+esc(n.cierres)+'</b></div><div><small>Captaciones</small><b>'+esc(n.captaciones)+'</b></div></div>':'')
     +(()=>{const pa=((x.r.weeks||{})[addDays(w,-7)]||{}).actions||[];const rs=e.actRes||[];return pa.length?'<div><h3>Cumplimiento de las acciones de la semana pasada</h3><ul class="tight">'+pa.map((a,i)=>{const d=Number(rs[i]||0),q=Number(a.qty||0);return '<li>'+esc(a.what)+': '+d+' de '+q+(q?' ('+Math.round(d/q*100)+' %)':'')+'</li>';}).join('')+'</ul></div>':'';})()
-    +'<div><h3>Meta para la próxima semana</h3><p>'+esc(e.nextGoal||'—')+'</p></div>'
     +((e.actions||[]).length?'<div><h3>Acciones medibles de la próxima semana</h3><ul class="tight">'+e.actions.map(a=>'<li>'+esc(a.what)+' · '+esc(a.qty)+(a.due?' · para el '+esc(dayLabel(a.due)):'')+'</li>').join('')+'</ul></div>':'')
     +(e.nextMeeting&&e.nextMeeting.date?'<div class="note"><b>Próxima reunión:</b> '+esc(meetingText(e.nextMeeting.date,e.nextMeeting.time))+'</div>':'')
     +'<div><h3>Meta del mes ('+esc(monthLabel(monthKey(w)))+')</h3><p>'+esc(m.goal||'—')+'</p>'+(m.why?'<p class="sub">Por qué: '+esc(m.why)+(m.forWhat?' · Para qué: '+esc(m.forWhat):'')+'</p>':'')+'</div>'
@@ -343,7 +341,7 @@ function updProg(){
   const w=document.getElementById('progWrap');if(!w)return;
   const show=!!(S.uid&&S.loaded&&!S.done&&!S.isBM&&$('#f_weekGoal'));w.hidden=!show;if(!show)return;
   const t=v=>String(v==null?'':v).trim()!=='';
-  const req=[t(F.name),t(F.monthGoal),t(F.weekGoal),t(F.hit),t(F.stuck)||F.hit==='si',t(F.help),t(F.nextGoal),t(F.a1)&&t(F.q1)&&t(F.d1),t(F.nmDate)];
+  const req=[t(F.name),t(F.monthGoal),t(F.weekGoal),t(F.hit),t(F.stuck)||F.hit==='si',t(F.help),t(F.a1)&&t(F.q1)&&t(F.d1),t(F.nmDate)];
   const p=Math.round(req.filter(Boolean).length/req.length*100);$('#progBar').style.width=p+'%';$('#progN').textContent=p===100?'¡Listo para enviar!':p+'%';
 }
 function render(){
@@ -390,11 +388,11 @@ const ACT={
     S.isBM=true;S.uid='vista-previa';S.me=null;loadWeek(mondayOf(todayStr()));S.loaded=true;S.tab='';route();
   },
   async reload(){try{await loadAll();toast('Respuestas actualizadas.');}catch(e){toast('No pude actualizar.',true);}render();},
-  ex(b){const x=EX[+b.dataset.i];if(!x)return;const set=(k,v)=>{if(!String(F[k]==null?'':F[k]).trim())F[k]=v;};set('monthGoal',x.month);set('nextGoal',x.week);const base=addDays(F.week,7);x.acts.forEach((a,i)=>{set('a'+(i+1),a[0]);set('q'+(i+1),a[1]);set('d'+(i+1),addDays(base,a[2]));});saveDraft();render();toast('Ejemplo copiado en los campos vacíos. Adaptalo a tu caso.');},
+  ex(b){const x=EX[+b.dataset.i];if(!x)return;const set=(k,v)=>{if(!String(F[k]==null?'':F[k]).trim())F[k]=v;};set('monthGoal',x.month);set('weekGoal',x.week);const base=addDays(F.week,7);x.acts.forEach((a,i)=>{set('a'+(i+1),a[0]);set('q'+(i+1),a[1]);set('d'+(i+1),addDays(base,a[2]));});saveDraft();render();toast('Ejemplo copiado en los campos vacíos. Adaptalo a tu caso.');},
   async send(){
     const miss=[];
     if(!F.name.trim())miss.push('tu nombre');if(!F.weekGoal.trim())miss.push('tu meta semanal');if(!F.hit)miss.push('si llegaste a la meta');
-    if(F.hit==='no'&&!F.stuck.trim())miss.push('en qué te trabaste');if(!F.nextGoal.trim())miss.push('tu meta de la próxima semana');
+    if(F.hit==='no'&&!F.stuck.trim())miss.push('en qué te trabaste');
     if(F.track!=='none'&&!F.stage)miss.push('el paso exacto donde te trabaste');
     let okA=0,badA=false;[1,2,3].forEach(i=>{const w=(F['a'+i]||'').trim(),q=parseFloat(F['q'+i])||0,d=F['d'+i];if(w&&q>0&&d)okA++;else if(w||q||d)badA=true;});
     if(badA)miss.push('en cada acción, qué vas a hacer, la cantidad y el día');else if(!okA)miss.push('al menos una acción medible con cantidad y día');
