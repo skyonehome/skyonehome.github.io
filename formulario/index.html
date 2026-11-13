@@ -285,7 +285,6 @@ function vForm(){
   +'<div class="sub" style="margin-top:-6px">Acciones concretas, con cantidad y día, que suman a tu meta del mes.</div>'
   +[1,2,3].map(i=>'<div class="g3"><label>Acción '+i+(i===1?'':' <span class="hint">(opcional)</span>')+'<input data-f="a'+i+'" id="f_a'+i+'" value="'+esc(F['a'+i])+'" placeholder="'+(i===1?'Ej: Contactar propietarios':'')+'"></label><label>Cantidad<input data-f="q'+i+'" id="f_q'+i+'" type="number" min="1" inputmode="numeric" value="'+esc(F['q'+i])+'"></label><label>Para el día<input data-f="d'+i+'" id="f_d'+i+'" type="date" value="'+esc(F['d'+i])+'"></label></div>').join('')+'</div>'
 
-  +'<div class="card">'+sec('Próxima reunión')+'<div class="g2">'+fld('nmDate','Fecha','','date')+fld('nmTime','Hora','','time')+'</div></div>'
 
   +'<div><button class="btn" id="send" data-a="send" style="width:100%">'+(S.isBM?'Ver cómo queda':(S.me&&S.me.weeks&&S.me.weeks[F.week]?'Actualizar mi formulario':'Enviar mi formulario'))+'</button></div>'
   +'<div class="foot">“Todo lo que se mide se puede mejorar.”</div>'
@@ -297,7 +296,6 @@ function confirmCard(){
   return '<div class="card"><div class="done-ic">✓</div><h2>'+(S.isBM?'Así quedaría tu envío':'¡Listo! Recibimos tu formulario')+'</h2><div class="kv"><div><small>Semana</small><b style="font-size:15px">'+esc(weekLabel(F.week))+'</b></div><div><small>¿Llegué a la meta?</small><b>'+(F.hit==='si'?'Sí':'No')+'</b></div></div>'
   +'<div><b>Meta del mes</b><div>'+esc(F.monthGoal||'—')+'</div></div>'
   +'<div><b>Mis acciones medibles</b><ul class="tight">'+acts+'</ul></div>'
-  +'<div class="note"><b>Próxima reunión:</b> '+esc(meetingText(F.nmDate,F.nmTime))+'</div>'
   +'<p class="sub" style="margin:0">En la reunión de 20 minutos vamos a trabajar sobre lo que completaste. Podés volver a abrir esta página y actualizar tus respuestas cuando quieras.</p>'
   +'<div><button class="btn ghost" data-a="edit">Editar mis respuestas</button></div></div>';
 }
@@ -341,7 +339,7 @@ function updProg(){
   const w=document.getElementById('progWrap');if(!w)return;
   const show=!!(S.uid&&S.loaded&&!S.done&&!S.isBM&&$('#f_weekGoal'));w.hidden=!show;if(!show)return;
   const t=v=>String(v==null?'':v).trim()!=='';
-  const req=[t(F.name),t(F.monthGoal),t(F.weekGoal),t(F.hit),t(F.stuck)||F.hit==='si',t(F.help),t(F.a1)&&t(F.q1)&&t(F.d1),t(F.nmDate)];
+  const req=[t(F.name),t(F.monthGoal),t(F.weekGoal),t(F.hit),t(F.stuck)||F.hit==='si',t(F.help),t(F.a1)&&t(F.q1)&&t(F.d1)];
   const p=Math.round(req.filter(Boolean).length/req.length*100);$('#progBar').style.width=p+'%';$('#progN').textContent=p===100?'¡Listo para enviar!':p+'%';
 }
 function render(){
@@ -396,7 +394,7 @@ const ACT={
     if(F.track!=='none'&&!F.stage)miss.push('el paso exacto donde te trabaste');
     let okA=0,badA=false;[1,2,3].forEach(i=>{const w=(F['a'+i]||'').trim(),q=parseFloat(F['q'+i])||0,d=F['d'+i];if(w&&q>0&&d)okA++;else if(w||q||d)badA=true;});
     if(badA)miss.push('en cada acción, qué vas a hacer, la cantidad y el día');else if(!okA)miss.push('al menos una acción medible con cantidad y día');
-    if(!F.nmDate)miss.push('la fecha de la próxima reunión');
+    
     if(miss.length){toast('Falta completar: '+miss.join(', '),true);return;}
     if(S.isBM){S.done=true;render();window.scrollTo(0,0);return;}
     if(S.saving)return;S.saving=true;const b=$('#send');if(b){b.disabled=true;b.textContent='Enviando…';}
