@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Formulario semanal SkyOne Home</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout: cabecera azul, una columna angosta de 760px pensada para el celular, una tarjeta por sección. Colores del manual de marca SkyOne. */
+  --blue:#06326b; --blue-soft:#e7eef8; --gray:#798490; --dark:#394049;
+  --bg:#f2f5f9; --card:#fff; --line:#dde3ea; --ink:#222a33; --muted:#5d6874;
+  --good:#1d7f55; --good-bg:#e4f3ec; --warn:#a56a00; --warn-bg:#fbf0d9; --bad:#b53a2d; --bad-bg:#f9e5e2;
+  --font:'Open Sans',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:16px;line-height:1.5}
+h1,h2,h3{margin:0;color:var(--blue);text-wrap:balance}
+h2{font-size:20px;font-weight:800} h3{font-size:16px;font-weight:700}
+button,input,select,textarea{font:inherit;color:inherit}
+.top{background:var(--blue);color:#fff}
+.top-in{max-width:760px;margin:0 auto;padding:16px 16px 0;display:flex;flex-direction:column;gap:10px}
+.top h1{color:#fff;font-size:20px;font-weight:800}
+.top p{margin:0;color:#c3d1e6;font-size:14px}
+.tabs{display:flex;gap:2px;margin-top:6px}
+.tab{color:#cdd8e8;text-decoration:none;padding:9px 14px;border-radius:8px 8px 0 0;font-weight:600;font-size:14px}
+.tab.on{background:var(--bg);color:var(--blue)}
+.tab:focus-visible,.btn:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible,.opt:focus-within{outline:3px solid #6f9be0;outline-offset:1px}
+main{max-width:760px;margin:0 auto;padding:16px 16px 60px;display:flex;flex-direction:column;gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.sec{display:flex;gap:10px;align-items:center}
+.sec b{background:var(--blue);color:#fff;border-radius:99px;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;font-size:13px;flex:none}
+.sub{color:var(--muted);font-size:14px}
+label{display:flex;flex-direction:column;gap:5px;font-size:14px;font-weight:600;color:var(--dark)}
+label .hint{font-weight:400;color:var(--muted)}
+input,select,textarea{border:1px solid #c2cad6;border-radius:10px;padding:11px 12px;background:#fff;width:100%;min-width:0;font-size:16px}
+textarea{min-height:84px;resize:vertical}
+.g2{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.g5{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px}
+.opts{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.opt{display:flex;align-items:center;justify-content:center;gap:8px;border:2px solid #c2cad6;border-radius:12px;padding:12px;font-weight:700;cursor:pointer;background:#fff;text-align:center}
+.opt input{width:auto;accent-color:var(--blue);margin:0}
+.opt.on{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+.opt.on.no{border-color:var(--bad);background:var(--bad-bg);color:var(--bad)}
+.opt.on.yes{border-color:var(--good);background:var(--good-bg);color:var(--good)}
+.btn{border:1px solid var(--blue);background:var(--blue);color:#fff;border-radius:10px;padding:13px 18px;font-weight:700;cursor:pointer;font-size:16px}
+.btn:hover{background:#0a4290}
+.btn.ghost{background:#fff;color:var(--blue)}
+.btn.sm{padding:6px 12px;font-size:14px}
+.note{background:var(--blue-soft);border-left:4px solid var(--blue);padding:10px 14px;border-radius:8px;font-size:14px}
+.note.warn{background:var(--warn-bg);border-color:#d79a1b}
+.note.bad{background:var(--bad-bg);border-color:var(--bad)}
+.err{color:var(--bad);font-size:13px;font-weight:600}
+.pill{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:99px;background:var(--blue-soft);color:var(--blue)}
+.pill.good{background:var(--good-bg);color:var(--good)} .pill.bad{background:var(--bad-bg);color:var(--bad)} .pill.gray{background:#e9ecf0;color:var(--dark)}
+.foot{text-align:center;color:var(--muted);font-size:13px;font-style:italic;padding-top:6px}
+.nav{display:flex;align-items:center;gap:8px;justify-content:space-between}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.kv div{background:#f5f8fc;border-radius:10px;padding:10px}
+.kv small{display:block;color:var(--muted);font-size:12px;font-weight:600}
+.kv b{font-size:20px;color:var(--blue)}
+details.r{background:#fff;border:1px solid var(--line);border-radius:12px}
+details.r>summary{padding:12px 14px;cursor:pointer;list-style:none;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;justify-content:space-between}
+details.r>summary::-webkit-details-marker{display:none}
+details.r[open]>summary{border-bottom:1px solid var(--line)}
+details.r .rb{padding:14px;display:flex;flex-direction:column;gap:12px}
+.rb h3{font-size:14px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.3px}
+.rb p{margin:2px 0 0}
+.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);background:var(--dark);color:#fff;padding:10px 16px;border-radius:10px;font-size:14px;z-index:9;max-width:90vw}
+.toast.bad{background:var(--bad)}
+ul.tight{margin:4px 0 0;padding-left:20px}
+.act{border:1px solid var(--line);border-radius:12px;padding:12px;background:#f8fafd;display:flex;flex-direction:column;gap:10px}
+@media(max-width:420px){.opts{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="top"><div class="top-in">
+  <div><h1>Sistema de Activación Comercial</h1><p>SkyOne Home · Formulario semanal del asesor</p></div>
+  <nav class="tabs" id="tabs" aria-label="Secciones"></nav>
+</div></header>
+<main id="view"><div class="card">Cargando…</div></main>
+<div id="toast" class="toast" hidden></div>
+
+<script>
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const MES=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+const pad=n=>String(n).padStart(2,'0');
+const ymd=d=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const parse=s=>{const p=s.split('-').map(Number);return new Date(p[0],p[1]-1,p[2]);};
+const mondayOf=s=>{const d=parse(s);d.setDate(d.getDate()-((d.getDay()+6)%7));return ymd(d);};
+const addDays=(s,n)=>{const d=parse(s);d.setDate(d.getDate()+n);return ymd(d);};
+const todayStr=()=>ymd(new Date());
+const weekLabel=w=>{const a=parse(w),b=parse(addDays(w,6));return a.getMonth()===b.getMonth()?a.getDate()+' al '+b.getDate()+' de '+MES[b.getMonth()]:a.getDate()+' de '+MES[a.getMonth()]+' al '+b.getDate()+' de '+MES[b.getMonth()];};
+const monthKey=w=>w.slice(0,7);
+const monthLabel=m=>{const p=m.split('-').map(Number);return MES[p[1]-1]+' '+p[0];};
+const isLastWeek=w=>addDays(w,7).slice(0,7)!==w.slice(0,7)||addDays(w,6).slice(0,7)!==w.slice(0,7);
+let toastT;
+function toast(m,bad){const t=$('#toast');t.textContent=m;t.className='toast'+(bad?' bad':'');t.hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>{t.hidden=true;},3200);}
+
+/* Etapas tomadas de las guías de captación y de seguimiento de compradores e inquilinos */
+const SIG={
+ 1:{sig:'No consigue reuniones con propietarios',rev:'Prospección y primer contacto',act:'Revisar fuentes, mensaje inicial y seguimiento.'},
+ 2:{sig:'Visita inmuebles pero no logra captarlos',rev:'Precio, propuesta y objeciones',act:'Practicar presentación de estrategia y manejo de dudas.'},
+ 3:{sig:'Tiene propiedades pero no recibe consultas',rev:'Precio, publicación y difusión',act:'Analizar datos y ajustar la estrategia con el propietario.'},
+ 4:{sig:'Realiza muchas visitas sin avances',rev:'Calificación del cliente',act:'Confirmar presupuesto, necesidad, plazo y capacidad de pago antes de visitar.'},
+ 5:{sig:'El cliente no decide después de visitar',rev:'Objeción real y decisores',act:'Preguntar qué le impide avanzar y definir una acción concreta.'}};
+const TRACKS={
+ cap:{name:'Captación de propiedades',stages:[
+  ['cap-1','Generar','1. Detectar propietarios potenciales','Ampliá las fuentes de búsqueda y pedí recomendaciones de forma directa.',1],
+  ['cap-2','Generar','2. Contactar','Probá otro canal y programá un seguimiento razonable.',1],
+  ['cap-3','Generar','3. Calificar la oportunidad de captación','Si el precio o el plazo no son realistas, explicá la situación del mercado y acordá si vale la pena continuar.',1],
+  ['cap-4','Contactar','4. Coordinar una reunión de captación','Ofrecé dos horarios específicos y pactá cuándo volver a hablar.',1],
+  ['cap-5','Contactar','5. Visitar e inspeccionar la propiedad','Si falta información importante, pedila antes de publicar o comprometer condiciones.',2],
+  ['cap-6','Contactar','6. Presentar una estrategia comercial clara','Si no acepta el precio recomendado, mostrá comparables y explicá el efecto de un precio poco competitivo.',2],
+  ['cap-7','Convertir','7. Obtener exclusiva o autorización','Identificá la objeción real, resolvé dudas y acordá el siguiente paso sin presionar.',2],
+  ['cap-8','Convertir','8. Cargar al sistema y compartir con la red','Completá los datos o el material que falte antes de difundir.',3],
+  ['cap-9','Dar seguimiento','9. Publicar e implementar la estrategia','Si no hay consultas, revisá precio, fotos, descripción y canales de difusión.',3],
+  ['cap-10','Dar seguimiento','10. Mantener informado al propietario','Si está disconforme, compartí datos concretos, escuchá y acordá una acción y una fecha de seguimiento.',3]]},
+ cli:{name:'Seguimiento de compradores e inquilinos',stages:[
+  ['cli-1','Contactar','1. Recibir y responder la consulta','Si responde poco, hacé una pregunta concreta y sencilla antes de enviar opciones.',4],
+  ['cli-2','Calificar','2. Identificar la necesidad','Pedile que priorice sus tres requisitos principales.',4],
+  ['cli-3','Calificar','3. Confirmar presupuesto y forma de pago','Aclará el rango y los requisitos antes de coordinar visitas.',4],
+  ['cli-4','Calificar','4. Confirmar plazo y decisores','Acordá el siguiente paso antes de dedicar tiempo a visitas.',4],
+  ['cli-5','Proponer','5. Seleccionar y enviar opciones','Si rechaza todas, revisá si la diferencia está en precio, zona, características o expectativas.',4],
+  ['cli-6','Visitar','6. Coordinar y confirmar la visita','Si cancela o no confirma, preguntale si mantiene el interés antes de volver a coordinar.',5],
+  ['cli-7','Evaluar','7. Recoger comentarios y definir avance','Identificá la objeción concreta y decidí si negociar, buscar otra opción o hacer seguimiento.',5],
+  ['cli-8','Negociar','8. Negociar y preparar el cierre','Identificá si el obstáculo es precio, pago, documentación o condiciones.',5],
+  ['cli-9','Cerrar y seguir','9. Confirmar los pasos finales','Definí responsable, acción concreta y fecha de seguimiento.',5]]}};
+function stageInfo(id){for(const k in TRACKS){const s=TRACKS[k].stages.find(x=>x[0]===id);if(s)return{track:TRACKS[k].name,group:s[1],name:s[2],tip:s[3],sig:SIG[s[4]]};}return null;}
+
+/* estado */
+const SB_URL='https://mwmkjalreughugurspsi.supabase.co',SB_KEY='sb_publishable_Ia6_VwQhmApbaCVSEJJesg_f_4sPKwO';
+const S={db:null,user:null,uid:'',key:'',myName:'',panelMode:false,isBM:false,tab:'formulario',me:null,rows:[],done:false,loaded:false,saving:false,errs:'',rweek:mondayOf(todayStr())};
+const F={};
+function blankF(w){return{name:(S.me&&S.me.name)||'',week:w,monthGoal:'',why:'',forWhat:'',weekGoal:'',meetDate:'',hit:'',stuck:'',help:'',doubts:'',track:'none',stage:'',nLeads:'',nCli:'',nVis:'',nCie:'',nCap:'',nextGoal:'',closing:isLastWeek(w),mHit:'',mResult:'',mPct:'',mStuck:'',mPrio:'',a1:'',q1:'',d1:'',a2:'',q2:'',d2:'',a3:'',q3:'',d3:'',r1:'',r2:'',r3:'',nmDate:'',nmTime:''};}
+function loadWeek(w){
+  const me=S.me||{},wk=(me.weeks||{})[w],mo=(me.months||{})[monthKey(w)]||{},prev=(me.weeks||{})[addDays(w,-7)];
+  let draft=null;try{draft=JSON.parse(localStorage.getItem('sk_draft_'+S.uid+'_'+w)||'null');}catch(e){}
+  const f=blankF(w);
+  f.monthGoal=mo.goal||'';f.why=mo.why||'';f.forWhat=mo.forWhat||'';
+  if(prev&&prev.nextGoal)f.weekGoal=prev.nextGoal;
+  if(prev&&prev.nextMeeting&&prev.nextMeeting.date)f.meetDate=prev.nextMeeting.date;
+  const c=mo.close||{};f.mHit=c.hit||'';f.mResult=c.result||'';f.mPct=c.pct||'';f.mStuck=c.stuck||'';f.mPrio=c.prio||'';
+  if(wk)Object.assign(f,{weekGoal:wk.weekGoal||f.weekGoal,meetDate:wk.meetDate||'',hit:wk.hit||'',stuck:wk.stuck||'',help:wk.help||'',doubts:wk.doubts||'',track:wk.track||'none',stage:wk.stage||'',nLeads:wk.n?wk.n.leads:'',nCli:wk.n?wk.n.clientes:'',nVis:wk.n?wk.n.visitas:'',nCie:wk.n?wk.n.cierres:'',nCap:wk.n?wk.n.captaciones:'',nextGoal:wk.nextGoal||'',closing:isLastWeek(w)||!!c.hit},actFields(wk));
+  else if(draft)Object.assign(f,draft,{week:w});
+  Object.keys(F).forEach(k=>delete F[k]);Object.assign(F,f);
+}
+function saveDraft(){if(S.isBM)return;try{localStorage.setItem('sk_draft_'+S.uid+'_'+F.week,JSON.stringify(F));}catch(e){}}
+
+/* acciones, reunión y ejemplos */
+const DIAS=['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+const dayLabel=d=>{const x=parse(d);return DIAS[x.getDay()]+' '+x.getDate()+' de '+MES[x.getMonth()];};
+const meetingText=(d,t)=>d?dayLabel(d)+(t?' a las '+t:''):'sin fecha';
+const DAYN=['lunes','martes','miércoles','jueves','viernes'];
+const EX=[
+ {t:'Captación: conseguir exclusividades',month:'Conseguir 4 exclusividades firmadas este mes',week:'Conseguir 1 exclusividad firmada esta semana',acts:[['Contactar a 15 propietarios potenciales',15,2],['Agendar 3 reuniones de captación',3,4],['Presentar la estrategia comercial en 2 visitas',2,4]]},
+ {t:'Colocación: llegar al cierre',month:'Cerrar 1 operación con comisión cobrada este mes',week:'Hacer 3 visitas con clientes calificados esta semana',acts:[['Confirmar presupuesto y forma de pago de 5 clientes',5,1],['Enviar opciones a 5 clientes',5,2],['Coordinar y confirmar 3 visitas',3,3]]},
+ {t:'Publicación y seguimiento: propiedades sin consultas',month:'Que mis 5 propiedades en cartera reciban consultas todas las semanas',week:'Mejorar la publicación de 2 propiedades esta semana',acts:[['Actualizar fotos y descripción de 2 propiedades',2,2],['Compartir 5 propiedades con la red',5,3],['Informar a 5 propietarios sobre consultas y visitas',5,4]]},
+ {t:'Asesor nuevo: arrancar fuerte',month:'Terminar mi inducción y conseguir mi primera propiedad en exclusiva',week:'Terminar 2 módulos de inducción y contactar a 10 propietarios',acts:[['Ver 2 módulos de inducción y completar la guía',2,2],['Contactar a 10 propietarios de mi primer anillo de contactos',10,3],['Pedir recomendaciones a 5 conocidos',5,4]]}
+];
+function actFields(wk){const o={};(wk.actions||[]).forEach((a,i)=>{if(i<3){o['a'+(i+1)]=a.what||'';o['q'+(i+1)]=a.qty;o['d'+(i+1)]=a.due||'';}});(wk.actRes||[]).forEach((x,i)=>{if(i<3)o['r'+(i+1)]=x;});if(wk.nextMeeting){o.nmDate=wk.nextMeeting.date||'';o.nmTime=wk.nextMeeting.time||'';}return o;}
+function prevActions(){const p=(S.me&&S.me.weeks||{})[addDays(F.week,-7)];return p&&p.actions?p.actions:[];}
+function prevActsHtml(){
+  const l=prevActions();if(!l.length)return '';
+  return '<div class="act"><b>Las acciones que me comprometí a hacer esta semana</b><div class="sub">Poné cuánto lograste de cada una.</div>'+l.slice(0,3).map((a,i)=>'<div class="g2"><div><b>'+esc(a.what)+'</b><div class="sub">Meta: '+esc(a.qty)+(a.due?' · para el '+esc(dayLabel(a.due)):'')+'</div></div><label>Lo que logré<input data-f="r'+(i+1)+'" id="f_r'+(i+1)+'" type="number" min="0" inputmode="numeric" value="'+esc(F['r'+(i+1)])+'"></label></div>').join('')+'</div>';
+}
+function examplesHtml(){
+  return '<details class="r"><summary><b>Ver ejemplos de metas enlazadas</b><span class="pill">Mes → semana → acciones</span></summary><div class="rb"><div class="note">Se enlazan así: cada acción tiene un número y una fecha. Las acciones cumplen la meta de la semana, y cuatro metas semanales suman la meta del mes. Adaptá los números a tu realidad.</div>'
+  +EX.map((x,i)=>'<div><h3>'+esc(x.t)+'</h3><ul class="tight"><li><b>Meta del mes:</b> '+esc(x.month)+'</li><li><b>Meta de la semana:</b> '+esc(x.week)+'</li><li><b>Acciones medibles:</b><ul class="tight">'+x.acts.map(a=>'<li>'+esc(a[0])+' · '+a[1]+' · para el '+DAYN[a[2]]+'</li>').join('')+'</ul></li></ul><p style="margin:8px 0 0"><button class="btn ghost sm" type="button" data-a="ex" data-i="'+i+'">Usar este ejemplo</button></p></div>').join('')+'</div></details>';
+}
+
+/* acceso a datos */
+function norm(d){let x=d;if(typeof d.data==='function')x=d.data();else if(d.data&&typeof d.data==='object')x=d.data;return Object.assign({},x,{id:d.id!=null?d.id:x.id});}
+function rowsOf(snap){const out=[];const list=snap&&snap.docs?snap.docs:snap;if(list&&typeof list.forEach==='function')list.forEach(d=>out.push(norm(d)));return out;}
+async function rpc(fn,args){
+  const h={'Content-Type':'application/json',apikey:SB_KEY};if(SB_KEY.startsWith('eyJ'))h.Authorization='Bearer '+SB_KEY;
+  const r=await fetch(SB_URL+'/rest/v1/rpc/'+fn,{method:'POST',headers:h,body:JSON.stringify(args)});
+  const j=await r.json().catch(()=>null);if(!r.ok)throw new Error((j&&j.message)||('HTTP '+r.status));return j;
+}
+async function readMe(){
+  try{const d=await rpc('skyone_form_me',{p_tel:S.uid});return d&&typeof d==='object'?d:null;}
+  catch(e){S.errs=String((e&&e.message)||e);return null;}
+}
+async function loadAll(){const j=await rpc('skyone_form_all',{p_pin:S.key});S.rows=Array.isArray(j)?j:[];S.errs='';}
+const telFmt=t=>{t=String(t||'');return t.length>6?t.replace(/(\d{4})(\d{3})(\d+)$/,'$1 $2 $3'):t;};
+const waLink=t=>{t=String(t||'').replace(/\D/g,'');if(t.startsWith('0'))t='595'+t.slice(1);return 'https://wa.me/'+t;};
+function idCard(){
+  let last={};try{last=JSON.parse(localStorage.getItem('sk_id')||'{}');}catch(e){}
+  return '<div class="card"><h2>Formulario semanal</h2><p class="sub" style="margin:0">Ingresá tu nombre y tu número de WhatsApp. Usá siempre el mismo número: con él guardamos tu avance semana a semana.</p>'
+  +'<label>Nombre y apellido<input id="id_name" autocomplete="name" value="'+esc(last.name||'')+'"></label>'
+  +'<label>Número de WhatsApp<input id="id_tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="0981 123 456" value="'+esc(last.tel||'')+'"></label>'
+  +'<div><button class="btn" data-a="ident" style="width:100%">Continuar</button></div></div><div class="foot"><a href="#panel">Panel del Broker Manager</a></div>';
+}
+function keyCard(){
+  return '<div class="card"><h2>Panel del Broker Manager</h2><p class="sub" style="margin:0">Ingresá tu PIN para ver el avance de los asesores.</p><label>PIN<input id="k_key" inputmode="numeric" type="password" autocomplete="current-password"></label><div><button class="btn" data-a="key" style="width:100%">Entrar</button></div></div><div class="foot"><a href="#" data-a="toForm">Volver al formulario</a></div>';
+}
+
+/* vistas */
+const opt=(name,val,label,cls)=>'<label class="opt '+(F[name]===val?'on '+(cls||''):'')+'"><input type="radio" name="'+name+'" value="'+val+'" data-f="'+name+'"'+(F[name]===val?' checked':'')+'>'+label+'</label>';
+const fld=(k,lab,hint,type,extra)=>'<label>'+lab+(hint?' <span class="hint">'+hint+'</span>':'')+'<input id="f_'+k+'" data-f="'+k+'" type="'+(type||'text')+'" value="'+esc(F[k])+'"'+(extra||'')+'></label>';
+const area=(k,lab,hint)=>'<label>'+lab+(hint?' <span class="hint">'+hint+'</span>':'')+'<textarea id="f_'+k+'" data-f="'+k+'">'+esc(F[k])+'</textarea></label>';
+function vForm(){
+  if(S.done)return confirmCard();
+  const w0=mondayOf(todayStr());const weeks=[0,1,2].map(i=>addDays(w0,-7*i));if(!weeks.includes(F.week))weeks.push(F.week);
+  const si=stageInfo(F.stage);
+  const stageSel=F.track&&F.track!=='none'?'<label>¿En qué paso exacto?<select id="f_stage" data-f="stage"><option value="">Elegí el paso</option>'+['Generar','Contactar','Convertir','Dar seguimiento','Calificar','Proponer','Visitar','Evaluar','Negociar','Cerrar y seguir'].map(g=>{const l=TRACKS[F.track].stages.filter(s=>s[1]===g);return l.length?'<optgroup label="'+g+'">'+l.map(s=>'<option value="'+s[0]+'"'+(F.stage===s[0]?' selected':'')+'>'+esc(s[2])+'</option>').join('')+'</optgroup>':'';}).join('')+'</select></label>':'';
+  const tip=si&&F.track!=='none'?'<div class="note"><b>Si te trabás en este paso:</b> '+esc(si.tip)+'</div>':'';
+  return (S.isBM?'<div class="note warn"><b>Vista previa.</b> Así lo ven los asesores. Lo que completes acá no se guarda.</div>':'')
+  +'<div class="note">Tarda unos cinco minutos. Lo que completes es la base de nuestra reunión de 20 minutos, para mejorar y seguir avanzando.</div>'
+  +'<div class="card"><div class="sec"><b>1</b><h3>Sobre vos</h3></div><div class="g2">'+fld('name','Nombre y apellido','','text',' autocomplete="name"')
+  +'<label>Semana<select id="f_week" data-f="week">'+weeks.map(w=>'<option value="'+w+'"'+(w===F.week?' selected':'')+'>'+esc(weekLabel(w))+'</option>').join('')+'</select></label></div></div>'
+  +'<div class="card"><div class="sec"><b>2</b><h3>Mi meta del mes ('+esc(monthLabel(monthKey(F.week)))+')</h3></div><div class="sub">Si ya la definiste este mes, solo revisala.</div>'+examplesHtml()
+  +fld('monthGoal','Mi meta del mes')+area('why','¿Por qué quiero lograrla?')+area('forWhat','¿Para qué?')+'</div>'
+  +'<div class="card"><div class="sec"><b>3</b><h3>Mi semana</h3></div>'
+  +fld('weekGoal','Mi meta semanal','(la que te pusiste para esta semana)')
+  +fld('meetDate','Fecha de esta reunión','','date')+prevActsHtml()
+  +'<div role="radiogroup" aria-label="¿Llegué a la meta?"><div style="font-size:14px;font-weight:600;margin-bottom:6px">¿Llegué a la meta?</div><div class="opts">'+opt('hit','si','Sí, llegué','yes')+opt('hit','no','No llegué','no')+'</div></div>'
+  +area('stuck','¿En qué me trabé?','(si llegaste, contá qué te ayudó)')
+  +area('help','¿En qué necesito ayuda?')
+  +area('doubts','Dudas o consultas para la reunión','(opcional)')+'</div>'
+  +'<div class="card"><div class="sec"><b>4</b><h3>¿En qué parte del proceso me trabé?</h3></div>'
+  +'<label>Tipo de trabajo<select id="f_track" data-f="track"><option value="none"'+(F.track==='none'?' selected':'')+'>No me trabé esta semana</option><option value="cap"'+(F.track==='cap'?' selected':'')+'>Captación de propiedades</option><option value="cli"'+(F.track==='cli'?' selected':'')+'>Seguimiento de compradores e inquilinos</option></select></label>'+stageSel+tip+'</div>'
+  +'<div class="card"><div class="sec"><b>5</b><h3>Mis números de la semana</h3></div><div class="sub">Opcional, pero nos ayuda a ver dónde se enfría el proceso. Poné 0 si no hubo.</div><div class="g5">'
+  +fld('nLeads','Leads nuevos','','number',' min="0" inputmode="numeric"')+fld('nCli','Leads que pasaron a cliente','','number',' min="0" inputmode="numeric"')+fld('nVis','Visitas realizadas','','number',' min="0" inputmode="numeric"')+fld('nCie','Cierres','','number',' min="0" inputmode="numeric"')+fld('nCap','Captaciones exclusivas','','number',' min="0" inputmode="numeric"')+'</div></div>'
+  +'<div class="card"><div class="sec"><b>6</b><h3>Mi plan de la próxima semana</h3></div>'
+  +'<div class="note"><b>Meta de mi mes:</b> '+esc(F.monthGoal||'definila arriba, en el punto 2')+'<br>Mi meta de la semana tiene que sumar a esa meta, y cada acción necesita un número y una fecha.</div>'
+  +fld('nextGoal','Mi meta de la próxima semana','(fácil de cumplir y que suponga un avance)')
+  +[1,2,3].map(i=>'<div class="act"><b>Acción medible '+i+(i===1?'':' <span class="hint" style="font-weight:400">(opcional)</span>')+'</b><label>¿Qué voy a hacer?<input data-f="a'+i+'" id="f_a'+i+'" value="'+esc(F['a'+i])+'" placeholder="Ej: Contactar a 15 propietarios potenciales"></label><div class="g2"><label>Cantidad<input data-f="q'+i+'" id="f_q'+i+'" type="number" min="1" inputmode="numeric" value="'+esc(F['q'+i])+'"></label><label>Para qué día<input data-f="d'+i+'" id="f_d'+i+'" type="date" value="'+esc(F['d'+i])+'"></label></div></div>').join('')+'</div>'
+  +'<div class="card"><div class="sec"><b>7</b><h3>Nuestra próxima reunión</h3></div><div class="sub">Dejala fijada ahora para salir de la reunión con todo claro.</div><div class="g2">'+fld('nmDate','Fecha','','date')+fld('nmTime','Hora','','time')+'</div>'+(F.nmDate?'<div class="note">Nos vemos el <b>'+esc(meetingText(F.nmDate,F.nmTime))+'</b>.</div>':'')+'</div>'
+  +'<div class="card"><div class="sec"><b>8</b><h3>Cierre del mes</h3></div><label class="opt'+(F.closing?' on':'')+'" style="justify-content:flex-start"><input type="checkbox" id="f_closing" data-f="closing"'+(F.closing?' checked':'')+'>Es la última semana del mes, quiero completar el cierre</label>'
+  +(F.closing?'<div role="radiogroup" aria-label="¿Logré la meta mensual?"><div style="font-size:14px;font-weight:600;margin-bottom:6px">¿Logré la meta mensual?</div><div class="opts">'+opt('mHit','si','Sí, la logré','yes')+opt('mHit','no','No la logré','no')+'</div></div><div class="g2">'+fld('mResult','Resultado')+fld('mPct','% de cumplimiento','','number',' min="0" max="300" inputmode="numeric"')+'</div>'+area('mStuck','¿En qué parte del proceso me trabé?')+area('mPrio','Prioridad para el próximo mes'):'')+'</div>'
+  +'<div><button class="btn" id="send" data-a="send" style="width:100%">'+(S.isBM?'Ver cómo queda':(S.me&&S.me.weeks&&S.me.weeks[F.week]?'Actualizar mi formulario':'Enviar mi formulario'))+'</button></div><div class="foot">“Todo lo que se mide se puede mejorar.”</div>'+(S.isBM?'':'<div class="foot"><a href="#panel">Panel del Broker Manager</a></div>');
+}
+function confirmCard(){
+  const acts=[1,2,3].filter(i=>(F['a'+i]||'').trim()).map(i=>'<li>'+esc(F['a'+i])+' · '+esc(F['q'+i])+(F['d'+i]?' · para el '+esc(dayLabel(F['d'+i])):'')+'</li>').join('');
+  return '<div class="card"><h2>'+(S.isBM?'Así quedaría tu envío':'Listo, recibimos tu formulario')+'</h2><div class="kv"><div><small>Semana</small><b style="font-size:15px">'+esc(weekLabel(F.week))+'</b></div><div><small>¿Llegué a la meta?</small><b>'+(F.hit==='si'?'Sí':'No')+'</b></div></div>'
+  +'<div><b>Meta del mes</b><div>'+esc(F.monthGoal||'—')+'</div></div>'
+  +'<div><b>Meta de la próxima semana</b><div>'+esc(F.nextGoal)+'</div></div>'
+  +'<div><b>Mis acciones medibles</b><ul class="tight">'+acts+'</ul></div>'
+  +'<div class="note"><b>Próxima reunión:</b> '+esc(meetingText(F.nmDate,F.nmTime))+'</div>'
+  +'<p class="sub" style="margin:0">En la reunión de 20 minutos vamos a trabajar sobre lo que completaste. Podés volver a abrir esta página y actualizar tus respuestas cuando quieras.</p>'
+  +'<div><button class="btn ghost" data-a="edit">Editar mis respuestas</button></div></div>';
+}
+function respRows(w){
+  return S.rows.filter(r=>r.weeks&&r.weeks[w]).map(r=>({r:r,e:r.weeks[w],m:(r.months||{})[monthKey(w)]||{}})).sort((a,b)=>(a.e.hit==='no'?0:1)-(b.e.hit==='no'?0:1)||String(a.r.name||'').localeCompare(String(b.r.name||''),'es'));
+}
+function vResp(){
+  const w=S.rweek,list=respRows(w);
+  const nav='<div class="card"><div class="nav"><button class="btn ghost sm" data-a="rPrev" aria-label="Semana anterior">←</button><b style="color:var(--blue);text-align:center">Semana del '+esc(weekLabel(w))+'</b><button class="btn ghost sm" data-a="rNext" aria-label="Semana siguiente">→</button></div></div>';
+  if(S.errs&&!S.rows.length)return nav+'<div class="note bad">No pude leer las respuestas: '+esc(S.errs)+'</div>';
+  if(!list.length)return nav+'<div class="card"><h3>Todavía no hay respuestas en esta semana</h3><p class="sub" style="margin:0">Mandales a tus asesores el link del formulario. Cada uno entra con su nombre y su número de WhatsApp. Tocá «Actualizar» para ver las respuestas nuevas.</p></div>';
+  const hit=list.filter(x=>x.e.hit==='si').length,help=list.filter(x=>(x.e.help||'').trim()).length;
+  const cnt={};list.forEach(x=>{if(x.e.track&&x.e.track!=='none'&&x.e.stage)cnt[x.e.stage]=(cnt[x.e.stage]||0)+1;});
+  const top=Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]).slice(0,4);
+  const sum='<div class="card"><div class="kv"><div><small>Respondieron</small><b>'+list.length+'</b></div><div><small>Llegaron a la meta</small><b>'+hit+' de '+list.length+'</b></div><div><small>Piden ayuda</small><b>'+help+'</b></div></div>'
+   +(top.length?'<div><b>Pasos donde más se traban</b><ul class="tight">'+top.map(id=>{const i=stageInfo(id);return '<li>'+esc(i.name)+' ('+esc(i.track)+') · '+cnt[id]+(cnt[id]>1?' asesores':' asesor')+'</li>';}).join('')+'</ul></div>':'')+'</div>';
+  const cards=list.map(x=>{const e=x.e,m=x.m,si=e.stage?stageInfo(e.stage):null,c=m.close||{},n=e.n||{};
+    return '<details class="r"><summary><b>'+esc(x.r.name||'Sin nombre')+' <span class="hint" style="font-weight:400">'+esc(telFmt(x.r.id))+'</span></b><span style="display:flex;gap:6px;flex-wrap:wrap">'+(e.hit==='si'?'<span class="pill good">Llegó a la meta</span>':'<span class="pill bad">No llegó</span>')+((e.help||'').trim()?'<span class="pill">Pide ayuda</span>':'')+(si?'<span class="pill gray">'+esc(si.name)+'</span>':'')+'</span></summary><div class="rb">'
+    +'<div><a class="btn ghost sm" target="_blank" rel="noopener" href="'+waLink(x.r.id)+'">Escribirle por WhatsApp</a></div>'
+    +'<div><h3>Meta de la semana</h3><p>'+esc(e.weekGoal||'—')+(e.meetDate?' · Reunión: '+esc(e.meetDate):'')+'</p></div>'
+    +'<div><h3>En qué se trabó</h3><p>'+(esc(e.stuck)||'—')+'</p></div>'
+    +'<div><h3>En qué necesita ayuda</h3><p>'+(esc(e.help)||'—')+'</p></div>'
+    +(e.doubts?'<div><h3>Dudas para la reunión</h3><p>'+esc(e.doubts)+'</p></div>':'')
+    +(si?'<div class="note"><b>'+esc(si.track)+' · '+esc(si.group)+' · '+esc(si.name)+'</b><br>Guía para el asesor: '+esc(si.tip)+(si.sig?'<br><b>Señal:</b> '+esc(si.sig.sig)+'. <b>Revisar:</b> '+esc(si.sig.rev)+'. <b>Próxima acción:</b> '+esc(si.sig.act):'')+'</div>':'')
+    +(e.n?'<div class="kv"><div><small>Leads</small><b>'+esc(n.leads)+'</b></div><div><small>A cliente</small><b>'+esc(n.clientes)+'</b></div><div><small>Visitas</small><b>'+esc(n.visitas)+'</b></div><div><small>Cierres</small><b>'+esc(n.cierres)+'</b></div><div><small>Captaciones</small><b>'+esc(n.captaciones)+'</b></div></div>':'')
+    +(()=>{const pa=((x.r.weeks||{})[addDays(w,-7)]||{}).actions||[];const rs=e.actRes||[];return pa.length?'<div><h3>Cumplimiento de las acciones de la semana pasada</h3><ul class="tight">'+pa.map((a,i)=>{const d=Number(rs[i]||0),q=Number(a.qty||0);return '<li>'+esc(a.what)+': '+d+' de '+q+(q?' ('+Math.round(d/q*100)+' %)':'')+'</li>';}).join('')+'</ul></div>':'';})()
+    +'<div><h3>Meta para la próxima semana</h3><p>'+esc(e.nextGoal||'—')+'</p></div>'
+    +((e.actions||[]).length?'<div><h3>Acciones medibles de la próxima semana</h3><ul class="tight">'+e.actions.map(a=>'<li>'+esc(a.what)+' · '+esc(a.qty)+(a.due?' · para el '+esc(dayLabel(a.due)):'')+'</li>').join('')+'</ul></div>':'')
+    +(e.nextMeeting&&e.nextMeeting.date?'<div class="note"><b>Próxima reunión:</b> '+esc(meetingText(e.nextMeeting.date,e.nextMeeting.time))+'</div>':'')
+    +'<div><h3>Meta del mes ('+esc(monthLabel(monthKey(w)))+')</h3><p>'+esc(m.goal||'—')+'</p>'+(m.why?'<p class="sub">Por qué: '+esc(m.why)+(m.forWhat?' · Para qué: '+esc(m.forWhat):'')+'</p>':'')+'</div>'
+    +(c.hit?'<div><h3>Cierre del mes</h3><p>'+(c.hit==='si'?'La logró':'No la logró')+(c.result?' · Resultado: '+esc(c.result):'')+(c.pct!==''&&c.pct!=null?' · '+esc(c.pct)+' %':'')+'</p>'+(c.stuck?'<p class="sub">Se trabó en: '+esc(c.stuck)+'</p>':'')+(c.prio?'<p class="sub">Prioridad del próximo mes: '+esc(c.prio)+'</p>':'')+'</div>':'')
+    +'</div></details>';}).join('');
+  return nav+sum+cards;
+}
+
+/* render */
+function renderTabs(){
+  if(!S.isBM){$('#tabs').innerHTML='';return;}
+  $('#tabs').innerHTML=[['respuestas','Respuestas'],['formulario','Vista del asesor']].map(x=>'<a class="tab'+(S.tab===x[0]?' on':'')+'" href="#'+x[0]+'">'+x[1]+'</a>').join('')+'<a class="tab" href="#" data-a="reload">Actualizar</a>';
+}
+function render(){
+  renderTabs();const v=$('#view');
+  if(S.panelMode&&!S.isBM){v.innerHTML=keyCard();return;}
+  if(!S.uid){v.innerHTML=idCard();return;}
+  if(!S.loaded){v.innerHTML='<div class="card">Cargando tus datos…</div>';return;}
+  v.innerHTML=(S.isBM&&S.tab==='respuestas')?vResp():((S.isBM?'':'<div class="note">Completando como <b>'+esc(S.myName||F.name)+'</b> · '+esc(telFmt(S.uid))+' · <a href="#" data-a="logout">No soy yo</a></div>')+vForm());
+}
+function route(){
+  let h=(location.hash||'').slice(1);if(h==='panel'){S.panelMode=true;h='respuestas';}if(!S.isBM)h='formulario';if(h!=='respuestas'&&h!=='formulario')h=S.isBM?'respuestas':'formulario';
+  if(h!==S.tab){S.tab=h;S.done=false;}render();
+}
+window.addEventListener('hashchange',route);
+
+/* eventos */
+document.addEventListener('input',e=>{const k=e.target.dataset&&e.target.dataset.f;if(!k||e.target.type==='radio'||e.target.type==='checkbox'||e.target.tagName==='SELECT')return;F[k]=e.target.value;saveDraft();});
+document.addEventListener('change',e=>{
+  const k=e.target.dataset&&e.target.dataset.f;if(!k)return;
+  if(e.target.type==='checkbox')F[k]=e.target.checked;else F[k]=e.target.value;
+  if(k==='week'){loadWeek(F.week);render();return;}
+  if(k==='track'){F.stage='';render();saveDraft();return;}
+  if(k==='stage'||k==='hit'||k==='mHit'||k==='closing'){render();}
+  saveDraft();
+});
+const ACT={
+  rPrev(){S.rweek=addDays(S.rweek,-7);render();},rNext(){S.rweek=addDays(S.rweek,7);render();},
+  edit(){S.done=false;render();},
+  async ident(){
+    const nm=($('#id_name').value||'').trim(),tel=($('#id_tel').value||'').replace(/\D/g,'');
+    if(!nm||tel.length<6){toast('Completá tu nombre y tu número de WhatsApp.',true);return;}
+    S.uid=tel;S.myName=nm;S.loaded=false;try{localStorage.setItem('sk_id',JSON.stringify({name:nm,tel:tel}));}catch(e){}
+    render();S.errs='';const d=await readMe();
+    if(S.errs){S.uid='';S.loaded=false;render();toast('No pude conectar. Revisá tu internet y probá de nuevo.',true);return;}
+    S.me=d||{name:nm,weeks:{},months:{}};S.me.name=nm;loadWeek(mondayOf(todayStr()));F.name=nm;S.loaded=true;render();window.scrollTo(0,0);
+  },
+  toForm(){S.panelMode=false;history.replaceState(null,'',location.pathname);route();},
+  logout(){try{localStorage.removeItem('sk_id');}catch(e){}S.uid='';S.me=null;S.loaded=false;S.done=false;render();},
+  async key(){
+    S.key=($('#k_key').value||'').trim();if(!S.key)return;
+    try{await loadAll();}catch(e){toast(String(e.message)==='clave'?'PIN incorrecto.':'No pude conectar. Probá de nuevo.',true);return;}
+    try{sessionStorage.setItem('sk_key',S.key);}catch(e){}
+    S.isBM=true;S.uid='vista-previa';S.me=null;loadWeek(mondayOf(todayStr()));S.loaded=true;S.tab='';route();
+  },
+  async reload(){try{await loadAll();toast('Respuestas actualizadas.');}catch(e){toast('No pude actualizar.',true);}render();},
+  ex(b){const x=EX[+b.dataset.i];if(!x)return;const set=(k,v)=>{if(!String(F[k]==null?'':F[k]).trim())F[k]=v;};set('monthGoal',x.month);set('nextGoal',x.week);const base=addDays(F.week,7);x.acts.forEach((a,i)=>{set('a'+(i+1),a[0]);set('q'+(i+1),a[1]);set('d'+(i+1),addDays(base,a[2]));});saveDraft();render();toast('Ejemplo copiado en los campos vacíos. Adaptalo a tu caso.');},
+  async send(){
+    const miss=[];
+    if(!F.name.trim())miss.push('tu nombre');if(!F.weekGoal.trim())miss.push('tu meta semanal');if(!F.hit)miss.push('si llegaste a la meta');
+    if(F.hit==='no'&&!F.stuck.trim())miss.push('en qué te trabaste');if(!F.nextGoal.trim())miss.push('tu meta de la próxima semana');
+    if(F.track!=='none'&&!F.stage)miss.push('el paso exacto donde te trabaste');
+    let okA=0,badA=false;[1,2,3].forEach(i=>{const w=(F['a'+i]||'').trim(),q=parseFloat(F['q'+i])||0,d=F['d'+i];if(w&&q>0&&d)okA++;else if(w||q||d)badA=true;});
+    if(badA)miss.push('en cada acción, qué vas a hacer, la cantidad y el día');else if(!okA)miss.push('al menos una acción medible con cantidad y día');
+    if(!F.nmDate)miss.push('la fecha de la próxima reunión');
+    if(miss.length){toast('Falta completar: '+miss.join(', '),true);return;}
+    if(S.isBM){S.done=true;render();window.scrollTo(0,0);return;}
+    if(S.saving)return;S.saving=true;const b=$('#send');if(b){b.disabled=true;b.textContent='Enviando…';}
+    const n=x=>x===''||x==null?0:(parseFloat(x)||0);
+    const me=S.me||{weeks:{},months:{}};const w=F.week,mk=monthKey(w);
+    const entry={weekGoal:F.weekGoal.trim(),meetDate:F.meetDate,hit:F.hit,stuck:F.stuck.trim(),help:F.help.trim(),doubts:F.doubts.trim(),track:F.track,stage:F.track==='none'?'':F.stage,
+      n:{leads:n(F.nLeads),clientes:n(F.nCli),visitas:n(F.nVis),cierres:n(F.nCie),captaciones:n(F.nCap)},nextGoal:F.nextGoal.trim(),actions:[1,2,3].filter(i=>(F['a'+i]||'').trim()&&(parseFloat(F['q'+i])||0)>0).map(i=>({what:F['a'+i].trim(),qty:parseFloat(F['q'+i]),due:F['d'+i]||''})),actRes:prevActions().slice(0,3).map((a,i)=>n(F['r'+(i+1)])),nextMeeting:{date:F.nmDate,time:F.nmTime},submittedAt:new Date().toISOString()};
+    const month={goal:F.monthGoal.trim(),why:F.why.trim(),forWhat:F.forWhat.trim()};
+    const old=(me.months||{})[mk]||{};
+    if(F.closing&&F.mHit)month.close={hit:F.mHit,result:F.mResult.trim(),pct:F.mPct===''?'':n(F.mPct),stuck:F.mStuck.trim(),prio:F.mPrio.trim()};else if(old.close)month.close=old.close;
+    const doc={name:F.name.trim(),tel:S.uid,weeks:Object.assign({},me.weeks,{[w]:entry}),months:Object.assign({},me.months,{[mk]:month}),updated:new Date().toISOString()};
+    try{await rpc('skyone_form_save',{p_tel:S.uid,p_doc:doc});S.me=doc;try{localStorage.removeItem('sk_draft_'+S.uid+'_'+w);}catch(e){}S.done=true;render();window.scrollTo(0,0);}
+    catch(err){toast('No se pudo enviar. Revisá tu conexión y probá de nuevo.',true);}
+    S.saving=false;const b2=$('#send');if(b2){b2.disabled=false;}
+  }
+};
+document.addEventListener('click',e=>{const b=e.target.closest('[data-a]');if(b&&ACT[b.dataset.a]){if(b.tagName==='A')e.preventDefault();ACT[b.dataset.a](b);}});
+document.addEventListener('keydown',e=>{if(e.key!=='Enter')return;if(e.target.id==='id_name'||e.target.id==='id_tel')ACT.ident();if(e.target.id==='k_key')ACT.key();});
+
+/* arranque */
+(async function init(){
+  route();
+  if(S.panelMode){let k='';try{k=sessionStorage.getItem('sk_key')||'';}catch(e){}if(k){S.key=k;try{await loadAll();S.isBM=true;S.uid='vista-previa';loadWeek(mondayOf(todayStr()));S.loaded=true;S.tab='';route();}catch(e){}}return;}
+  let last=null;try{last=JSON.parse(localStorage.getItem('sk_id')||'null');}catch(e){}
+  if(last&&last.tel&&last.name){S.uid=last.tel;S.myName=last.name;render();S.me=(await readMe())||{name:last.name,weeks:{},months:{}};if(S.errs){S.uid='';render();return;}S.me.name=last.name;loadWeek(mondayOf(todayStr()));F.name=last.name;S.loaded=true;}
+  render();
+})();
+</script>
+</body>
+</html>
