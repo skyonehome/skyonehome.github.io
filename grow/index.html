@@ -28,7 +28,7 @@ a{color:inherit}
 .brand img{height:40px;width:auto;display:block}
 .brand .sep{width:1px;height:30px;background:var(--line)}
 footer .flogo{height:46px;width:auto;display:block;margin-bottom:14px;opacity:.85}
-.links{display:flex;gap:20px;font-size:14px;color:#cfd5df}
+.links{display:flex;gap:18px;white-space:nowrap;font-size:14px;color:#cfd5df}
 .links a{text-decoration:none;opacity:.85}.links a:hover{opacity:1}
 .navR{margin-left:auto;display:flex;align-items:center;gap:14px}
 .search{display:flex;align-items:center;gap:8px;border:1px solid transparent;border-radius:6px;padding:6px 8px;transition:.25s}
@@ -348,6 +348,23 @@ a.chip{text-decoration:none}
 }
 @media (max-width:600px){.indu{margin:0 4vw 36px;padding:18px 14px}.iProg{margin-left:0;flex:1 1 100%}}
 
+
+/* FORMULARIO SEMANAL */
+.wform{margin:0 4vw 46px;border-radius:16px;padding:22px 24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;
+  background:radial-gradient(80% 160% at 0% 0%,#3ccf8e26,transparent 60%),#121722;border:1px solid #3ccf8e55}
+.wform .ic{flex:0 0 58px;height:58px;border-radius:14px;background:#3ccf8e22;display:flex;align-items:center;justify-content:center;font-size:30px}
+.wform .tx{flex:1 1 320px}
+.wform small{font-size:11px;font-weight:800;letter-spacing:.16em;color:#8fe3bd;text-transform:uppercase}
+.wform h2{font-size:clamp(20px,2vw,26px);line-height:1.15;margin:4px 0 6px}
+.wform p{color:#c9d0dc;font-size:14.5px;line-height:1.5}
+.wform ul{display:flex;flex-wrap:wrap;gap:6px 14px;list-style:none;margin-top:8px}
+.wform li{font-size:13px;color:#d9e4ee}.wform li:before{content:"✓ ";color:var(--ok);font-weight:900}
+.wform .btn{background:var(--ok);color:#04130c;text-decoration:none}
+.wform .btn:hover{background:#5fe0a6}
+.stepLink{display:inline-block;margin-top:6px;font-size:12px;font-weight:800;color:#8fe3bd;text-decoration:none}
+.stepLink:hover{text-decoration:underline}
+@media (max-width:600px){.wform{padding:18px}.wform .btn{width:100%;justify-content:center}}
+
 /* MODAL */
 .modal{position:fixed;inset:0;z-index:100;background:#000c;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:4vh 3vw}
 .modal.show{display:flex}
@@ -387,7 +404,7 @@ a.chip{text-decoration:none}
 .empty{padding:0 4vw;color:var(--mute);font-size:15px}
 footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #1b202b}
 
-@media (max-width:1100px){.links{display:none}}
+@media (max-width:1180px){.links{display:none}}
 @media (max-width:760px){
   .who button{display:none}
   .brand img{height:32px}.brand .sep{height:24px}.logo small{display:none}
@@ -414,7 +431,7 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 <nav class="nav" id="nav">
   <a class="brand" href="#inicio" aria-label="SkyOne Home · Sistema GROW"><img src="logo-skyone-home.png" alt="SkyOne Home"><span class="sep"></span><div class="logo"><span class="sky">SISTEMA</span><span class="play">GROW</span><small>SKYONE HOME</small></div></a>
   <div class="links">
-    <a href="#inicio">Inicio</a><a href="#induccion">Inducción</a><a href="#ruta">Ruta del asesor</a><a href="#todas">Clases</a><a href="#casos">Casos de éxito</a><a href="#cuestionarios">Cuestionarios</a><a href="#vocabulario">Vocabulario</a>
+    <a href="#inicio">Inicio</a><a href="#induccion">Inducción</a><a href="#formulario-semanal">Formulario</a><a href="#ruta">Ruta</a><a href="#todas">Clases</a><a href="#casos">Casos</a><a href="#cuestionarios">Cuestionarios</a><a href="#vocabulario">Vocabulario</a>
   </div>
   <div class="navR">
     <div class="search" id="search">
@@ -583,6 +600,7 @@ function render(){
      <div class="bar"><i style="width:${P}%"></i></div><div class="pct">${P}%</div>
      <div style="flex-basis:100%;font-size:13px;color:var(--mute)">Cuestionarios aprobados: <b style="color:var(--ok)">${Object.keys(CATS).filter(k=>(ST.quiz[k]||0)>=80).length}/${Object.keys(CATS).length}</b> · <a href="#cuestionarios" style="color:var(--accent2)">Ir a los cuestionarios ↓</a></div></div>`;
   h+=induSection();
+  h+=formSection();
   h+=certBox();
   const cont=VIDEOS.filter(v=>!ST.done[v.id] && (ST.p[v.id]||0)>3);
   if(cont.length) h+=row("seguir","Seguir viendo","Retomá donde quedaste",cont.map(card).join(""));
@@ -601,6 +619,7 @@ function render(){
 function bind(){
   document.querySelectorAll("#main .card").forEach(c=>c.onclick=()=>openV(c.dataset.id));
   bindIndu();
+  document.querySelectorAll("[data-form]").forEach(a=>a.addEventListener("click",prepForm));
   document.querySelectorAll("[data-t]").forEach(c=>c.onclick=()=>openT(c.dataset.t));
   document.querySelectorAll(".qCard").forEach(c=>c.onclick=()=>startQ(c.dataset.cat));
   document.querySelectorAll(".track").forEach(t=>{
@@ -1019,11 +1038,12 @@ function induSection(){
       const extra=p.k==="videos"?`${p.d} · llevás ${vistas}/${VIDEOS.length} clases`:(p.d||"");
       return `<button class="step ${cls}" data-ik="${p.k}" aria-pressed="${ok}"><span class="ck">${ok?"✓":i+1}</span><span class="tx"><b>${esc(p.t)}</b>${extra?`<small>${esc(extra)}</small>`:""}<span class="go">Tocá cuando lo completes ✓</span></span></button>`;}).join("");
     const arrow=`<div class="iArrow ${fok?"done":""}">${AR}</div>`;
-    return `<div class="phase ${fok?"ok":cur?"cur":""}"><div class="pH"><b>${f.fase}</b><span>${f.sub}</span><em>${fok?"✓ Completo":`${fd}/${f.pasos.length}`}</em></div>${steps}</div>${arrow}`;
+    const extraLink=f.k==="rs"?`<a class="stepLink" href="${FORM_URL}" target="_blank" rel="noopener" data-form>📝 Completar mi formulario semanal →</a>`:"";
+    return `<div class="phase ${fok?"ok":cur?"cur":""}"><div class="pH"><b>${f.fase}</b><span>${f.sub}</span><em>${fok?"✓ Completo":`${fd}/${f.pasos.length}`}</em></div>${steps}${extraLink}</div>${arrow}`;
   }).join("");
   const goal=`<div class="goal ${all?"ok":""}"><div class="ic">${all?"🎉":"🎯"}</div><b>${all?"¡Inducción completa!":"Tu primer cierre en 30 días"}</b><small>${all?"Ahora, a buscar tu primer cierre en 30 días.":"La meta de tu inducción"}</small></div>`;
   return `<section class="indu ${min?"min":""}" id="induccion"><div class="iHead"><div><small>Proceso inductivo · SkyOne Home</small>
-    <h2>Tu primer cierre en <span>30 días</span></h2><p>${all?"Completaste todos los pasos de tu inducción.":"Así te acompañamos desde el primer día. Marcá cada paso cuando lo completes, en el orden que quieras."}</p></div>
+    <h2>Tu primer cierre en <span>30 días</span></h2><p>${all?"Completaste todos los pasos de tu inducción.":"Así te acompañamos desde el primer día. Marcá cada paso cuando lo completes."}</p></div>
     <div class="iProg"><div class="t"><span>Tu inducción</span><b>${done}/${tot} pasos</b></div><div class="bar"><i style="width:${Math.round(done/tot*100)}%"></i></div></div></div>
     <div class="iFlow">${phases}${goal}</div>
     <div class="iFoot"><span>¿Dudas? Más info: 0986 809 911</span>${all?`<button id="iTog">${min?"Ver los pasos":"Ocultar los pasos"}</button>`:""}</div></section>`;
@@ -1036,6 +1056,25 @@ function bindIndu(){
     const y=scrollY; render(); scrollTo(0,y);
   });
   const t=$("#iTog"); if(t) t.onclick=()=>{ induOpen=induOpen===true?false:true; const y=scrollY; render(); scrollTo(0,y); };
+}
+
+
+// ---- formulario semanal ----
+const FORM_URL="https://skyonehome.github.io/formulario/";
+function formSection(){
+  return `<section class="wform" id="formulario-semanal"><div class="ic">📝</div><div class="tx"><small>Antes de tu reunión semanal de 20 min</small>
+    <h2>Formulario semanal del asesor</h2>
+    <p>Contá cómo te fue en la semana: tus números, tus logros y tus inquietudes. Llegás a la reunión con todo listo para conversarlo.</p>
+    <ul><li>Tus números de la semana</li><li>Lo que te salió bien</li><li>Tus dudas e inquietudes</li></ul></div>
+    <a class="btn play" href="${FORM_URL}" target="_blank" rel="noopener" data-form>Completar mi formulario →</a></section>`;
+}
+function prepForm(){
+  // Si el asesor ya se registró aquí, el formulario lo reconoce sin volver a pedir sus datos (mismo sitio)
+  try{
+    const tel=String((ST.user&&ST.user.wa)||"").replace(/\D/g,"");
+    if(ST.user&&ST.user.nombre&&tel.length>=6&&!localStorage.getItem("sk_id")) localStorage.setItem("sk_id",JSON.stringify({name:ST.user.nombre,tel}));
+  }catch(e){}
+  send("formulario semanal","abrió el formulario");
 }
 
 // ---- nav / búsqueda ----
