@@ -558,6 +558,41 @@ a.tile:hover{border-color:#ffffff33;transform:translateY(-2px)}
 .vDocs .wTxt{max-height:130px}
 .dAll{display:inline-block;margin-top:10px;color:var(--accent2);font-weight:700;font-size:14px;text-decoration:none}
 @media (max-width:700px){.vDocs{margin:0 14px 20px}.wBtns{flex-direction:column}}
+/* ---- proceso por etapa y checklist de cierre ---- */
+.proc{margin-top:18px;border-top:1px solid #ffffff14;padding-top:18px}
+.procH{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:14px}.procH b{font-size:17px}.procH span{color:var(--mute);font-size:13px}
+.pSteps{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,230px),1fr));gap:10px;counter-reset:ps}
+.pStep{position:relative;background:#0f131b;border:1px solid #ffffff14;border-radius:12px;padding:14px 14px 12px;counter-increment:ps}
+.pStep:before{content:counter(ps);position:absolute;top:12px;right:12px;width:26px;height:26px;border-radius:50%;background:var(--ec);color:#fff;font:900 13px Inter;display:flex;align-items:center;justify-content:center}
+.pStep h5{font-size:14.5px;line-height:1.25;margin:0 34px 6px 0}
+.pStep p{font-size:13px;color:#b9c1ce;line-height:1.45;margin-bottom:8px}
+.pLinks{display:flex;flex-wrap:wrap;gap:5px}
+.pL{display:inline-flex;align-items:center;gap:4px;font-size:11.5px;font-weight:700;padding:4px 8px;border-radius:5px;border:1px solid #ffffff2a;color:#dfe5ee;text-decoration:none;background:#ffffff08;cursor:pointer;font-family:inherit}
+.pL:hover{border-color:#fff}.pL.v{border-color:color-mix(in srgb,var(--ec) 60%,transparent);color:#fff}
+.cierre{margin-top:14px;border-radius:14px;padding:16px;background:linear-gradient(120deg,#ffd23f1a,#0f131b 60%);border:1px solid #ffd23f55}
+.cierre h4{font-size:16px;margin-bottom:4px}.cierre>p{font-size:13px;color:var(--mute);margin-bottom:12px}
+.cList{display:grid;gap:8px}
+.cItem{display:flex;gap:12px;align-items:flex-start;background:#00000033;border-radius:10px;padding:10px 12px}
+.cNum{flex:0 0 28px;height:28px;border-radius:7px;border:2px solid #ffd23f;color:#ffd23f;font:900 13px Inter;display:flex;align-items:center;justify-content:center}
+.cItem b{display:block;font-size:14.5px}.cItem span{display:block;font-size:13px;color:#b9c1ce;line-height:1.45;margin:2px 0 6px}
+.cItem .pLinks:empty{display:none}
+/* ---- novedades ---- */
+.bell{position:relative;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:#fff}
+.bell:hover{background:#ffffff14}.bell svg{width:21px;height:21px}
+.bell i{position:absolute;top:2px;right:1px;min-width:17px;height:17px;padding:0 4px;border-radius:9px;background:#e50914;color:#fff;font:800 10.5px/17px Inter;font-style:normal;text-align:center}
+.nPanel{position:fixed;top:64px;right:max(12px,4vw);width:min(400px,calc(100vw - 24px));max-height:min(70vh,560px);overflow:auto;background:#141924;border:1px solid #ffffff22;border-radius:14px;box-shadow:0 20px 60px #000c;z-index:300;display:none}
+.nPanel.show{display:block;animation:pop .2s ease}
+.nPanel h4{position:sticky;top:0;background:#141924;padding:14px 16px 10px;font-size:15px;border-bottom:1px solid #ffffff14}
+.nItem2{display:block;width:100%;text-align:left;padding:12px 16px;border-bottom:1px solid #ffffff0f;font-family:inherit;color:inherit;background:none}
+.nItem2:hover{background:#ffffff08}.nItem2 b{display:block;font-size:14px;line-height:1.3}.nItem2 span{display:block;font-size:12.5px;color:var(--mute);line-height:1.4;margin-top:3px}
+.nItem2 small{font-size:11px;color:#8b94a5;font-weight:700;letter-spacing:.04em}.nItem2.new small:before{content:"NUEVO";background:#e50914;color:#fff;padding:1px 5px;border-radius:3px;margin-right:6px;font-size:9.5px}
+.nStrip{display:flex;align-items:center;gap:12px;margin:0 4vw 22px;padding:12px 16px;border-radius:12px;background:linear-gradient(100deg,#e5091426,#2f8cff1a 70%);border:1px solid #e5091455}
+.nStrip .tag{flex:0 0 auto;background:#e50914;color:#fff;font:800 10.5px Inter;letter-spacing:.08em;padding:4px 8px;border-radius:4px}
+.nStrip .tx{flex:1;min-width:0;font-size:14px}.nStrip .tx b{display:block}.nStrip .tx span{font-size:13px;color:#c9d0db}
+.nStrip button{font-weight:800;font-size:13.5px;white-space:nowrap;color:#fff;padding:8px 12px;border-radius:7px;border:1px solid #ffffff44}
+.nStrip .x{border:0;color:#aab3c2;padding:6px;font-size:18px}
+@media (max-width:700px){.nStrip{flex-wrap:wrap;margin:0 14px 18px;gap:8px 12px}.nStrip .tag{order:1}.nStrip .x{order:2;margin-left:auto}.nStrip .tx{order:3;flex-basis:100%}.nStrip button[data-ngo]{order:4;width:100%}.nPanel{top:58px}}
+@media (max-width:600px){.dashSec{margin-top:0!important}}
 .cardPdf{position:absolute;right:8px;bottom:10px;font-size:10px;font-weight:800;letter-spacing:.06em;background:#ffd23f;color:#111;padding:2px 6px;border-radius:3px}
 .mBody{padding:22px 28px 30px;display:grid;grid-template-columns:2fr 1fr;gap:28px}
 .mBody h2{font-size:26px;font-weight:800;margin:6px 0 10px}
@@ -612,9 +647,10 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
       <button aria-label="Buscar" id="sBtn"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></button>
       <input id="sIn" placeholder="Buscar clase…" autocomplete="off">
     </div>
-    <span class="who" id="who"></span><span class="pill" id="pill"><b>0</b> vistas</span>
+    <button class="bell" id="bell" aria-label="Novedades"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><i id="bellN" hidden></i></button><span class="who" id="who"></span><span class="pill" id="pill"><b>0</b> vistas</span>
   </div>
 </nav>
+<div class="nPanel" id="nPanel" role="dialog" aria-label="Novedades"></div>
 
 <header class="hero" id="inicio">
   <div class="bg" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div><div class="grid"></div><div class="word"><b>GROW</b></div></div>
@@ -787,6 +823,7 @@ function render(){
   }
   const cont=VIDEOS.filter(v=>!ST.done[v.id] && (ST.p[v.id]||0)>3);
   h+=dashSection();
+  h+=novStrip();
   h+=`<section class="sec">${induSection()}</section>`;
   h+=`<section class="sec">${formSection()}</section>`;
   if(cont.length) h+=row("seguir","Seguir viendo","Retomá donde quedaste",cont.map(card).join(""));
@@ -795,7 +832,7 @@ function render(){
   h+=docsSection();
   if(TESTIMONIOS.length) h+=casosSection();
   h+=vocabSection();
-  $("#main").innerHTML=h; bindVocab(); bindCert(); bind(); bindRoad(); bindDocs(); hero();
+  $("#main").innerHTML=h; bindVocab(); bindCert(); bind(); bindRoad(); bindDocs(); bindNov(); hero();
 }
 function bind(){
   document.querySelectorAll("#main .card").forEach(c=>c.onclick=()=>openV(c.dataset.id));
@@ -1079,7 +1116,7 @@ function estado(){return {vistas:VIDEOS.filter(v=>ST.done[v.id]).map(v=>v.n),qui
 // estado compacto que se guarda en la planilla para recuperarlo en otro dispositivo
 function syncState(){
   const p={}; Object.keys(ST.p).forEach(k=>{ if(!ST.done[k] && ST.p[k]>3) p[k]=Math.round(ST.p[k]); });
-  return {d:Object.keys(ST.done).filter(k=>ST.done[k]),p,q:ST.quiz||{},i:ST.indu||{},c:ST.cert?1:0};
+  return {d:Object.keys(ST.done).filter(k=>ST.done[k]),p,q:ST.quiz||{},i:ST.indu||{},c:ST.cert?1:0,v:Object.keys(ST.nov||{})};
 }
 // une el avance remoto con el local (nunca se pierde nada: se queda con lo mayor)
 function mergeState(r){
@@ -1090,6 +1127,7 @@ function mergeState(r){
   ST.quiz=ST.quiz||{}; Object.entries(r.q||{}).forEach(([k,v])=>{ if(v!=null&&(ST.quiz[k]==null||ST.quiz[k]<v)){ ST.quiz[k]=v; ch++; } });
   ST.indu=ST.indu||{}; Object.entries(r.i||{}).forEach(([k,v])=>{ if(!ST.indu[k]){ ST.indu[k]=v; ch++; } });
   if(r.c&&!ST.cert){ ST.cert=1; ch++; }
+  ST.nov=ST.nov||{}; (r.v||[]).forEach(k=>{ if(!ST.nov[k]){ ST.nov[k]=1; ch++; } });
   return ch;
 }
 async function pull(wa){
@@ -1116,6 +1154,7 @@ $("#regF").addEventListener("submit",async e=>{
   const res=await pull(w); let got=0, uidR=null;
   if(res&&res.found){ uidR=res.uid; (res.states||[]).forEach(st=>got+=mergeState(st)); }
   ST.user={uid:uidR||(ST.user?ST.user.uid:uid()),nombre:n,wa:w};
+  if(first&&!(res&&res.found)&&!Object.keys(ST.done).length){ ST.nov=ST.nov||{}; NOVEDADES.forEach(x=>ST.nov[x.id]=1); }
   save(); b.disabled=false; b.textContent="Entrar a Sistema GROW →";
   $("#reg").classList.remove("show"); who(); render();
   send(res&&res.found?(first?"inicio en otro dispositivo":"datos actualizados"):(first?"registro":"datos actualizados"),"");
@@ -1344,7 +1383,7 @@ function dashSection(){
   const ci=curEtapa(), ce=ci>=0?ETAPAS[ci]:null;
   const ap=aprobados(), nq=Object.keys(CATS).length;
   ST.indu=ST.indu||{}; const idn=IND_ALL.filter(p=>ST.indu[p.k]).length;
-  return `<section class="sec" style="margin-top:-6vh;position:relative;z-index:4"><div class="dash">
+  return `<section class="sec dashSec" style="margin-top:-6vh;position:relative;z-index:4"><div class="dash">
    <a class="tile" href="#hoja-de-ruta" style="--tg:#2f8cff"><small>Tu capacitación</small><b>${P}%</b><p>${dn} de ${tot} clases vistas</p><div class="tb"><i style="width:${P}%"></i></div></a>
    <a class="tile" href="${ce?"#etapa-"+ce.cat:"#hoja-de-ruta"}" style="--tg:${ce?CATS[ce.cat].color:"#3ccf8e"}"><small>Etapa actual</small><b>${ce?`${ci+1}<span>/${ETAPAS.length}</span>`:"✓"}</b><p>${ce?esc(CATS[ce.cat].name):"Completaste todas las etapas"}</p><div class="tb"><i style="width:${Math.round((ci<0?ETAPAS.length:ci)/ETAPAS.length*100)}%;background:${ce?CATS[ce.cat].color:"var(--ok)"}"></i></div></a>
    <a class="tile" href="#hoja-de-ruta" style="--tg:#ffd23f"><small>Cuestionarios</small><b>${ap}<span>/${nq}</span></b><p>${ap===nq?"¡Certificado desbloqueado!":"Aprobá todos para tu certificado"}</p><div class="tb"><i style="width:${Math.round(ap/nq*100)}%;background:#ffd23f"></i></div></a>
@@ -1369,6 +1408,7 @@ function roadSection(){
         ${collapsed?`<button class="eToggle" data-et="${e.cat}">Ver las ${I.vs.length} clases de esta etapa ↓</button>`:`<div class="eGrid">${I.vs.map(card).join("")}</div>
         ${qn?`<div class="eQuiz ${I.q>=PASS?"ok":""}"><div class="qi">${I.q>=PASS?"✅":"📝"}</div><div><b>Cuestionario de la etapa ${i+1}</b><span>${qtxt}</span></div><button class="btn ${I.q>=PASS?"ghost":"play"} qGoBtn" data-cat="${e.cat}">${I.q==null?"Rendir cuestionario":I.q>=PASS?"Repetir":"Reintentar"}</button></div>`:""}
         ${I.ok?`<button class="eToggle" data-et="${e.cat}">Ocultar clases ↑</button>`:""}`}
+        ${procBlock(e.cat)}
       </div></div></div>`;
   }).join("");
   const ap=aprobados(), all=ap===Object.keys(CATS).length;
@@ -1385,6 +1425,8 @@ function bindRoad(){
   document.querySelectorAll(".qGoBtn").forEach(b=>b.onclick=()=>startQ(b.dataset.cat));
   document.querySelectorAll(".eToggle").forEach(b=>b.onclick=()=>{const k=b.dataset.et;openEt[k]=!openEt[k];const y=scrollY;render();scrollTo(0,y);});
   document.querySelectorAll("[data-man]").forEach(b=>b.onclick=()=>openMan(b.dataset.man));
+  document.querySelectorAll("[data-pv]").forEach(b=>b.onclick=()=>openV(b.dataset.pv));
+  document.querySelectorAll(".proc").forEach(bindDocLinks);
 }
 // ---- manuales ----
 const MANUALES = [
@@ -1446,6 +1488,50 @@ const MANUALES = [
    frase:"Todo lo que se mide se puede mejorar."}}
 ];
 
+// ---- proceso de alquiler / venta y checklist de cierre ----
+const PROC = {"alquileres": {"t": "Proceso de un alquiler", "s": "De la autorización al cobro de tu comisión", "pasos": [{"t": "Autorización o exclusividad", "d": "Pedí la autorización por WhatsApp (50% de comisión) o firmá la exclusividad de alquiler con el propietario.", "docs": ["autorizacion-alquiler", "exclusividad-alquiler"], "v": ["1245208466", "1245200331"]}, {"t": "Cargá la propiedad en el sistema", "d": "Subila al CRM con fotos, descripción y la autorización: así sale a toda la red.", "docs": [], "v": ["1242892100"]}, {"t": "Promoción y filtro del cliente", "d": "Respondé consultas y filtrá: explicá lo que se paga para entrar (1 mes + garantía + 50% de comisión) y los requisitos.", "docs": ["requisitos-alquiler"], "v": ["1242892101", "1242892096"]}, {"t": "Presentación al propietario y visita", "d": "Presentá al interesado por escrito antes de la visita para asegurar tu comisión.", "docs": ["presentacion-cliente-alquiler"], "v": ["1245183454"]}, {"t": "Solicitud y documentación", "d": "El inquilino completa la solicitud. Revisá el informe crediticio del titular y del garante y pedí los comprobantes de ingresos.", "docs": ["solicitud-alquiler", "solicitud-alquiler-ingles", "solicitud-alquiler-portugues"], "v": ["1245174330", "1242892095"]}, {"t": "Seña o reserva", "d": "Con la aprobación, el cliente deja la seña directo en la cuenta del propietario.", "docs": ["reserva-alquiler", "reserva-alquiler-contrato", "sena-trato-alquiler"], "v": ["1245207083"]}, {"t": "Contrato y firma", "d": "El captador arma el contrato de locación y firman locador, locatario y garante. El colocador hace firmar el SEPRELAD del inquilino.", "docs": ["contrato-locacion", "contrato-opcion-compra", "seprelad-alquiler"], "v": ["1245248187", "1245180461"]}, {"t": "Cierre y cobro de la comisión", "d": "El cliente paga la comisión a SkyOne Home. Completá el checklist de cierre para cobrar la tuya.", "docs": ["datos-pago"], "v": ["1242892103"]}]}, "ventas": {"t": "Proceso de una venta", "s": "Del precio correcto al cobro de tu comisión", "pasos": [{"t": "Precio correcto", "d": "Hacé el AMC y el estudio de mercado. Explicale al propietario los gastos: 5,5% de comisión, IRP del 2,4% y escribanía.", "docs": ["amc-modelo", "estudio-mercado-modelo"], "v": ["1245186777", "1246643039"]}, {"t": "Autorización o exclusividad", "d": "Pedí la autorización por WhatsApp (5,5% de comisión) o firmá la exclusividad de venta. Para proyectos, el acuerdo con la desarrolladora.", "docs": ["autorizacion-venta", "exclusividad-venta", "acuerdo-proyecto"], "v": ["1245208466", "1245196419", "1245210667"]}, {"t": "Cargá la propiedad en el sistema", "d": "Subila al CRM con fotos, descripción y la autorización: así sale a toda la red.", "docs": [], "v": ["1242892100"]}, {"t": "Filtro y presentación del comprador", "d": "Filtrá al interesado con la solicitud de compra y presentalo por escrito al propietario antes de la visita.", "docs": ["solicitud-compra", "presentacion-cliente-venta"], "v": ["1242892101", "1245183454"]}, {"t": "Seguimiento al propietario", "d": "Si tenés la exclusividad, mandale cada mes su informe de progreso: consultas, visitas y próximas acciones.", "docs": ["informe-progreso-venta"], "v": ["1246619316"]}, {"t": "Oferta", "d": "El comprador formaliza su oferta por escrito. Si es extranjero, revisá los requisitos.", "docs": ["carta-intencion-compra", "propuesta-compra", "carta-oferta-banco-atlas", "requisitos-extranjeros"], "v": []}, {"t": "Seña de venta", "d": "Con la oferta aceptada, se firma la reserva y la seña va a la cuenta del propietario.", "docs": ["reserva-venta"], "v": ["1245205826"]}, {"t": "Escritura y cobro de la comisión", "d": "Coordiná la escribanía y el SEPRELAD del comprador. Después completá el checklist de cierre para cobrar tu comisión.", "docs": ["seprelad-venta", "datos-pago"], "v": ["1245177717", "1242892103"]}]}, "cierre": [{"t": "Ingreso de la comisión a la oficina", "d": "La comisión total que paga el cliente tiene que entrar a la cuenta de SkyOne Home.", "docs": ["datos-pago"]}, {"t": "SEPRELAD de venta presentado", "d": "Entregá el SEPRELAD de venta firmado. En alquileres no hace falta.", "solo": "ventas", "docs": ["seprelad-venta"]}, {"t": "Cierre en el sistema", "d": "Cerrá la operación en el CRM.", "v": ["1242892103"]}, {"t": "Factura para tu cliente", "d": "Pedile a la oficina la factura para tu cliente: la emite SkyOne Home por la comisión total que paga el cliente."}, {"t": "Tu factura por el neto", "d": "Entregá a SkyOne Home tu factura por el neto de tu comisión. Con tu factura, la oficina te paga."}]};
+function pLinks(docs,vids){
+  const d=(docs||[]).map(id=>DOCS.find(x=>x.id===id)).filter(Boolean).map(x=>{const k=x.f.docx?"docx":x.f.xlsx?"xlsx":x.f.img?"img":"pdf";
+    return `<a class="pL" href="docs/${x.f[k]}" download="${esc(dName(x,x.f[k]))}" data-doc="${x.id}" data-fmt="${DT[k][1]}">⬇ ${esc(x.t)}</a>`;}).join("");
+  const v=(vids||[]).map(id=>VIDEOS.find(x=>x.id===id)).filter(Boolean).map(x=>`<button class="pL v" data-pv="${x.id}">▶ Clase ${x.n}</button>`).join("");
+  return `<div class="pLinks">${v}${d}</div>`;
+}
+function procBlock(cat){
+  const P=PROC[cat]; if(!P) return "";
+  const ck=PROC.cierre.filter(c=>!c.solo||c.solo===cat);
+  return `<div class="proc"><div class="procH"><b>${esc(P.t)}</b><span>${esc(P.s)}</span></div>
+    <div class="pSteps">${P.pasos.map(p=>`<div class="pStep"><h5>${esc(p.t)}</h5><p>${esc(p.d)}</p>${pLinks(p.docs,p.v)}</div>`).join("")}</div>
+    <div class="cierre"><h4>✅ Checklist de cierre ${cat==="ventas"?"de una venta":"de un alquiler"}</h4><p>Cumplí estos ${ck.length} puntos para que la oficina te pague tu comisión.</p>
+    <div class="cList">${ck.map((c,i)=>`<div class="cItem"><div class="cNum">${i+1}</div><div><b>${esc(c.t)}</b><span>${esc(c.d)}</span>${pLinks(c.docs,c.v)}</div></div>`).join("")}</div></div></div>`;
+}
+// ---- novedades ----
+const NOVEDADES = [{"id": "n7", "f": "2026-11-13", "t": "Proceso de alquiler y de venta, con checklist de cierre", "d": "En las etapas Alquileres y Ventas tenés el paso a paso completo, de la autorización al cobro de tu comisión.", "go": "#etapa-alquileres"}, {"id": "n6", "f": "2026-11-13", "t": "Documentos oficiales y mensajes para WhatsApp", "d": "Todos los modelos en Word y PDF, y los mensajes de autorización y presentación para copiar y pegar.", "go": "#documentos"}, {"id": "n5", "f": "2026-11-13", "t": "Tu avance ahora se guarda con tu WhatsApp", "d": "Entrá desde cualquier celular o computadora con tu número y seguís donde quedaste.", "go": ""}, {"id": "n4", "f": "2026-11-13", "t": "8 clases nuevas y hoja de ruta por etapas", "d": "Ya son 29 clases ordenadas en 7 etapas, cada una con su cuestionario.", "go": "#hoja-de-ruta"}, {"id": "n3", "f": "2026-11-13", "t": "Manuales de Captación y de Activación Comercial", "d": "Leelos en la plataforma o descargalos en PDF.", "go": "#manuales"}, {"id": "n2", "f": "2026-11-13", "t": "Inducción: tu primer cierre en 30 días", "d": "Los pasos de tu primer mes, para ir marcando a medida que los completás.", "go": "#induccion"}, {"id": "n1", "f": "2026-11-12", "t": "Casos de éxito: el testimonio de Sofía", "d": "Historias reales de asesores de la oficina para inspirarte.", "go": "#casos"}];
+const fNov=f=>{const [y,m,d]=f.split("-");return `${+d} ${["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"][m-1]} ${y}`;};
+function novNew(){ ST.nov=ST.nov||{}; return NOVEDADES.filter(n=>!ST.nov[n.id]); }
+function novSeen(ids){ ST.nov=ST.nov||{}; ids.forEach(id=>ST.nov[id]=1); save(); }
+function novStrip(){
+  const n=novNew()[0]; if(!n) return "";
+  return `<div class="nStrip" id="nStrip"><span class="tag">NOVEDAD</span><div class="tx"><b>${esc(n.t)}</b><span>${esc(n.d)}</span></div>${n.go?`<button data-ngo="${n.id}">Ver →</button>`:""}<button class="x" data-nx="${n.id}" aria-label="Cerrar">✕</button></div>`;
+}
+function novGo(n){
+  novSeen([n.id]); $("#nPanel").classList.remove("show");
+  const y=scrollY; render(); scrollTo(0,y); bellCount();
+  if(n.go){ const el=document.querySelector(n.go); if(el) setTimeout(()=>el.scrollIntoView({behavior:"smooth"}),60); }
+}
+function bellCount(){ const k=novNew().length, b=$("#bellN"); b.hidden=!k; b.textContent=k; }
+function drawNovPanel(){
+  const nw=new Set(novNew().map(n=>n.id));
+  $("#nPanel").innerHTML=`<h4>Novedades de Sistema GROW</h4>${NOVEDADES.map(n=>`<button class="nItem2 ${nw.has(n.id)?"new":""}" data-nid="${n.id}"><small>${fNov(n.f)}</small><b>${esc(n.t)}</b><span>${esc(n.d)}</span></button>`).join("")}`;
+  document.querySelectorAll("[data-nid]").forEach(b=>b.onclick=()=>novGo(NOVEDADES.find(n=>n.id===b.dataset.nid)));
+}
+function bindNov(){
+  bellCount();
+  document.querySelectorAll("[data-ngo]").forEach(b=>b.onclick=()=>novGo(NOVEDADES.find(n=>n.id===b.dataset.ngo)));
+  document.querySelectorAll("[data-nx]").forEach(b=>b.onclick=()=>{ novSeen([b.dataset.nx]); const y=scrollY; render(); scrollTo(0,y); });
+}
+$("#bell").onclick=e=>{ e.stopPropagation(); const p=$("#nPanel"); if(p.classList.contains("show")){p.classList.remove("show");return;} drawNovPanel(); p.classList.add("show");
+  const nw=novNew().map(n=>n.id); if(nw.length){ novSeen(nw); bellCount(); send("novedades vistas",String(nw.length)); } };
+document.addEventListener("click",e=>{ const p=$("#nPanel"); if(p.classList.contains("show")&&!p.contains(e.target)) { p.classList.remove("show"); const y=scrollY; render(); scrollTo(0,y); } });
 // ---- documentos oficiales y mensajes de WhatsApp ----
 const DOCS = [{"id": "autorizacion-venta", "t": "Autorización para intermediar venta", "d": "Autorización sin exclusividad para comercializar una propiedad en venta.", "s": "captacion", "f": {"docx": "autorizacion-venta.docx", "pdf": "autorizacion-venta.pdf"}}, {"id": "autorizacion-alquiler", "t": "Autorización para intermediar alquiler", "d": "Autorización sin exclusividad para comercializar una propiedad en alquiler.", "s": "captacion", "f": {"docx": "autorizacion-alquiler.docx", "pdf": "autorizacion-alquiler.pdf"}}, {"id": "exclusividad-venta", "t": "Exclusividad de venta", "d": "Contrato y autorización con exclusividad para vender un inmueble.", "s": "captacion", "f": {"docx": "exclusividad-venta.docx", "pdf": "exclusividad-venta.pdf"}}, {"id": "exclusividad-alquiler", "t": "Exclusividad de alquiler", "d": "Contrato y autorización con exclusividad para alquilar un inmueble.", "s": "captacion", "f": {"docx": "exclusividad-alquiler.docx", "pdf": "exclusividad-alquiler.pdf"}}, {"id": "acuerdo-proyecto", "t": "Acuerdo con desarrolladora (proyectos)", "d": "Contrato de corretaje para comercializar unidades de un proyecto.", "s": "captacion", "f": {"docx": "acuerdo-proyecto.docx", "pdf": "acuerdo-proyecto.pdf"}}, {"id": "presentacion-cliente-venta", "t": "Presentación de cliente · Venta", "d": "Carta al propietario presentando al interesado y fijando la comisión.", "s": "clientes", "f": {"docx": "presentacion-cliente-venta.docx", "pdf": "presentacion-cliente-venta.pdf"}}, {"id": "presentacion-cliente-alquiler", "t": "Presentación de cliente · Alquiler", "d": "Carta al propietario presentando al interesado en alquilar.", "s": "clientes", "f": {"docx": "presentacion-cliente-alquiler.docx", "pdf": "presentacion-cliente-alquiler.pdf"}}, {"id": "solicitud-compra", "t": "Solicitud de compra de inmueble", "d": "Ficha con datos personales, laborales y deudas del comprador.", "s": "clientes", "f": {"docx": "solicitud-compra.docx", "pdf": "solicitud-compra.pdf"}}, {"id": "solicitud-alquiler", "t": "Solicitud de alquiler", "d": "Ficha del locatario y del garante (persona física o jurídica).", "s": "alquileres", "f": {"docx": "solicitud-alquiler.docx", "pdf": "solicitud-alquiler.pdf"}}, {"id": "solicitud-alquiler-ingles", "t": "Solicitud de alquiler · Inglés", "d": "Rental application para clientes de habla inglesa.", "s": "alquileres", "f": {"docx": "solicitud-alquiler-ingles.docx", "pdf": "solicitud-alquiler-ingles.pdf"}}, {"id": "solicitud-alquiler-portugues", "t": "Solicitud de alquiler · Portugués", "d": "Solicitação de aluguel para clientes de habla portuguesa.", "s": "alquileres", "f": {"docx": "solicitud-alquiler-portugues.docx", "pdf": "solicitud-alquiler-portugues.pdf"}}, {"id": "requisitos-alquiler", "t": "Requisitos para alquilar", "d": "Placa para enviar al cliente: documentos y pagos para alquilar.", "s": "alquileres", "f": {"img": "requisitos-alquiler.jpg", "pdf": "requisitos-alquiler.pdf"}}, {"id": "sena-trato-alquiler", "t": "Seña de trato de alquiler", "d": "Constancia de seña entregada al propietario.", "s": "alquileres", "f": {"docx": "sena-trato-alquiler.docx", "pdf": "sena-trato-alquiler.pdf"}}, {"id": "reserva-alquiler-contrato", "t": "Contrato de reserva de alquiler", "d": "Contrato completo de reserva entre locador y futuro locatario.", "s": "alquileres", "f": {"docx": "reserva-alquiler-contrato.docx", "pdf": "reserva-alquiler-contrato.pdf"}}, {"id": "reserva-alquiler", "t": "Reserva de alquiler (simple)", "d": "Formulario breve de reserva con datos de la seña.", "s": "alquileres", "f": {"docx": "reserva-alquiler.docx", "pdf": "reserva-alquiler.pdf"}}, {"id": "seprelad-alquiler", "t": "SEPRELAD · Alquiler", "d": "Declaración jurada de origen de fondos para alquileres.", "s": "alquileres", "f": {"docx": "seprelad-alquiler.docx", "pdf": "seprelad-alquiler.pdf"}}, {"id": "contrato-locacion", "t": "Contrato de locación (modelo)", "d": "Modelo de contrato de alquiler de vivienda con garante.", "s": "alquileres", "f": {"docx": "contrato-locacion.docx", "pdf": "contrato-locacion.pdf"}}, {"id": "contrato-opcion-compra", "t": "Contrato de alquiler con opción a compra", "d": "Alquiler que incluye la opción de comprar el inmueble.", "s": "alquileres", "f": {"docx": "contrato-opcion-compra.docx", "pdf": "contrato-opcion-compra.pdf"}}, {"id": "reserva-venta", "t": "Reserva de venta", "d": "Constancia de seña del porcentaje de la compraventa.", "s": "ventas", "f": {"docx": "reserva-venta.docx", "pdf": "reserva-venta.pdf"}}, {"id": "seprelad-venta", "t": "SEPRELAD · Venta", "d": "Declaración jurada (Ley 1015) para operaciones de venta.", "s": "ventas", "f": {"docx": "seprelad-venta.docx", "pdf": "seprelad-venta.pdf"}}, {"id": "carta-intencion-compra", "t": "Carta de intención de compra", "d": "Oferta formal del comprador al propietario.", "s": "ventas", "f": {"docx": "carta-intencion-compra.docx", "pdf": "carta-intencion-compra.pdf"}}, {"id": "propuesta-compra", "t": "Propuesta de compra con pagos", "d": "Ejemplo de oferta con seña y pagos escalonados.", "s": "ventas", "f": {"docx": "propuesta-compra.docx", "pdf": "propuesta-compra.pdf"}}, {"id": "carta-oferta-banco-atlas", "t": "Carta oferta a banco · Atlas", "d": "Modelo de carta oferta para vender un inmueble a un banco.", "s": "ventas", "f": {"docx": "carta-oferta-banco-atlas.docx", "pdf": "carta-oferta-banco-atlas.pdf"}}, {"id": "carta-oferta-banco-interfisa", "t": "Carta oferta a banco · Interfisa", "d": "Mismo modelo, dirigido a Banco Interfisa.", "s": "ventas", "f": {"docx": "carta-oferta-banco-interfisa.docx", "pdf": "carta-oferta-banco-interfisa.pdf"}}, {"id": "requisitos-extranjeros", "t": "Ventas a extranjeros", "d": "Dictamen jurídico: qué necesita un extranjero para comprar.", "s": "ventas", "f": {"docx": "requisitos-extranjeros.docx", "pdf": "requisitos-extranjeros.pdf"}}, {"id": "amc-modelo", "t": "AMC · Análisis de mercado comparativo", "d": "Planilla para calcular el precio por comparables (Excel).", "s": "seguimiento", "f": {"xlsx": "amc-modelo.xlsx", "pdf": "amc-modelo.pdf"}}, {"id": "estudio-mercado-modelo", "t": "Estudio de mercado (ejemplo)", "d": "Ejemplo real de estudio con precio ideal y gastos del vendedor.", "s": "seguimiento", "f": {"pdf": "estudio-mercado-modelo.pdf"}}, {"id": "informe-progreso-venta", "t": "Informe mensual de progreso de venta", "d": "Modelo de informe al propietario de una exclusividad.", "s": "seguimiento", "f": {"docx": "informe-progreso-venta.docx", "pdf": "informe-progreso-venta.pdf"}}, {"id": "informe-progreso-lujo", "t": "Informe de progreso · Propiedad de lujo", "d": "Otro ejemplo de informe mensual con métricas de publicidad.", "s": "seguimiento", "f": {"docx": "informe-progreso-lujo.docx", "pdf": "informe-progreso-lujo.pdf"}}, {"id": "manual-procedimientos", "t": "Manual de procedimientos SkyOne", "d": "Cómo trabaja la oficina: procesos, reglas y responsabilidades.", "s": "oficina", "f": {"pdf": "manual-procedimientos.pdf"}}, {"id": "manual-marca", "t": "Manual de marca SkyOne", "d": "Logo, colores y uso correcto de la marca.", "s": "oficina", "f": {"pdf": "manual-marca.pdf"}}, {"id": "datos-pago", "t": "Datos para pagos y reservas", "d": "Cuentas oficiales de la oficina en guaraníes y dólares.", "s": "oficina", "f": {"img": "datos-pago.jpg", "pdf": "datos-pago.pdf"}}];
 const DX = {"secs": [{"k": "captacion", "t": "Captación", "s": "Autorizaciones y exclusividades para sumar propiedades", "c": "#ec4899"}, {"k": "clientes", "t": "Clientes", "s": "Presentación de clientes y solicitud de compra", "c": "#8b5cf6"}, {"k": "alquileres", "t": "Alquileres", "s": "Solicitud, requisitos, reserva, SEPRELAD y contrato", "c": "#f59e0b"}, {"k": "ventas", "t": "Ventas y ofertas", "s": "Reserva, SEPRELAD, cartas de intención y oferta", "c": "#22c55e"}, {"k": "seguimiento", "t": "Tasación y seguimiento", "s": "AMC, estudio de mercado e informes al propietario", "c": "#f97316"}, {"k": "oficina", "t": "Oficina y marca", "s": "Manuales internos y datos oficiales de pago", "c": "#14b8a6"}], "msgs": [{"id": "presentacion", "t": "Presentarte como asesor inmobiliario", "u": "Primer contacto con un propietario que publica su inmueble", "s": "captacion", "x": "Buenas, ¿qué tal? Mi nombre es ......, asesor inmobiliario de SkyOne Home.\n\nVi su propiedad y me gustaría poder ofrecer, ya que actualmente contamos con clientes interesados en este tipo de inmuebles y contamos con más de 400 asesores en nuestra red.\n\nSi le parece, ¿podría pasarme más información, fotos y ubicación de la propiedad? Nosotros nos encargamos de toda la gestión: promoción, filtro de clientes, coordinación de visitas y acompañamiento durante todo el proceso.\n\nTrabajamos con una comisión inmobiliaria del 5,5% para ventas (solo si se llega a vender la propiedad) y 50% del primer mes en alquileres. Quedo atento, muchas gracias!"}, {"id": "aut-venta", "t": "Autorización de venta por WhatsApp", "u": "Cuando el propietario acepta que promociones su propiedad en venta", "s": "captacion", "x": "Buenas Sr. ………….\nme confirma por favor su autorización para la promoción de venta de su propiedad tipo ………… ubicado en la ciudad de ………., Barrio ……… con dirección: ………….\nA un precio de Gs. ………… con una comisión inmobiliaria a favor de Sky One del 5,5% IVA incluido del precio de venta fijado y acordado, sólo en caso de acordarse la venta mediante nuestra agencia.\nSe aclara que esta autorización no implica exclusividad de venta de la Marca.\n\nLe saluda cordialmente su asesor:…………"}, {"id": "aut-alquiler", "t": "Autorización de alquiler por WhatsApp", "u": "Cuando el propietario acepta que promociones su propiedad en alquiler", "s": "captacion", "x": "Buenas Sr. ………….\nme confirma por favor su autorización para la promoción de alquiler de su propiedad tipo ………… ubicado en la ciudad de ………., Barrio ……… con dirección: ………….\nA un precio de Gs. ………… con una comisión inmobiliaria a favor de Sky One del 50% IVA incluido del precio de alquiler fijado y acordado, sólo en caso de acordarse el alquiler mediante nuestra agencia.\nSe aclara que esta autorización no implica exclusividad de alquiler de la Marca.\n\nLe saluda cordialmente su asesor:…………"}, {"id": "aut-formal", "t": "Autorización con datos del propietario", "u": "Versión con C.I. y cuenta catastral, para que el propietario la responda completa", "s": "captacion", "x": "Hola (Nombre del Propietario)\n\nPor este medio solicito su autorización sin exclusividad para poder comercializar su propiedad en la red de SkyOne Paraguay.\n\nAutorización de Venta\n\nYo, ………… (nombre de propietario), con C.I. Nro. ………… autorizo sin exclusividad la publicación de mi propiedad ubicada en ………… cuenta catastral: …………\nEl precio pactado de la propiedad es de Usd. ………… y la comisión acordada es de …………%\n\nFecha: …………\nAsesor: ………… de SkyOne Asunción\n\nQuedo a la espera de su confirmación para proceder!\n\nDesde ya muchas gracias por la confianza!"}], "vdocs": {"1242892099": {"d": ["manual-marca"], "m": ["presentacion"]}, "1246646069": {"d": [], "m": ["presentacion", "aut-venta", "aut-alquiler"]}, "1246616129": {"d": ["informe-progreso-venta"], "m": []}, "1246619316": {"d": ["informe-progreso-venta", "informe-progreso-lujo"], "m": []}, "1242892094": {"d": ["autorizacion-venta", "autorizacion-alquiler"], "m": ["presentacion"]}, "1242892075": {"d": ["presentacion-cliente-venta", "presentacion-cliente-alquiler", "datos-pago"], "m": []}, "1246666524": {"d": ["manual-procedimientos"], "m": []}, "1242892101": {"d": ["solicitud-compra", "solicitud-alquiler", "requisitos-alquiler"], "m": []}, "1245183454": {"d": ["presentacion-cliente-venta", "presentacion-cliente-alquiler"], "m": []}, "1246626784": {"d": ["manual-procedimientos"], "m": []}, "1246621568": {"d": ["exclusividad-venta", "exclusividad-alquiler"], "m": []}, "1245208466": {"d": ["autorizacion-venta", "autorizacion-alquiler"], "m": ["aut-venta", "aut-alquiler", "aut-formal"]}, "1245196419": {"d": ["exclusividad-venta", "estudio-mercado-modelo", "informe-progreso-venta"], "m": []}, "1245200331": {"d": ["exclusividad-alquiler"], "m": []}, "1245210667": {"d": ["acuerdo-proyecto"], "m": []}, "1245186777": {"d": ["amc-modelo", "estudio-mercado-modelo"], "m": []}, "1242892100": {"d": ["manual-procedimientos"], "m": []}, "1242892103": {"d": ["manual-procedimientos", "datos-pago"], "m": []}, "1242892096": {"d": ["requisitos-alquiler", "datos-pago"], "m": []}, "1245174330": {"d": ["solicitud-alquiler", "solicitud-alquiler-ingles", "solicitud-alquiler-portugues", "requisitos-alquiler"], "m": []}, "1242892095": {"d": ["requisitos-alquiler", "solicitud-alquiler"], "m": []}, "1245207083": {"d": ["sena-trato-alquiler", "reserva-alquiler-contrato", "reserva-alquiler", "datos-pago"], "m": []}, "1245180461": {"d": ["seprelad-alquiler"], "m": []}, "1245248187": {"d": ["contrato-locacion", "contrato-opcion-compra"], "m": []}, "1246643039": {"d": ["estudio-mercado-modelo", "amc-modelo"], "m": []}, "1245205826": {"d": ["reserva-venta", "carta-intencion-compra", "propuesta-compra", "datos-pago"], "m": []}, "1245177717": {"d": ["seprelad-venta", "requisitos-extranjeros"], "m": []}}};
