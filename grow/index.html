@@ -605,6 +605,60 @@ a.tile:hover{border-color:#ffffff33;transform:translateY(-2px)}
 .faq .fa a{display:inline-block;margin-top:8px;color:var(--accent2);font-weight:700;text-decoration:none}
 .newB{position:absolute;left:8px;top:8px;z-index:2;background:#e50914;color:#fff;font:800 10px Inter;letter-spacing:.08em;padding:3px 7px;border-radius:3px;box-shadow:0 4px 12px #0007}
 .cNota{margin-top:10px;font-size:13px;line-height:1.5;color:#e9dca8;background:#ffd23f12;border-radius:10px;padding:10px 12px}
+/* ---- recorrido: barra inferior, menú, accesos rápidos, etapas plegadas ---- */
+[id]{scroll-margin-top:84px}
+.links a.on{opacity:1;color:#fff;font-weight:700;box-shadow:inset 0 -2px 0 var(--accent)}
+.links a{padding:6px 0}
+.quick{margin-top:-30px;margin-bottom:34px}
+.qRow{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:10px}
+.qa{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:12px;background:#121722;border:1px solid #ffffff14;text-decoration:none;color:#fff;cursor:pointer;transition:.18s;min-width:0}
+.qa:hover{border-color:var(--qc);transform:translateY(-2px)}
+.qi2{flex:0 0 36px;height:36px;border-radius:10px;background:color-mix(in srgb,var(--qc) 22%,transparent);display:flex;align-items:center;justify-content:center;font-size:17px}
+.qa span:last-child{min-width:0}.qa b{display:block;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.qa small{display:block;font-size:12px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.eClosed{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+.eClosed .eToggle{margin:0;padding:10px 16px;border:1px solid #ffffff24;border-radius:9px;background:#ffffff08;color:#fff;font-size:13.5px}.eClosed .eToggle:hover{border-color:var(--ec)}
+.eToggle.alt{background:#ffd23f14;border-color:#ffd23f55;color:#ffe48a}
+.eToggle.hide{display:block;margin:16px auto 0;opacity:.75}
+.dAcc summary{list-style:none;cursor:pointer;display:block;position:relative;padding-right:40px}
+.dAcc summary::-webkit-details-marker{display:none}
+.dAcc summary:after{content:"";position:absolute;right:6px;top:8px;width:10px;height:10px;border-right:2px solid #aab3c2;border-bottom:2px solid #aab3c2;transform:rotate(45deg);transition:.2s}
+.dAcc[open] summary:after{transform:rotate(-135deg);top:13px}
+.dAcc h3 i{font-style:normal;font-size:12px;font-weight:800;background:#ffffff14;color:#cfd5df;border-radius:20px;padding:2px 8px;margin-left:4px}
+.dAcc>.dGrid{margin-top:4px}
+.dAcc:not([open]){padding-bottom:12px;border-bottom:1px solid #ffffff10}
+.bnav{display:none}
+.sheet2{position:fixed;inset:0;z-index:260;background:#000a;display:none;align-items:flex-end;justify-content:center}
+.sheet2.show{display:flex}
+.shBox{width:min(520px,100%);background:#141924;border-radius:20px 20px 0 0;padding:10px 14px calc(16px + env(safe-area-inset-bottom));animation:up .22s ease;max-height:85vh;overflow:auto}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.shGrab{width:44px;height:5px;border-radius:3px;background:#ffffff33;margin:4px auto 10px}
+.shT{display:block;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:#aab3c2;margin:0 6px 8px}
+.shBox a,.shBox button{display:flex;align-items:center;gap:14px;width:100%;padding:12px 8px;border-radius:10px;text-decoration:none;color:#fff;font-size:22px;text-align:left;font-family:inherit;background:none}
+.shBox a:hover,.shBox button:hover{background:#ffffff0a}
+.shBox a span,.shBox button span{font-size:15px;font-weight:700}.shBox small{display:block;font-size:12.5px;color:var(--mute);font-weight:500}
+.toTop{position:fixed;right:22px;bottom:22px;z-index:90;width:46px;height:46px;border-radius:50%;background:#1b2130;border:1px solid #ffffff2a;color:#fff;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:.25s;box-shadow:0 10px 30px #0008}
+.toTop.show{opacity:1;pointer-events:auto}.toTop svg{width:20px;height:20px}
+@media (max-width:1240px){
+  .bnav{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:95;background:#0b0e15f2;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid #ffffff17;padding:6px 6px calc(6px + env(safe-area-inset-bottom))}
+  .bnav a,.bnav button{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 2px;color:#8f98a8;text-decoration:none;font:600 11px Inter;background:none;border-radius:10px}
+  .bnav svg{width:23px;height:23px}
+  .bnav a.on,.bnav button.on{color:#fff}.bnav a.on svg{color:var(--accent)}
+  body{padding-bottom:calc(66px + env(safe-area-inset-bottom))}
+  .toTop{bottom:calc(84px + env(safe-area-inset-bottom));right:14px;width:42px;height:42px}
+  .syncT{bottom:calc(84px + env(safe-area-inset-bottom))}
+  .qRow{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:760px){
+  .quick{margin-top:-12px;margin-bottom:22px}
+  .qRow{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:8px;margin:0 -14px;padding:2px 14px 6px;scrollbar-width:none}
+  .qRow::-webkit-scrollbar{display:none}
+  .qa{flex:0 0 auto;scroll-snap-align:start;padding:10px 12px;max-width:220px}
+  .wRow{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin:0 -14px;padding:0 14px 8px;scrollbar-width:none}
+  .wRow::-webkit-scrollbar{display:none}
+  .wRow .wCard{flex:0 0 86%;scroll-snap-align:center}
+  .dCard{padding:12px}.dInfo span{font-size:12.5px;margin-bottom:8px}
+  .eClosed .eToggle{flex:1 1 100%}
+}
 .cardPdf{position:absolute;right:8px;bottom:10px;font-size:10px;font-weight:800;letter-spacing:.06em;background:#ffd23f;color:#111;padding:2px 6px;border-radius:3px}
 .mBody{padding:22px 28px 30px;display:grid;grid-template-columns:2fr 1fr;gap:28px}
 .mBody h2{font-size:26px;font-weight:800;margin:6px 0 10px}
@@ -665,6 +719,26 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
   </div>
 </nav>
 <div class="nPanel" id="nPanel" role="dialog" aria-label="Novedades"></div>
+<nav class="bnav" id="bnav" aria-label="Secciones">
+  <a href="#inicio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11 12 3l9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg><span>Inicio</span></a>
+  <a href="#hoja-de-ruta" data-alt="induccion formulario-semanal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 6H15a3 3 0 0 1 0 6H9a3 3 0 0 0 0 6h6.5"/></svg><span>Ruta</span></a>
+  <a href="#documentos"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span>Documentos</span></a>
+  <a href="#preguntas"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17h.01"/></svg><span>Preguntas</span></a>
+  <button id="bnMore" data-alt="manuales casos vocabulario"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="12" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="19" cy="12" r="1.6"/></svg><span>Más</span></button>
+</nav>
+<div class="sheet2" id="sheet"><div class="shBox">
+  <div class="shGrab"></div><b class="shT">Ir a</b>
+  <a href="#induccion">🚀<span>Inducción<small>Tu primer cierre en 30 días</small></span></a>
+  <a href="#formulario-semanal">📝<span>Formulario semanal<small>Antes de tu reunión de 20 min</small></span></a>
+  <a href="#manuales">📚<span>Manuales<small>Captación y activación comercial</small></span></a>
+  <a href="#casos">⭐<span>Casos de éxito<small>Historias de la oficina</small></span></a>
+  <a href="#vocabulario">🔤<span>Vocabulario<small>Términos inmobiliarios</small></span></a>
+  <a href="#certificado">🎓<span>Certificado<small>Asesor HOME</small></span></a>
+  <button id="shNov">🔔<span>Novedades<small>Lo último de Sistema GROW</small></span></button>
+  <button id="shSearch">🔍<span>Buscar una clase<small>Por tema o palabra</small></span></button>
+</div></div>
+<button class="toTop" id="toTop" aria-label="Volver arriba"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
+
 
 <header class="hero" id="inicio">
   <div class="bg" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div><div class="grid"></div><div class="word"><b>GROW</b></div></div>
@@ -837,6 +911,7 @@ function render(){
   }
   const cont=VIDEOS.filter(v=>!ST.done[v.id] && (ST.p[v.id]||0)>3);
   h+=dashSection();
+  h+=quickSection();
   h+=novStrip();
   h+=`<section class="sec">${induSection()}</section>`;
   h+=`<section class="sec">${formSection()}</section>`;
@@ -847,7 +922,7 @@ function render(){
   h+=faqSection();
   if(TESTIMONIOS.length) h+=casosSection();
   h+=vocabSection();
-  $("#main").innerHTML=h; bindVocab(); bindCert(); bind(); bindRoad(); bindDocs(); bindNov(); hero();
+  $("#main").innerHTML=h; bindVocab(); bindCert(); bind(); bindRoad(); bindDocs(); bindNov(); hero(); requestAnimationFrame(spy);
 }
 function bind(){
   document.querySelectorAll("#main .card").forEach(c=>c.onclick=()=>openV(c.dataset.id));
@@ -1413,7 +1488,10 @@ function roadSection(){
   const ci=curEtapa();
   const items=ETAPAS.map((e,i)=>{
     const c=CATS[e.cat], I=etapaInfo(e), st=I.ok?"done":(i===ci?"cur":"");
-    const collapsed=I.ok && !openEt[e.cat];
+    const defOpen=!I.ok&&(i===ci||I.d>0||ci<0);
+    const isOpen=openEt[e.cat]===undefined?defOpen:openEt[e.cat];
+    const collapsed=!isOpen;
+    const hasProc=!!PROC[e.cat];
     const qn=QUIZ[e.cat]?QUIZ[e.cat].length:0;
     const qtxt=I.q==null?`${qn} preguntas · se aprueba con ${PASS}%`:(I.q>=PASS?`✓ Aprobado con ${I.q}%`:`Mejor nota: ${I.q}% · necesitás ${PASS}%`);
     return `<div class="etapa ${st}" id="etapa-${e.cat}" style="--ec:${c.color}">
@@ -1422,10 +1500,10 @@ function roadSection(){
         <div class="eHead"><div><small>Etapa ${i+1} · ${I.vs.length} clase${I.vs.length>1?"s":""} · ${I.min} min ${st==="cur"?'<span class="here">Estás acá</span>':""}${I.ok?'<span class="okc">✓ Completa</span>':""}</small>
           <h3>${esc(c.name)}</h3><p>${esc(e.t)}</p></div>
           <div class="eProg"><div class="t"><span>Clases vistas</span><span>${I.d}/${I.vs.length}</span></div><div class="bar"><i style="width:${Math.round(I.d/I.vs.length*100)}%"></i></div></div></div>
-        ${collapsed?`<button class="eToggle" data-et="${e.cat}">Ver las ${I.vs.length} clases de esta etapa ↓</button>`:`<div class="eGrid">${I.vs.map(card).join("")}</div>
+        ${collapsed?`<div class="eClosed"><button class="eToggle" data-et="${e.cat}" data-open="0">▶ Ver las ${I.vs.length} clases${qn?" y el cuestionario":""}</button>${hasProc?`<button class="eToggle alt" data-et="${e.cat}" data-open="0" data-proc="1">📋 Proceso y checklist de cierre</button>`:""}</div>`:`<div class="eGrid">${I.vs.map(card).join("")}</div>
         ${qn?`<div class="eQuiz ${I.q>=PASS?"ok":""}"><div class="qi">${I.q>=PASS?"✅":"📝"}</div><div><b>Cuestionario de la etapa ${i+1}</b><span>${qtxt}</span></div><button class="btn ${I.q>=PASS?"ghost":"play"} qGoBtn" data-cat="${e.cat}">${I.q==null?"Rendir cuestionario":I.q>=PASS?"Repetir":"Reintentar"}</button></div>`:""}
-        ${I.ok?`<button class="eToggle" data-et="${e.cat}">Ocultar clases ↑</button>`:""}`}
         ${procBlock(e.cat)}
+        <button class="eToggle hide" data-et="${e.cat}" data-open="1">Ocultar etapa ↑</button>`}
       </div></div></div>`;
   }).join("");
   const ap=aprobados(), all=ap===Object.keys(CATS).length;
@@ -1440,7 +1518,9 @@ function roadSection(){
 }
 function bindRoad(){
   document.querySelectorAll(".qGoBtn").forEach(b=>b.onclick=()=>startQ(b.dataset.cat));
-  document.querySelectorAll(".eToggle").forEach(b=>b.onclick=()=>{const k=b.dataset.et;openEt[k]=!openEt[k];const y=scrollY;render();scrollTo(0,y);});
+  document.querySelectorAll(".eToggle").forEach(b=>b.onclick=()=>{const k=b.dataset.et, op=b.dataset.open==="1";openEt[k]=!op;
+    if(op){ render(); const el=document.getElementById("etapa-"+k); if(el) el.scrollIntoView({block:"start"}); }
+    else { const y=scrollY; render(); scrollTo(0,y); if(b.dataset.proc){ const pr=document.querySelector(`#etapa-${k} .proc`); if(pr) pr.scrollIntoView({behavior:"smooth",block:"start"}); } } });
   document.querySelectorAll("[data-man]").forEach(b=>b.onclick=()=>openMan(b.dataset.man));
   document.querySelectorAll("[data-pv]").forEach(b=>b.onclick=()=>openV(b.dataset.pv));
   document.querySelectorAll(".proc").forEach(bindDocLinks);
@@ -1533,7 +1613,8 @@ function novStrip(){
 function novGo(n){
   novSeen([n.id]); $("#nPanel").classList.remove("show");
   const y=scrollY; render(); scrollTo(0,y); bellCount();
-  if(n.go){ const el=document.querySelector(n.go); if(el) setTimeout(()=>el.scrollIntoView({behavior:"smooth"}),60); }
+  if(n.go&&n.go.startsWith("#etapa-")) goEtapa(n.go.slice(7),true);
+  else if(n.go){ const el=document.querySelector(n.go); if(el) setTimeout(()=>el.scrollIntoView({behavior:"smooth"}),60); }
 }
 function bellCount(){ const k=novNew().length, b=$("#bellN"); b.hidden=!k; b.textContent=k; }
 function drawNovPanel(){
@@ -1560,11 +1641,48 @@ function faqSection(){
     ${groups.map(g=>`<div class="faqG"><h3>${esc(g)}</h3><div class="faqL">${FAQ.filter(f=>f.g===g).map(f=>`<details class="faq"><summary>${esc(f.q)}</summary><div class="fa">${esc(f.a)}${f.go?`<br><a href="${f.go}">${esc(f.gl||"Ver más")} →</a>`:""}</div></details>`).join("")}</div></div>`).join("")}
   </section>`;
 }
+// ---- accesos rápidos ----
+function quickSection(){
+  const nx=VIDEOS.find(v=>!ST.done[v.id]);
+  const Q=[
+    nx?{i:"▶",t:`Clase ${nx.n}`,s:nx.t,a:`data-qv="${nx.id}"`,c:CATS[nx.cat].color}:{i:"🎓",t:"Certificado",s:"Ruta completa",a:'href="#certificado"',c:"#ffd23f"},
+    {i:"💬",t:"Mensajes",s:"Para WhatsApp",a:'href="#documentos"',c:"#25d366"},
+    {i:"📄",t:"Documentos",s:`${DOCS.length} modelos`,a:'href="#documentos"',c:"#2f8cff"},
+    {i:"✅",t:"Cierre",s:"Checklist para cobrar",a:'href="#etapa-ventas" data-qp="ventas"',c:"#22c55e"},
+    {i:"📝",t:"Formulario",s:"Semanal",a:'href="#formulario-semanal"',c:"#f59e0b"},
+    {i:"❓",t:"Preguntas",s:"De la oficina",a:'href="#preguntas"',c:"#8b5cf6"}];
+  return `<section class="sec quick" aria-label="Accesos rápidos"><div class="qRow">${Q.map(q=>`<a class="qa" ${q.a} style="--qc:${q.c}"><span class="qi2">${q.i}</span><span><b>${esc(q.t)}</b><small>${esc(q.s)}</small></span></a>`).join("")}</div></section>`;
+}
+// abre una etapa y baja hasta ella (o hasta su proceso)
+function goEtapa(k,proc){ openEt[k]=true; render(); const el=document.querySelector(proc?`#etapa-${k} .proc`:`#etapa-${k}`)||document.getElementById("etapa-"+k); if(el) setTimeout(()=>el.scrollIntoView({behavior:"smooth",block:"start"}),40); }
+document.addEventListener("click",e=>{
+  const a=e.target.closest("a[href^='#'],[data-qv]"); if(!a) return;
+  if(a.dataset.qv){ e.preventDefault(); openV(a.dataset.qv); return; }
+  const h=a.getAttribute("href"); closeSheet();
+  if(h.startsWith("#etapa-")){ e.preventDefault(); goEtapa(h.slice(7), !!a.dataset.qp || h==="#etapa-ventas"||h==="#etapa-alquileres"); }
+});
+// ---- barra inferior (celular y tablet) y menú ----
+function closeSheet(){ const sh=$("#sheet"); if(sh) sh.classList.remove("show"); }
+$("#bnMore").onclick=e=>{ e.stopPropagation(); $("#sheet").classList.toggle("show"); };
+$("#sheet").onclick=e=>{ if(e.target.id==="sheet") closeSheet(); };
+$("#shNov").onclick=()=>{ closeSheet(); scrollTo(0,0); setTimeout(()=>$("#bell").click(),150); };
+$("#shSearch").onclick=()=>{ closeSheet(); scrollTo(0,0); $("#search").classList.add("open"); $("#sIn").focus(); };
+// ---- sección activa en el menú ----
+const SPY=["inicio","induccion","hoja-de-ruta","manuales","documentos","preguntas","casos","vocabulario","formulario-semanal"];
+function spy(){
+  let cur="inicio", best=-1e9; const y=innerHeight*.35;
+  SPY.forEach(id=>{ const el=document.getElementById(id); if(!el) return; const t=el.getBoundingClientRect().top; if(t<y&&t>best){ best=t; cur=id; } });
+  document.querySelectorAll(".links a, .bnav a, .bnav button").forEach(a=>a.classList.toggle("on",a.getAttribute("href")==="#"+cur||(a.dataset.alt||"").split(" ").includes(cur)));
+  $("#toTop").classList.toggle("show",scrollY>1400);
+}
+addEventListener("scroll",()=>{ cancelAnimationFrame(spy.f); spy.f=requestAnimationFrame(spy); },{passive:true});
+$("#toTop").onclick=()=>scrollTo({top:0,behavior:"smooth"});
 // ---- documentos oficiales y mensajes de WhatsApp ----
 const DOCS = [{"id": "autorizacion-venta", "t": "Autorización para intermediar venta", "d": "Autorización sin exclusividad para comercializar una propiedad en venta.", "s": "captacion", "f": {"docx": "autorizacion-venta.docx", "pdf": "autorizacion-venta.pdf"}}, {"id": "autorizacion-alquiler", "t": "Autorización para intermediar alquiler", "d": "Autorización sin exclusividad para comercializar una propiedad en alquiler.", "s": "captacion", "f": {"docx": "autorizacion-alquiler.docx", "pdf": "autorizacion-alquiler.pdf"}}, {"id": "exclusividad-venta", "t": "Exclusividad de venta", "d": "Contrato y autorización con exclusividad para vender un inmueble.", "s": "captacion", "f": {"docx": "exclusividad-venta.docx", "pdf": "exclusividad-venta.pdf"}}, {"id": "exclusividad-alquiler", "t": "Exclusividad de alquiler", "d": "Contrato y autorización con exclusividad para alquilar un inmueble.", "s": "captacion", "f": {"docx": "exclusividad-alquiler.docx", "pdf": "exclusividad-alquiler.pdf"}}, {"id": "acuerdo-proyecto", "t": "Acuerdo con desarrolladora (proyectos)", "d": "Contrato de corretaje para comercializar unidades de un proyecto.", "s": "captacion", "f": {"docx": "acuerdo-proyecto.docx", "pdf": "acuerdo-proyecto.pdf"}}, {"id": "presentacion-cliente-venta", "t": "Presentación de cliente · Venta", "d": "Carta al propietario presentando al interesado y fijando la comisión.", "s": "clientes", "f": {"docx": "presentacion-cliente-venta.docx", "pdf": "presentacion-cliente-venta.pdf"}}, {"id": "presentacion-cliente-alquiler", "t": "Presentación de cliente · Alquiler", "d": "Carta al propietario presentando al interesado en alquilar.", "s": "clientes", "f": {"docx": "presentacion-cliente-alquiler.docx", "pdf": "presentacion-cliente-alquiler.pdf"}}, {"id": "solicitud-compra", "t": "Solicitud de compra de inmueble", "d": "Ficha con datos personales, laborales y deudas del comprador.", "s": "clientes", "f": {"docx": "solicitud-compra.docx", "pdf": "solicitud-compra.pdf"}}, {"id": "solicitud-alquiler", "t": "Solicitud de alquiler", "d": "Ficha del locatario y del garante (persona física o jurídica).", "s": "alquileres", "f": {"docx": "solicitud-alquiler.docx", "pdf": "solicitud-alquiler.pdf"}}, {"id": "solicitud-alquiler-ingles", "t": "Solicitud de alquiler · Inglés", "d": "Rental application para clientes de habla inglesa.", "s": "alquileres", "f": {"docx": "solicitud-alquiler-ingles.docx", "pdf": "solicitud-alquiler-ingles.pdf"}}, {"id": "solicitud-alquiler-portugues", "t": "Solicitud de alquiler · Portugués", "d": "Solicitação de aluguel para clientes de habla portuguesa.", "s": "alquileres", "f": {"docx": "solicitud-alquiler-portugues.docx", "pdf": "solicitud-alquiler-portugues.pdf"}}, {"id": "requisitos-alquiler", "t": "Requisitos para alquilar", "d": "Placa para enviar al cliente: documentos y pagos para alquilar.", "s": "alquileres", "f": {"img": "requisitos-alquiler.jpg", "pdf": "requisitos-alquiler.pdf"}}, {"id": "sena-trato-alquiler", "t": "Seña de trato de alquiler", "d": "Constancia de seña entregada al propietario.", "s": "alquileres", "f": {"docx": "sena-trato-alquiler.docx", "pdf": "sena-trato-alquiler.pdf"}}, {"id": "reserva-alquiler-contrato", "t": "Contrato de reserva de alquiler", "d": "Contrato completo de reserva entre locador y futuro locatario.", "s": "alquileres", "f": {"docx": "reserva-alquiler-contrato.docx", "pdf": "reserva-alquiler-contrato.pdf"}}, {"id": "reserva-alquiler", "t": "Reserva de alquiler (simple)", "d": "Formulario breve de reserva con datos de la seña.", "s": "alquileres", "f": {"docx": "reserva-alquiler.docx", "pdf": "reserva-alquiler.pdf"}}, {"id": "seprelad-alquiler", "t": "SEPRELAD · Alquiler", "d": "Declaración jurada de origen de fondos para alquileres.", "s": "alquileres", "f": {"docx": "seprelad-alquiler.docx", "pdf": "seprelad-alquiler.pdf"}}, {"id": "contrato-locacion", "t": "Contrato de locación (modelo)", "d": "Modelo de contrato de alquiler de vivienda con garante.", "s": "alquileres", "f": {"docx": "contrato-locacion.docx", "pdf": "contrato-locacion.pdf"}}, {"id": "contrato-opcion-compra", "t": "Contrato de alquiler con opción a compra", "d": "Alquiler que incluye la opción de comprar el inmueble.", "s": "alquileres", "f": {"docx": "contrato-opcion-compra.docx", "pdf": "contrato-opcion-compra.pdf"}}, {"id": "reserva-venta", "t": "Reserva de venta", "d": "Constancia de seña del porcentaje de la compraventa.", "s": "ventas", "f": {"docx": "reserva-venta.docx", "pdf": "reserva-venta.pdf"}}, {"id": "seprelad-venta", "t": "SEPRELAD · Venta", "d": "Declaración jurada (Ley 1015) para operaciones de venta.", "s": "ventas", "f": {"docx": "seprelad-venta.docx", "pdf": "seprelad-venta.pdf"}}, {"id": "carta-intencion-compra", "t": "Carta de intención de compra", "d": "Oferta formal del comprador al propietario.", "s": "ventas", "f": {"docx": "carta-intencion-compra.docx", "pdf": "carta-intencion-compra.pdf"}}, {"id": "propuesta-compra", "t": "Propuesta de compra con pagos", "d": "Ejemplo de oferta con seña y pagos escalonados.", "s": "ventas", "f": {"docx": "propuesta-compra.docx", "pdf": "propuesta-compra.pdf"}}, {"id": "carta-oferta-banco-atlas", "t": "Carta oferta a banco · Atlas", "d": "Modelo de carta oferta para vender un inmueble a un banco.", "s": "ventas", "f": {"docx": "carta-oferta-banco-atlas.docx", "pdf": "carta-oferta-banco-atlas.pdf"}}, {"id": "carta-oferta-banco-interfisa", "t": "Carta oferta a banco · Interfisa", "d": "Mismo modelo, dirigido a Banco Interfisa.", "s": "ventas", "f": {"docx": "carta-oferta-banco-interfisa.docx", "pdf": "carta-oferta-banco-interfisa.pdf"}}, {"id": "requisitos-extranjeros", "t": "Ventas a extranjeros", "d": "Dictamen jurídico: qué necesita un extranjero para comprar.", "s": "ventas", "f": {"docx": "requisitos-extranjeros.docx", "pdf": "requisitos-extranjeros.pdf"}}, {"id": "amc-modelo", "t": "AMC · Análisis de mercado comparativo", "d": "Planilla para calcular el precio por comparables (Excel).", "s": "seguimiento", "f": {"xlsx": "amc-modelo.xlsx", "pdf": "amc-modelo.pdf"}}, {"id": "estudio-mercado-modelo", "t": "Estudio de mercado (ejemplo)", "d": "Ejemplo real de estudio con precio ideal y gastos del vendedor.", "s": "seguimiento", "f": {"pdf": "estudio-mercado-modelo.pdf"}}, {"id": "informe-progreso-venta", "t": "Informe mensual de progreso de venta", "d": "Modelo de informe al propietario de una exclusividad.", "s": "seguimiento", "f": {"docx": "informe-progreso-venta.docx", "pdf": "informe-progreso-venta.pdf"}}, {"id": "informe-progreso-lujo", "t": "Informe de progreso · Propiedad de lujo", "d": "Otro ejemplo de informe mensual con métricas de publicidad.", "s": "seguimiento", "f": {"docx": "informe-progreso-lujo.docx", "pdf": "informe-progreso-lujo.pdf"}}, {"id": "manual-procedimientos", "t": "Manual de procedimientos SkyOne", "d": "Cómo trabaja la oficina: procesos, reglas y responsabilidades.", "s": "oficina", "f": {"pdf": "manual-procedimientos.pdf"}}, {"id": "manual-marca", "t": "Manual de marca SkyOne", "d": "Logo, colores y uso correcto de la marca.", "s": "oficina", "f": {"pdf": "manual-marca.pdf"}}, {"id": "datos-pago", "t": "Datos para pagos y reservas", "d": "Cuentas oficiales de la oficina en guaraníes y dólares.", "s": "oficina", "f": {"img": "datos-pago.jpg", "pdf": "datos-pago.pdf"}}];
 const DX = {"secs": [{"k": "captacion", "t": "Captación", "s": "Autorizaciones y exclusividades para sumar propiedades", "c": "#ec4899"}, {"k": "clientes", "t": "Clientes", "s": "Presentación de clientes y solicitud de compra", "c": "#8b5cf6"}, {"k": "alquileres", "t": "Alquileres", "s": "Solicitud, requisitos, reserva, SEPRELAD y contrato", "c": "#f59e0b"}, {"k": "ventas", "t": "Ventas y ofertas", "s": "Reserva, SEPRELAD, cartas de intención y oferta", "c": "#22c55e"}, {"k": "seguimiento", "t": "Tasación y seguimiento", "s": "AMC, estudio de mercado e informes al propietario", "c": "#f97316"}, {"k": "oficina", "t": "Oficina y marca", "s": "Manuales internos y datos oficiales de pago", "c": "#14b8a6"}], "msgs": [{"id": "presentacion", "t": "Presentarte como asesor inmobiliario", "u": "Primer contacto con un propietario que publica su inmueble", "s": "captacion", "x": "Buenas, ¿qué tal? Mi nombre es ......, asesor inmobiliario de SkyOne Home.\n\nVi su propiedad y me gustaría poder ofrecer, ya que actualmente contamos con clientes interesados en este tipo de inmuebles y contamos con más de 400 asesores en nuestra red.\n\nSi le parece, ¿podría pasarme más información, fotos y ubicación de la propiedad? Nosotros nos encargamos de toda la gestión: promoción, filtro de clientes, coordinación de visitas y acompañamiento durante todo el proceso.\n\nTrabajamos con una comisión inmobiliaria del 5,5% para ventas (solo si se llega a vender la propiedad) y 50% del primer mes en alquileres. Quedo atento, muchas gracias!"}, {"id": "aut-venta", "t": "Autorización de venta por WhatsApp", "u": "Cuando el propietario acepta que promociones su propiedad en venta", "s": "captacion", "x": "Buenas Sr. ………….\nme confirma por favor su autorización para la promoción de venta de su propiedad tipo ………… ubicado en la ciudad de ………., Barrio ……… con dirección: ………….\nA un precio de Gs. ………… con una comisión inmobiliaria a favor de Sky One del 5,5% IVA incluido del precio de venta fijado y acordado, sólo en caso de acordarse la venta mediante nuestra agencia.\nSe aclara que esta autorización no implica exclusividad de venta de la Marca.\n\nLe saluda cordialmente su asesor:…………"}, {"id": "aut-alquiler", "t": "Autorización de alquiler por WhatsApp", "u": "Cuando el propietario acepta que promociones su propiedad en alquiler", "s": "captacion", "x": "Buenas Sr. ………….\nme confirma por favor su autorización para la promoción de alquiler de su propiedad tipo ………… ubicado en la ciudad de ………., Barrio ……… con dirección: ………….\nA un precio de Gs. ………… con una comisión inmobiliaria a favor de Sky One del 50% IVA incluido del precio de alquiler fijado y acordado, sólo en caso de acordarse el alquiler mediante nuestra agencia.\nSe aclara que esta autorización no implica exclusividad de alquiler de la Marca.\n\nLe saluda cordialmente su asesor:…………"}], "vdocs": {"1242892099": {"d": ["manual-marca"], "m": ["presentacion"]}, "1246646069": {"d": [], "m": ["presentacion", "aut-venta", "aut-alquiler"]}, "1246616129": {"d": ["informe-progreso-venta"], "m": []}, "1246619316": {"d": ["informe-progreso-venta", "informe-progreso-lujo"], "m": []}, "1242892094": {"d": ["autorizacion-venta", "autorizacion-alquiler"], "m": ["presentacion"]}, "1242892075": {"d": ["presentacion-cliente-venta", "presentacion-cliente-alquiler", "datos-pago"], "m": []}, "1246666524": {"d": ["manual-procedimientos"], "m": []}, "1242892101": {"d": ["solicitud-compra", "solicitud-alquiler", "requisitos-alquiler"], "m": []}, "1245183454": {"d": ["presentacion-cliente-venta", "presentacion-cliente-alquiler"], "m": []}, "1246626784": {"d": ["manual-procedimientos"], "m": []}, "1246621568": {"d": ["exclusividad-venta", "exclusividad-alquiler"], "m": []}, "1245208466": {"d": ["autorizacion-venta", "autorizacion-alquiler"], "m": ["aut-venta", "aut-alquiler"]}, "1245196419": {"d": ["exclusividad-venta", "estudio-mercado-modelo", "informe-progreso-venta"], "m": []}, "1245200331": {"d": ["exclusividad-alquiler"], "m": []}, "1245210667": {"d": ["acuerdo-proyecto"], "m": []}, "1245186777": {"d": ["amc-modelo", "estudio-mercado-modelo"], "m": []}, "1242892100": {"d": ["manual-procedimientos"], "m": []}, "1242892103": {"d": ["manual-procedimientos", "datos-pago"], "m": []}, "1242892096": {"d": ["requisitos-alquiler", "datos-pago"], "m": []}, "1245174330": {"d": ["solicitud-alquiler", "solicitud-alquiler-ingles", "solicitud-alquiler-portugues", "requisitos-alquiler"], "m": []}, "1242892095": {"d": ["requisitos-alquiler", "solicitud-alquiler"], "m": []}, "1245207083": {"d": ["sena-trato-alquiler", "reserva-alquiler-contrato", "reserva-alquiler", "datos-pago"], "m": []}, "1245180461": {"d": ["seprelad-alquiler"], "m": []}, "1245248187": {"d": ["contrato-locacion", "contrato-opcion-compra"], "m": []}, "1246643039": {"d": ["estudio-mercado-modelo", "amc-modelo"], "m": []}, "1245205826": {"d": ["reserva-venta", "carta-intencion-compra", "propuesta-compra", "datos-pago"], "m": []}, "1245177717": {"d": ["seprelad-venta", "requisitos-extranjeros"], "m": []}}};
 const DSEC={}; DX.secs.forEach(x=>DSEC[x.k]=x);
-let dFil="";
+let dFil=""; const dOpen={};
+const isMob=()=>matchMedia("(max-width:1100px)").matches;
 const DT={docx:["w","Word","W"],pdf:["p","PDF","PDF"],xlsx:["x","Excel","XLS"],img:["i","Imagen","IMG"]};
 function dName(d,f){ return `${d.t.replace(/[·\/]/g,"-").replace(/\s+/g," ").trim()} - SkyOne Home${f.slice(f.lastIndexOf("."))}`; }
 function dCard(d){
@@ -1582,8 +1700,9 @@ function docsSection(){
   return `<section class="sec" id="documentos"><div class="secH"><div><span class="ey">Plantillas oficiales</span><h2>Documentos y mensajes</h2>
     <p>Todos los modelos de SkyOne Home listos para descargar en Word (para completar) y en PDF (para imprimir o enviar), y los mensajes de WhatsApp para copiar y pegar.</p></div></div>
     <div class="dTools"><button class="dChip ${dFil?"":"on"}" data-dsec="">Todos<i>${DOCS.length}</i></button>${DX.secs.map(x=>`<button class="dChip ${dFil===x.k?"on":""}" data-dsec="${x.k}">${x.t}<i>${cnt(x.k)}</i></button>`).join("")}</div>
-    ${!dFil||dFil==="captacion"?`<div class="dSec" style="--dc:#25d366"><h3>Mensajes para WhatsApp</h3><p>Copialos, completá los espacios y envialos. Así te presentás y dejás la autorización por escrito.</p><div class="wGrid">${DX.msgs.map(wCard).join("")}</div></div>`:""}
-    ${secs.map(x=>`<div class="dSec" style="--dc:${x.c}"><h3>${x.t}</h3><p>${x.s}</p><div class="dGrid">${DOCS.filter(d=>d.s===x.k).map(dCard).join("")}</div></div>`).join("")}
+    ${!dFil||dFil==="captacion"?`<div class="dSec" style="--dc:#25d366"><h3>Mensajes para WhatsApp</h3><p>Copialos, completá los espacios y envialos. Así te presentás y dejás la autorización por escrito.</p><div class="wGrid wRow">${DX.msgs.map(wCard).join("")}</div></div>`:""}
+    ${secs.map(x=>{const L=DOCS.filter(d=>d.s===x.k), op=dOpen[x.k]!==undefined?dOpen[x.k]:(!!dFil||!isMob());
+      return `<details class="dSec dAcc" style="--dc:${x.c}" data-dk="${x.k}" ${op?"open":""}><summary><h3>${x.t}<i>${L.length}</i></h3><p>${x.s}</p></summary><div class="dGrid">${L.map(dCard).join("")}</div></details>`}).join("")}
   </section>`;
 }
 function copyTxt(t){
@@ -1598,6 +1717,7 @@ function bindDocLinks(root){
 function bindDocs(){
   const s=$("#documentos"); if(!s) return;
   s.querySelectorAll("[data-dsec]").forEach(b=>b.onclick=()=>{ dFil=b.dataset.dsec; const y=scrollY; render(); scrollTo(0,y); });
+  s.querySelectorAll(".dAcc").forEach(d=>d.addEventListener("toggle",()=>{ dOpen[d.dataset.dk]=d.open; }));
   bindDocLinks(s);
 }
 function vDocs(v){
