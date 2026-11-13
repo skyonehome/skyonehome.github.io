@@ -273,7 +273,7 @@ function vForm(){
   +'<div class="card">'+sec('Meta mensual · '+esc(monthLabel(monthKey(F.week))))
   +fld('monthGoal','Mi meta del mes')+'<div class="g2">'+area('why','¿Por qué quiero lograrla?')+area('forWhat','¿Para qué?')+'</div>'+examplesHtml()+'</div>'
 
-  +'<div class="card">'+sec('Mi semana · Semana '+weekNum(F.week))
+  +'<div class="card">'+sec('Mi semana')
   +'<div class="g2">'+fld('weekGoal','Meta semanal')+fld('meetDate','Fecha de reunión','','date')+'</div>'+prevActsHtml()
   +'<div role="radiogroup" aria-label="¿Llegué a la meta?"><div style="font-size:14px;font-weight:700;color:var(--blue);margin-bottom:6px">¿Llegué a la meta?</div><div class="opts">'+opt('hit','si','Sí','yes')+opt('hit','no','No','no')+'</div></div>'
   +'<div class="g2">'+area('stuck','¿En qué me trabé?')+area('help','¿En qué necesito ayuda?')+'</div></div>'
