@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Formulario semanal SkyOne Home</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   /* Layout: cabecera azul, una columna angosta de 760px pensada para el celular, una tarjeta por sección. Colores del manual de marca SkyOne. */
@@ -75,11 +75,68 @@ ul.tight{margin:4px 0 0;padding-left:20px}
 @media(max-width:420px){.opts{grid-template-columns:1fr}}
 .g3{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px}
 @media(max-width:560px){.g3{grid-template-columns:1fr 1fr}.g3>label:first-child{grid-column:1/-1}}
+
+/* Tema azul marino: fondo marino profundo, tarjetas marino más claro, letras claras, acento azul brillante y turquesa */
+:root{
+  --blue:#6cb4ff; --blue-soft:rgba(64,140,255,.14); --gray:#9aa3b2; --dark:#d3deef;
+  --bg:#071a3a; --card:#0d2650; --line:#1d3d6e; --ink:#eef2f8; --muted:#9fb2cf;
+  --good:#3ccf8e; --good-bg:rgba(60,207,142,.13); --warn:#ffcf5a; --warn-bg:rgba(255,207,90,.12); --bad:#ff7b7b; --bad-bg:rgba(255,123,123,.12);
+  --acc:#2f8cff; --acc2:#22d3ee;
+  --font:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+  color-scheme:dark;
+}
+html,body{background:var(--bg);color:var(--ink)}
+body{background:radial-gradient(900px 500px at 100% -10%,rgba(47,140,255,.18),transparent 60%),radial-gradient(700px 400px at -10% 20%,rgba(34,211,238,.08),transparent 60%),var(--bg);background-attachment:fixed;min-height:100vh}
+h1,h2,h3{color:var(--ink)}
+.top{background:transparent;color:var(--ink);position:sticky;top:0;z-index:5;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);background:rgba(7,26,58,.82);border-bottom:1px solid var(--line)}
+.top h1{color:#fff;font-size:21px;letter-spacing:-.2px}
+.top h1 span{background:linear-gradient(90deg,var(--acc),var(--acc2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.top p{color:var(--muted)}
+.prog{height:6px;background:#0a2147;border-radius:99px;overflow:hidden;margin:2px 0 12px}
+.prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--acc),var(--acc2));border-radius:99px;transition:width .35s ease}
+.progT{font-size:12px;color:var(--muted);display:flex;justify-content:space-between;margin-top:4px}
+.tab{color:var(--muted)}
+.tab.on{background:var(--card);color:#fff}
+.card{background:var(--card);border-color:var(--line);border-radius:16px;box-shadow:0 12px 34px rgba(2,10,28,.45)}
+.sec h3{font-size:17px;font-weight:700;color:#fff;display:flex;align-items:center;gap:10px}
+.sec h3:before{content:"";width:4px;height:18px;border-radius:4px;background:linear-gradient(var(--acc),var(--acc2))}
+.sub{color:var(--muted)}
+label{color:var(--dark);font-weight:600}
+label .hint{color:var(--muted)}
+input,select,textarea{background:#0a1f44;border:1px solid #24497f;color:var(--ink);border-radius:12px;transition:border-color .15s,box-shadow .15s}
+input::placeholder,textarea::placeholder{color:#6f86ab}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--acc);box-shadow:0 0 0 3px rgba(47,140,255,.22)}
+select option{background:#0d2650}
+.opt{background:#0a1f44;border-color:#24497f;color:var(--dark);border-radius:12px;transition:all .15s}
+.opt:hover{border-color:#3b67a8}
+.opt.on{background:var(--blue-soft);border-color:var(--acc);color:#fff}
+.opt.on.yes{background:var(--good-bg);border-color:var(--good);color:var(--good)}
+.opt.on.no{background:var(--bad-bg);border-color:var(--bad);color:var(--bad)}
+.btn{background:linear-gradient(90deg,var(--acc),#3fa0ff);border:0;color:#fff;border-radius:12px;box-shadow:0 8px 24px rgba(47,140,255,.35)}
+.btn:hover{filter:brightness(1.08);background:linear-gradient(90deg,var(--acc),#3fa0ff)}
+.btn.ghost{background:transparent;border:1px solid #2f5a96;color:var(--ink);box-shadow:none}
+.btn:disabled{opacity:.6}
+.note{background:var(--blue-soft);border-left-color:var(--acc);color:var(--ink)}
+.note.warn{background:var(--warn-bg);border-color:var(--warn)}
+.note.bad{background:var(--bad-bg);border-color:var(--bad)}
+.note a,.foot a{color:var(--blue)}
+.pill{background:var(--blue-soft);color:var(--blue)}
+.pill.gray{background:#15325f;color:var(--dark)}
+.kv div{background:#0a1f44;border:1px solid var(--line)}
+.kv b{color:#fff}
+details.r{background:var(--card);border-color:var(--line)}
+details.r>summary b{color:#fff}
+.rb h3{color:var(--muted)}
+.act{background:#0a1f44;border-color:var(--line)}
+.toast{background:#15325f;border:1px solid var(--line)}
+.foot{color:var(--muted)}
+.opts{grid-template-columns:1fr 1fr!important}.opt input{position:absolute;opacity:0;pointer-events:none}.opt{position:relative;padding:14px}
+.done-ic{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--good-bg);color:var(--good);font-size:28px;font-weight:800}
 </style>
 </head>
 <body>
 <header class="top"><div class="top-in">
-  <div><h1>Sistema de Activación Comercial</h1><p>SkyOne Home · Una meta mensual dividida en cuatro metas semanales</p></div>
+  <div><h1>Sistema de <span>Activación Comercial</span></h1><p>SkyOne Home · Una meta mensual dividida en cuatro metas semanales</p></div><div id="progWrap" hidden><div class="progT"><span>Tu avance</span><span id="progN">0%</span></div><div class="prog"><i id="progBar"></i></div></div>
   <nav class="tabs" id="tabs" aria-label="Secciones"></nav>
 </div></header>
 <main id="view"><div class="card">Cargando…</div></main>
@@ -237,7 +294,7 @@ function vForm(){
 
 function confirmCard(){
   const acts=[1,2,3].filter(i=>(F['a'+i]||'').trim()).map(i=>'<li>'+esc(F['a'+i])+' · '+esc(F['q'+i])+(F['d'+i]?' · para el '+esc(dayLabel(F['d'+i])):'')+'</li>').join('');
-  return '<div class="card"><h2>'+(S.isBM?'Así quedaría tu envío':'Listo, recibimos tu formulario')+'</h2><div class="kv"><div><small>Semana</small><b style="font-size:15px">'+esc(weekLabel(F.week))+'</b></div><div><small>¿Llegué a la meta?</small><b>'+(F.hit==='si'?'Sí':'No')+'</b></div></div>'
+  return '<div class="card"><div class="done-ic">✓</div><h2>'+(S.isBM?'Así quedaría tu envío':'¡Listo! Recibimos tu formulario')+'</h2><div class="kv"><div><small>Semana</small><b style="font-size:15px">'+esc(weekLabel(F.week))+'</b></div><div><small>¿Llegué a la meta?</small><b>'+(F.hit==='si'?'Sí':'No')+'</b></div></div>'
   +'<div><b>Meta del mes</b><div>'+esc(F.monthGoal||'—')+'</div></div>'
   +'<div><b>Meta de la próxima semana</b><div>'+esc(F.nextGoal)+'</div></div>'
   +'<div><b>Mis acciones medibles</b><ul class="tight">'+acts+'</ul></div>'
@@ -282,11 +339,19 @@ function renderTabs(){
   if(!S.isBM){$('#tabs').innerHTML='';return;}
   $('#tabs').innerHTML=[['respuestas','Respuestas'],['formulario','Vista del asesor']].map(x=>'<a class="tab'+(S.tab===x[0]?' on':'')+'" href="#'+x[0]+'">'+x[1]+'</a>').join('')+'<a class="tab" href="#" data-a="reload">Actualizar</a>';
 }
+function updProg(){
+  const w=document.getElementById('progWrap');if(!w)return;
+  const show=!!(S.uid&&S.loaded&&!S.done&&!S.isBM&&$('#f_weekGoal'));w.hidden=!show;if(!show)return;
+  const t=v=>String(v==null?'':v).trim()!=='';
+  const req=[t(F.name),t(F.monthGoal),t(F.weekGoal),t(F.hit),t(F.stuck)||F.hit==='si',t(F.help),t(F.nextGoal),t(F.a1)&&t(F.q1)&&t(F.d1),t(F.nmDate)];
+  const p=Math.round(req.filter(Boolean).length/req.length*100);$('#progBar').style.width=p+'%';$('#progN').textContent=p===100?'¡Listo para enviar!':p+'%';
+}
 function render(){
   renderTabs();const v=$('#view');
   if(S.panelMode&&!S.isBM){v.innerHTML=keyCard();return;}
   if(!S.uid){v.innerHTML=idCard();return;}
   if(!S.loaded){v.innerHTML='<div class="card">Cargando tus datos…</div>';return;}
+  setTimeout(updProg,0);
   v.innerHTML=(S.isBM&&S.tab==='respuestas')?vResp():((S.isBM?'':'<div class="note">Completando como <b>'+esc(S.myName||F.name)+'</b> · '+esc(telFmt(S.uid))+' · <a href="#" data-a="logout">No soy yo</a></div>')+vForm());
 }
 function route(){
@@ -296,7 +361,7 @@ function route(){
 window.addEventListener('hashchange',route);
 
 /* eventos */
-document.addEventListener('input',e=>{const k=e.target.dataset&&e.target.dataset.f;if(!k||e.target.type==='radio'||e.target.type==='checkbox'||e.target.tagName==='SELECT')return;F[k]=e.target.value;saveDraft();});
+document.addEventListener('input',e=>{const k=e.target.dataset&&e.target.dataset.f;if(!k||e.target.type==='radio'||e.target.type==='checkbox'||e.target.tagName==='SELECT')return;F[k]=e.target.value;saveDraft();updProg();});
 document.addEventListener('change',e=>{
   const k=e.target.dataset&&e.target.dataset.f;if(!k)return;
   if(e.target.type==='checkbox')F[k]=e.target.checked;else F[k]=e.target.value;
