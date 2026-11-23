@@ -29,6 +29,8 @@ jobs:
           python-version: "3.12"
       - run: pip install pillow "rembg[cpu]"
       - name: Leer captaciones y cierres de SkyOne Home
+        # Si la API de SkyOne falla, se publica igual el sitio con los últimos datos guardados
+        continue-on-error: true
         run: python scripts/actualizar.py
       - name: Guardar memoria y fotos nuevas
         run: |
