@@ -775,7 +775,7 @@ footer{padding:30px 4vw 50px;color:#6b7383;font-size:13px;border-top:1px solid #
 
 <header class="hero" id="inicio">
   <div class="bg" aria-hidden="true"><div class="orb a"></div><div class="orb b"></div><div class="orb c"></div><div class="grid"></div><div class="word"><b>GROW</b></div></div>
-  <div class="stats"><div class="stat"><b id="totCls">21</b><span>Clases</span></div><div class="stat"><b id="totCat">6</b><span>Etapas</span></div><div class="stat"><b id="totMin">19</b><span>Minutos</span></div></div>
+  <div class="stats"><div class="stat"><b id="totCls">21</b><span>Clases</span></div><div class="stat"><b id="totCat">6</b><span>Etapas</span></div></div>
   <div class="heroIn">
     <div class="tag"><i></i><span id="heroTag">Empezá por acá</span></div>
     <h1 id="heroTitle"></h1>
@@ -1866,7 +1866,7 @@ $("#sIn").addEventListener("input",e=>{ query=e.target.value.trim(); render(); i
 $("#sIn").addEventListener("blur",()=>{ if(!$("#sIn").value) $("#search").classList.remove("open"); });
 
 $("#totCls").textContent=VIDEOS.length; $("#totCat").textContent=Object.keys(CATS).length;
-$("#totMin").textContent=Math.round(VIDEOS.reduce((a,v)=>a+v.d,0)/60);
+
 render(); who();
 if(!ST.user) $("#reg").classList.add("show"); else syncOnLoad();
 </script>
