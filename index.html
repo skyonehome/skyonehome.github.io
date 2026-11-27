@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GROW Academy · Jesús Ibarra</title>
+<meta name="description" content="GROW Academy, el Netflix del desarrollo personal. 16 clases de oratoria con Jesús Ibarra, Campeón Nacional de Oratoria de Paraguay. 100.000 Gs, pago único.">
+<meta property="og:title" content="GROW Academy · Hablá en público con seguridad">
+<meta property="og:description" content="El Netflix del desarrollo personal. 16 clases, 4 módulos, 100.000 Gs pago único.">
+<meta property="og:image" content="media/shot_desk.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#000; --dark:#212121; --light:#EDEDED; --white:#fff;
+  --purple:#A3141C; --purple-soft:#E5484D; --blue:#A3141C;
+  --ink:#212121; --muted:#5f6670; --line:#dcdcdc;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--black);color:var(--ink);font-family:Poppins,system-ui,sans-serif;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+.page{max-width:1050px;margin:0 auto;background:var(--white)}
+.wrap{max-width:900px;margin:0 auto;padding:0 24px}
+.kick{font-family:Georgia,"Times New Roman",serif;font-style:italic;font-size:15px;color:#6b6b6b;text-align:center;margin-bottom:4px}
+h2.sec{font-size:clamp(26px,4.4vw,40px);font-weight:800;text-transform:uppercase;color:var(--purple);text-align:center;line-height:1.1;letter-spacing:-.5px;margin-bottom:34px}
+section{padding:72px 0}
+.bg-white{background:var(--white)}
+.bg-light{background:var(--light)}
+.bg-dark{background:var(--dark) radial-gradient(rgba(255,255,255,.05) 1px,transparent 1.4px) 0 0/14px 14px;color:#fff}
+.bg-purple{background:var(--purple) radial-gradient(rgba(255,255,255,.13) 1px,transparent 1.4px) 0 0/14px 14px;color:#fff}
+.btn{display:inline-block;background:var(--purple);color:#fff;text-decoration:none;font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.3px;padding:15px 34px;border-radius:9px;box-shadow:0 8px 24px rgba(163,20,28,.35);transition:transform .15s,background .15s}
+.btn:hover{transform:translateY(-2px);background:#860F16}
+.btn.dark{background:var(--dark);box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.btn.dark:hover{background:#000}
+.btn.block{display:block;text-align:center}
+
+/* NAV */
+nav.top{position:sticky;top:0;z-index:50;background:#000;border-bottom:1px solid #111}
+nav.top .in{max-width:1050px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:28px;padding:14px 20px;flex-wrap:wrap}
+nav.top a{color:#fff;text-decoration:none;font-weight:600;font-size:12.5px;text-transform:uppercase;letter-spacing:.4px}
+nav.top a.on{color:var(--purple-soft)}
+nav.top a:hover{color:var(--purple-soft)}
+
+/* HERO */
+.hero{background:var(--dark);color:#fff;text-align:center;padding:44px 0 40px}
+.chip{display:inline-block;border:1.5px solid var(--purple);background:rgba(163,20,28,.14);color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:6px 14px;border-radius:30px;margin-bottom:16px}
+.hero h1{font-size:clamp(32px,6vw,50px);font-weight:800;text-transform:uppercase;line-height:1.05;letter-spacing:-1px}
+.hero h1 span{color:var(--purple-soft)}
+.hero p.sub{max-width:600px;margin:16px auto 0;color:#d9d9d9;font-size:16px}
+.hero p.sub b{color:#fff}
+.frame{position:relative;max-width:680px;margin:30px auto 0;border-radius:14px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.6);border:1px solid #333;background:#111}
+.frame img{width:100%;height:auto;aspect-ratio:16/10;object-fit:cover}
+.frame .shade{position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(transparent,rgba(0,0,0,.85))}
+.frame .who{position:absolute;left:22px;bottom:18px;display:flex;align-items:center;gap:14px;text-align:left}
+.frame .who img{width:70px;height:70px;border-radius:50%;object-fit:cover;object-position:top;border:3px solid var(--purple);aspect-ratio:1}
+.frame .who b{display:block;font-size:clamp(20px,3.4vw,30px);font-weight:800;line-height:1}
+.frame .who small{font-size:12px;color:#cfcfcf}
+.frame .tag{position:absolute;top:14px;right:14px;background:var(--purple);color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;padding:5px 10px;border-radius:6px}
+.hero .cta{margin-top:30px}
+.hero .price{margin-top:12px;font-size:12.5px;color:#cfcfcf}
+.hero .price b{color:#fff}
+
+/* STATS */
+.stats{padding:26px 0}
+.stats .row{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;text-align:center}
+.stats b{display:block;font-size:clamp(24px,4vw,32px);font-weight:800;line-height:1.1}
+.stats span{font-size:11.5px;font-weight:600;color:#ffe1e1}
+
+/* CONSEGUIR */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.goal{display:flex;gap:14px;align-items:flex-start;background:var(--light);border-radius:9px;padding:16px 18px}
+.num{flex:none;width:24px;height:24px;border-radius:6px;background:var(--purple);color:#fff;font-size:12px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.goal p{font-weight:700;font-size:14.5px;line-height:1.4;color:var(--ink)}
+
+/* DOLOR */
+.pain{display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;align-items:center}
+.pain img{border-radius:12px;width:100%;height:auto;max-height:440px;object-fit:cover;object-position:center 30%}
+.pain ul{list-style:none;display:grid;gap:10px}
+.pain li{background:#fff;border-left:4px solid var(--purple);border-radius:8px;padding:13px 16px;font-weight:600;font-size:14.5px;line-height:1.4}
+.pain .truth{margin-top:18px;font-size:15px;color:var(--muted)}
+.pain .truth b{color:var(--ink)}
+
+/* TEMARIO */
+.mods{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.mod{background:#fff;border-radius:12px;padding:22px 22px 20px;box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.ph{display:inline-block;background:var(--purple);color:#fff;font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;padding:4px 9px;border-radius:5px;margin-bottom:10px}
+.mod h3{font-size:17px;font-weight:800;line-height:1.25;margin-bottom:12px;color:var(--ink)}
+.mod ul{list-style:none;display:grid;gap:7px}
+.mod li{position:relative;padding-left:22px;font-size:13.5px;color:#444;line-height:1.4}
+.mod li:before{content:"";position:absolute;left:2px;top:4px;width:10px;height:6px;border-left:2px solid var(--purple);border-bottom:2px solid var(--purple);transform:rotate(-45deg)}
+.mod li.pr:before{content:"✍";border:0;transform:none;top:0;left:0;font-size:13px;width:auto;height:auto}
+.bonus{margin-top:18px;background:var(--dark);color:#fff;border-radius:12px;padding:18px 22px;display:flex;gap:18px;align-items:center}
+.bonus .bt{flex:none;background:var(--purple);color:#fff;font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;padding:6px 12px;border-radius:6px}
+.bonus p{font-size:13.5px;color:#e4e4e4;line-height:1.5}
+.bonus b{color:#fff}
+.feats{margin-top:18px;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.feat{background:#fff;border-radius:10px;padding:14px;text-align:center}
+.feat b{display:block;font-size:22px;font-weight:800;color:var(--purple);line-height:1.1}
+.feat span{font-size:12px;color:#555;font-weight:500}
+.levels{margin-top:26px;display:flex;align-items:center;justify-content:center;gap:14px;flex-wrap:wrap}
+.lv{background:#fff;border-radius:10px;padding:12px 18px;min-width:230px;border:1.5px solid #ddd}
+.lv.on{border-color:var(--purple);box-shadow:0 0 0 3px rgba(163,20,28,.14)}
+.lv small{font-family:Georgia,serif;font-style:italic;font-size:12px;color:#777}
+.lv b{display:block;font-size:14px;font-weight:800;text-transform:uppercase;line-height:1.25}
+.arrow{color:var(--purple);font-weight:800;font-size:20px}
+.lvlink{display:inline-block;margin-top:2px;font-size:13px;font-weight:700;color:var(--purple);text-decoration:underline;text-underline-offset:3px}
+.note b{color:var(--ink)}
+.pack{max-width:420px;margin:16px auto 0;background:var(--dark);color:#fff;border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
+.pack small{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--purple-soft)}
+.pack b{font-size:15px;font-weight:800;line-height:1.3}
+.pack a{flex:none;font-size:12.5px;font-weight:700;color:#fff;background:var(--purple);border-radius:8px;padding:9px 14px;text-decoration:none}
+.note{text-align:center;font-size:12.5px;color:#666;margin-top:12px}
+
+/* INSTRUCTOR */
+.inst{display:grid;grid-template-columns:1fr 1.05fr;gap:30px;align-items:center}
+.inst .ph1{border-radius:14px;overflow:hidden;position:relative}
+.inst .ph1 img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:top}
+.inst .kick{text-align:left;color:#bdbdbd}
+.inst h2{font-size:clamp(28px,4vw,38px);font-weight:800;text-transform:uppercase;line-height:1.05;margin-bottom:16px}
+.srow{display:flex;gap:16px;align-items:center;background:rgba(255,255,255,.07);border-radius:9px;padding:12px 16px;margin-bottom:8px}
+.srow b{flex:none;width:72px;font-size:18px;font-weight:800;color:var(--purple-soft)}
+.srow span{font-size:13.5px;color:#e6e6e6;line-height:1.4}
+.srow span strong{color:#fff}
+.inst p.bio{font-size:13.5px;color:#cfcfcf;margin-top:12px}
+.inst p.bio b{color:#fff}
+.then{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:34px}
+.then figure{position:relative;border-radius:12px;overflow:hidden}
+.then img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:center 25%}
+.then figcaption{position:absolute;left:12px;bottom:12px;background:var(--purple);color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;padding:5px 10px;border-radius:6px}
+.crowd{position:relative;margin-top:12px;border-radius:12px;overflow:hidden}
+.crowd img{width:100%;height:auto;aspect-ratio:21/9;object-fit:cover}
+.crowd p{position:absolute;inset:auto 0 0 0;padding:40px 20px 18px;background:linear-gradient(transparent,rgba(0,0,0,.8));font-weight:800;text-transform:uppercase;font-size:clamp(15px,2.6vw,22px);line-height:1.15}
+
+/* TESTIMONIOS */
+.tblock{margin-bottom:40px}
+.thead{display:flex;align-items:baseline;gap:12px;margin-bottom:16px}
+.thead b{font-size:13px;font-weight:800;color:var(--purple)}
+.thead h3{font-size:18px;font-weight:800;text-transform:uppercase}
+.thead span{font-size:12.5px;color:#777}
+.tgrid{display:grid;grid-template-columns:300px 1fr;gap:16px;align-items:start}
+.videobox{border-radius:12px;overflow:hidden;background:#111;aspect-ratio:9/16}
+.videobox video{width:100%;height:100%;object-fit:cover}
+.vstate{font-size:12px;color:#666;margin-top:8px;text-align:center}
+.vfb{display:block;text-align:center;font-size:12.5px;font-weight:700;color:var(--purple);margin-top:4px}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.q{background:var(--light);border-radius:9px;padding:16px 18px}
+.q p{font-size:13.5px;color:#333;line-height:1.5}
+.q p:before{content:"“ ";color:var(--purple);font-weight:800;font-size:17px}
+.q .by{display:flex;align-items:center;gap:10px;margin-top:12px}
+.q .by img{width:34px;height:34px;border-radius:50%;object-fit:cover}
+.q .by b{display:block;font-size:12.5px;font-weight:700;line-height:1.2}
+.q .by small{font-size:11px;color:#777;font-weight:600}
+.tnote{text-align:center;font-size:12px;color:#777}
+
+/* PARA QUIEN */
+.who2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.box{background:#fff;border-radius:12px;padding:22px}
+.box h3{font-size:15px;font-weight:800;text-transform:uppercase;margin-bottom:12px}
+.box ul{list-style:none;display:grid;gap:9px}
+.box li{position:relative;padding-left:24px;font-size:14px;line-height:1.45;color:#333}
+.box.yes li:before{content:"✓";position:absolute;left:0;color:var(--purple);font-weight:800}
+.box.no li:before{content:"✕";position:absolute;left:0;color:#aaa;font-weight:800}
+
+/* PRECIO */
+.pcard{max-width:420px;margin:0 auto;background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 18px 50px rgba(0,0,0,.12)}
+.pcard .ph2{background:var(--dark);color:#fff;text-align:center;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;padding:13px}
+.pcard .body{padding:24px 26px 22px}
+.amount{text-align:center;font-weight:800;font-size:48px;line-height:1;letter-spacing:-1px}
+.amount small{font-size:18px;color:var(--purple);margin-left:4px}
+.once{text-align:center;font-size:12px;font-weight:600;color:#555;margin:6px 0 18px}
+.pcard ul{list-style:none;display:grid;gap:9px;margin-bottom:22px}
+.pcard li{position:relative;padding-left:24px;font-size:13.5px;color:#333;line-height:1.4}
+.pcard li:before{content:"";position:absolute;left:3px;top:4px;width:10px;height:6px;border-left:2px solid var(--purple);border-bottom:2px solid var(--purple);transform:rotate(-45deg)}
+.secure{text-align:center;font-size:11.5px;color:#888;margin-top:10px}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:760px;margin:34px auto 0}
+.step{background:#fff;border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.step b{display:block;font-size:13.5px;font-weight:800;line-height:1.3}
+.step div span{font-size:12.5px;color:#666;line-height:1.4}
+
+/* FAQ */
+.faq{max-width:600px;margin:0 auto;display:grid;gap:8px}
+.faq details{background:var(--light);border-radius:8px}
+.faq summary{cursor:pointer;list-style:none;padding:13px 18px;font-weight:700;font-size:13.5px;display:flex;gap:10px;align-items:center}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:before{content:"▸";font-size:12px;transition:transform .15s}
+.faq details[open] summary:before{transform:rotate(90deg)}
+.faq details p{padding:0 18px 15px 40px;font-size:13.5px;color:#444}
+
+/* FINAL */
+.final{text-align:center;padding:64px 0}
+.final .kick{color:#ffe1e1}
+.final h2{font-size:clamp(26px,4.6vw,40px);font-weight:800;text-transform:uppercase;line-height:1.1;margin:4px 0 26px}
+.final .wa-num{margin-top:18px;font-size:13px;color:#ffe1e1}
+.final .wa-num button{margin-left:8px;background:rgba(0,0,0,.25);color:#fff;border:0;border-radius:6px;padding:4px 10px;font:600 12px Poppins,sans-serif;cursor:pointer}
+.dots{margin-top:22px;letter-spacing:6px;color:rgba(255,255,255,.6)}
+footer{max-width:1050px;margin:0 auto;padding:16px 24px 90px;text-align:right;font-size:11px;color:#bbb}
+
+/* STICKY */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:60;background:rgba(0,0,0,.92);backdrop-filter:blur(8px);border-top:1px solid #222;transform:translateY(100%);transition:transform .25s}
+.sticky.show{transform:none}
+.sticky .in{max-width:1050px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 20px}
+.sticky b{color:#fff;font-size:16px;font-weight:800;display:block;line-height:1.1}
+.sticky small{color:#bbb;font-size:11px}
+.sticky .btn{padding:11px 20px;font-size:12.5px}
+
+@media (max-width:760px){
+  section{padding:54px 0}
+  .wrap{padding:0 16px}
+  nav.top .in{gap:16px;padding:12px 14px;justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  nav.top .in::-webkit-scrollbar{display:none}
+  nav.top a{white-space:nowrap;font-size:11.5px}
+  .stats .row{grid-template-columns:1fr 1fr;row-gap:16px}
+  .grid2,.mods,.who2,.quotes,.pain,.inst,.steps{grid-template-columns:1fr}
+  .feats{grid-template-columns:1fr 1fr}
+  .tgrid{grid-template-columns:1fr}
+  .videobox{max-width:320px;margin:0 auto;width:100%}
+  .bonus{flex-direction:column;align-items:flex-start;gap:10px}
+  .arrow{transform:rotate(90deg)}
+  .frame .who img{width:52px;height:52px}
+  .frame .who{left:14px;bottom:12px}
+  .then{grid-template-columns:1fr 1fr}
+  .crowd img{aspect-ratio:4/3}
+}
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="in">
+  <a href="#inicio" class="on">Inicio</a>
+  <a href="#conseguir">Qué vas a lograr</a>
+  <a href="#temario">Temario</a>
+  <a href="#jesus">Sobre mí</a>
+  <a href="#testimonios">Testimonios</a>
+  <a href="#acceso">Precio</a>
+</div></nav>
+
+<div class="page">
+
+<!-- HERO -->
+<header class="hero" id="inicio">
+  <div class="wrap">
+    <span class="chip">GROW Academy · El Netflix del desarrollo personal</span>
+    <h1>Hablá en público<br><span>con seguridad</span></h1>
+    <p class="sub">La plataforma de oratoria y desarrollo personal de <b>Jesús Ibarra, Campeón Nacional de Oratoria de Paraguay.</b> <b>Más de 1.500 personas</b> ya entrenaron con él. Clases cortas, a tu ritmo y desde tu casa.</p>
+    <div class="frame">
+      <img src="media/shot_desk.jpg" alt="La plataforma GROW Academy en la computadora">
+      <span class="tag">16 clases</span>
+      <div class="shade"></div>
+      <div class="who"><img src="media/foto_traje.jpg" alt="Jesús Ibarra"><div><b>Jesús Ibarra</b><small>Campeón Nacional de Oratoria</small></div></div>
+    </div>
+    <div class="cta"><a class="btn wa" href="#">Quiero acceder a GROW</a></div>
+    <p class="price"><b>100.000 Gs · pago único</b> · Online y a tu ritmo · Compu, tablet y celular</p>
+  </div>
+</header>
+
+<!-- STATS -->
+<div class="stats bg-purple"><div class="wrap"><div class="row">
+  <div><b>+1.500</b><span>personas entrenadas</span></div>
+  <div><b>16</b><span>clases en video</span></div>
+  <div><b>4</b><span>módulos</span></div>
+  <div><b>1°</b><span>Campeón Nacional de Oratoria</span></div>
+</div></div></div>
+
+<!-- CONSEGUIR -->
+<section class="bg-white" id="conseguir"><div class="wrap">
+  <p class="kick">Del bloqueo al escenario</p>
+  <h2 class="sec">¿Qué vas a conseguir?</h2>
+  <div class="grid2">
+    <div class="goal"><span class="num">1</span><p>Hablar en público sin quedarte en blanco cuando todos te miran.</p></div>
+    <div class="goal"><span class="num">2</span><p>Eliminar los "eh", "este" y "o sea" de tu forma de hablar.</p></div>
+    <div class="goal"><span class="num">3</span><p>Dominar los nervios y el miedo escénico antes de hablar.</p></div>
+    <div class="goal"><span class="num">4</span><p>Transmitir seguridad con tu postura y tu lenguaje no verbal.</p></div>
+    <div class="goal"><span class="num">5</span><p>Usar la pausa, el ritmo y el tono para que te escuchen.</p></div>
+    <div class="goal"><span class="num">6</span><p>Contar historias que conectan en entrevistas, reuniones y ventas.</p></div>
+  </div>
+</div></section>
+
+<!-- DOLOR -->
+<section class="bg-light"><div class="wrap">
+  <p class="kick">Sabés lo que querés decir</p>
+  <h2 class="sec">¿Te pasa esto?</h2>
+  <div class="pain">
+    <img src="media/foto_pantalla.jpg" alt="Jesús Ibarra sentado frente a una pantalla">
+    <div>
+      <ul>
+        <li>Te quedás en blanco justo cuando todos te miran.</li>
+        <li>Se te escapan los "eh", "este", "o sea" y lo sabés.</li>
+        <li>En la entrevista o la defensa, sentís que no transmitís lo que vales.</li>
+        <li>Otros con menos preparación se llevan la atención porque hablan mejor.</li>
+      </ul>
+      <p class="truth">La verdad es que nadie nace sabiendo hablar bien. <b>Es una habilidad, y se entrena.</b> Y eso cambia todo.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- TEMARIO -->
+<section class="bg-light" id="temario" style="padding-top:10px"><div class="wrap">
+  <p class="kick">16 clases en 4 módulos</p>
+  <h2 class="sec">El temario, en detalle</h2>
+  <div class="mods">
+    <div class="mod"><span class="ph">Módulo 1</span><h3>Mentalidad e identidad</h3><ul>
+      <li>Por qué hablar en público cambia tu vida</li>
+      <li>Las 4 etapas de la competencia</li>
+      <li>La mentalidad es la base: tu identidad</li>
+      <li>Elevá tu autoimagen</li>
+      <li class="pr">Cuestionario del módulo</li></ul></div>
+    <div class="mod"><span class="ph">Módulo 2</span><h3>Autoestima, valor y visualización</h3><ul>
+      <li>Cómo subir tu autoestima</li>
+      <li>Tu valor en el mercado: actitud</li>
+      <li>Estado de flow y visualización</li>
+      <li class="pr">Cuestionario del módulo</li></ul></div>
+    <div class="mod"><span class="ph">Módulo 3</span><h3>Miedo escénico, carisma y cuerpo</h3><ul>
+      <li>Los tres dragones del escenario</li>
+      <li>Chips mentales para hablar con seguridad</li>
+      <li>Carisma: la fórmula</li>
+      <li>Postura de poder y lenguaje no verbal</li>
+      <li class="pr">Cuestionario del módulo</li></ul></div>
+    <div class="mod"><span class="ph">Módulo 4</span><h3>Voz, pausas e historias</h3><ul>
+      <li>Cómo eliminar las muletillas</li>
+      <li>Pausa estratégica, ritmo y tono</li>
+      <li>Los 5 minutos antes de hablar</li>
+      <li>Storytelling: contá tu historia</li>
+      <li>Práctica en vivo</li>
+      <li class="pr">Cuestionario del módulo</li></ul></div>
+  </div>
+  <div class="bonus"><span class="bt">Todo incluido</span><p><b>Guía PDF en cada clase:</b> puntos clave, pasos, un ejercicio y un checklist para aplicar lo que viste. Además, vocabulario de oratoria, rangos con pines y tu avance guardado clase por clase. Sin costo extra.</p></div>
+  <div class="feats">
+    <div class="feat"><b>16</b><span>guías PDF</span></div>
+    <div class="feat"><b>31</b><span>preguntas de cuestionario</span></div>
+    <div class="feat"><b>40</b><span>términos de vocabulario</span></div>
+    <div class="feat"><b>6</b><span>rangos, de Bronce a Black Diamond</span></div>
+  </div>
+  <div class="levels">
+    <div class="lv on"><small>Nivel 1 · Este curso</small><b>Hablar en público con seguridad</b></div>
+    <span class="arrow">→</span>
+    <div class="lv"><small>Nivel 2 · Ya disponible</small><b>Persuasión</b><a class="lvlink" href="nivel2/">Ver el nivel 2</a></div>
+  </div>
+  <p class="note">Al terminar el nivel 1 recibís tu <b>certificado Orador GROW</b> y podés seguir con el nivel 2.<br>GROW es una plataforma de formación que se actualiza continuamente.</p>
+</div></section>
+
+<!-- INSTRUCTOR -->
+<section class="bg-dark" id="jesus"><div class="wrap">
+  <div class="inst">
+    <div class="ph1"><img src="media/foto_traje.jpg" alt="Jesús Ibarra"></div>
+    <div>
+      <p class="kick">Quién te entrena</p>
+      <h2>Jesús Ibarra</h2>
+      <div class="srow"><b>1°</b><span><strong>Campeón Nacional de Oratoria</strong> de Paraguay.</span></div>
+      <div class="srow"><b>+1.500</b><span>personas entrenadas en oratoria y comunicación.</span></div>
+      <div class="srow"><b>CIC</b><span>Miembro de la <strong>Cámara Internacional de Conferencistas</strong>, Capítulo Paraguay.</span></div>
+      <div class="srow"><b>Live</b><span><strong>Presencial y online.</strong> Talleres en empresas e instituciones educativas, empresariales y religiosas.</span></div>
+      <p class="bio">Hace unos años me quedaba callado porque pensaba que mi voz no importaba. Llegué del interior a Asunción sin contactos y sin saber cómo conectar con nadie. <b>No nací con carisma ni con seguridad: lo aprendí.</b> Lo que me sirvió a mí le puede servir a vos.</p>
+    </div>
+  </div>
+  <div class="then">
+    <figure><img src="media/nino.jpg" alt="Jesús de niño"><figcaption>Este era yo</figcaption></figure>
+    <figure><img src="media/taller.jpg" alt="Jesús dando un taller"><figcaption>Hoy, dando el taller</figcaption></figure>
+  </div>
+  <div class="crowd"><img src="media/foto_publico.jpg" alt="Público al final de una charla"><p>Así termina una charla cuando la gente conecta.</p></div>
+</div></section>
+
+<!-- TESTIMONIOS -->
+<section class="bg-white" id="testimonios"><div class="wrap">
+  <p class="kick">No lo digo yo</p>
+  <h2 class="sec">Lo que dicen los alumnos</h2>
+
+  <div class="tblock">
+    <div class="thead"><b>01</b><h3>Taller con estudiantes</h3><span>9 testimonios</span></div>
+    <div class="tgrid">
+      <div>
+        <div class="videobox"><video class="tv" data-src="media/testimonios2.mp4" controls playsinline webkit-playsinline preload="none" poster="media/poster2.jpg" width="480" height="854"></video></div>
+        <p class="vstate">Cargando video…</p>
+        <a class="vfb" hidden href="https://www.instagram.com/reel/DfGH9A8IWU3/" target="_blank" rel="noopener">Ver este video en Instagram</a>
+      </div>
+      <div class="quotes">
+        <div class="q"><p>Lo que más me gustó del taller fue que pude pasar a hablar en público y no me puse roja, porque siempre me pasó cuando paso adelante a hablar.</p><div class="by"><img src="media/av_s1.jpg" alt=""><div><b>Participante</b><small>Taller con estudiantes</small></div></div></div>
+        <div class="q"><p>Nos ayudaste a buscar la manera correcta de saber comunicarnos y poder transmitir lo que pensamos.</p><div class="by"><img src="media/av_s5.jpg" alt=""><div><b>Participante</b><small>Taller con estudiantes</small></div></div></div>
+        <div class="q"><p>Nos hiciste hablar, quitarnos el miedo y que podamos expresar nuestra historia.</p><div class="by"><img src="media/av_s6.jpg" alt=""><div><b>Participante</b><small>Taller con estudiantes</small></div></div></div>
+        <div class="q"><p>Me gustó mucho que hayas tenido disposición para venir acá y que hiciste participar a toda la gente que se inscribió al curso.</p><div class="by"><img src="media/av_s7.jpg" alt=""><div><b>Participante</b><small>Taller con estudiantes</small></div></div></div>
+        <div class="q"><p>Nos ayuda realmente en nuestro día a día, no solamente en lo académico, sino en general.</p><div class="by"><img src="media/av_s2.jpg" alt=""><div><b>Participante</b><small>Taller con estudiantes</small></div></div></div>
+        <div class="q"><p>Lo que más me llamó la atención es la forma en que debemos pararnos para demostrar más seguridad.</p><div class="by"><img src="media/av_s3.jpg" alt=""><div><b>Participante</b><small>Taller con estudiantes</small></div></div></div>
+        <div class="q"><p>El espacio que tuvimos para poder compartir nuestras experiencias, y también la motivación que nos dio este taller para poder comunicar lo que queremos.</p><div class="by"><img src="media/av_s8.jpg" alt=""><div><b>Participante</b><small>Taller con estudiantes</small></div></div></div>
+        <div class="q"><p>La motivación que tuviste en no tenerle miedo a hablar en público o delante de un entrevistador para un trabajo.</p><div class="by"><img src="media/av_s9.jpg" alt=""><div><b>Participante</b><small>Taller con estudiantes</small></div></div></div>
+        <div class="q"><p>Los tips para mejorar la confianza al hablar en público, especialmente para quitarnos las muletillas. Yo soy muy amante de las muletillas.</p><div class="by"><img src="media/av_s4.jpg" alt=""><div><b>Participante</b><small>Taller con estudiantes</small></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tblock">
+    <div class="thead"><b>02</b><h3>Taller en SkyOne Home</h3><span>6 testimonios</span></div>
+    <div class="tgrid">
+      <div>
+        <div class="videobox"><video class="tv" data-src="media/testimonios.mp4" controls playsinline webkit-playsinline preload="none" poster="media/poster.jpg" width="480" height="854"></video></div>
+        <p class="vstate">Cargando video…</p>
+        <a class="vfb" hidden href="https://www.instagram.com/jesus_ibarraok/reel/Dd89jRZxPql/" target="_blank" rel="noopener">Ver este video en Instagram</a>
+      </div>
+      <div class="quotes">
+        <div class="q"><p>Realmente la capacitación de hoy estuvo espectacular, dictada por Jesús. Aprendimos muchísimo.</p><div class="by"><img src="media/av_t3.jpg" alt=""><div><b>Participante</b><small>Taller en SkyOne Home</small></div></div></div>
+        <div class="q"><p>Rompés esas barreras que tenés. Te sirve para el día a día y para hablar con los clientes.</p><div class="by"><img src="media/av_t6.jpg" alt=""><div><b>Participante</b><small>Taller en SkyOne Home</small></div></div></div>
+        <div class="q"><p>Ver ese proceso de superación te deja una enseñanza: si ellos pueden, yo también puedo.</p><div class="by"><img src="media/av_t4.jpg" alt=""><div><b>Participante</b><small>Taller en SkyOne Home</small></div></div></div>
+        <div class="q"><p>Desde el primer momento tuvimos ejercicios para romper el hielo.</p><div class="by"><img src="media/av_t1.jpg" alt=""><div><b>Participante</b><small>Taller en SkyOne Home</small></div></div></div>
+        <div class="q"><p>La verdad que fue bastante dinámico y aprendimos mucho.</p><div class="by"><img src="media/av_t2.jpg" alt=""><div><b>Participante</b><small>Taller en SkyOne Home</small></div></div></div>
+        <div class="q"><p>La oratoria es una habilidad muy importante que tenemos que aprender a desarrollar sí o sí.</p><div class="by"><img src="media/av_t5.jpg" alt=""><div><b>Participante</b><small>Taller en SkyOne Home</small></div></div></div>
+      </div>
+    </div>
+  </div>
+  <p class="tnote">Testimonios reales de participantes de mis talleres presenciales.</p>
+</div></section>
+
+<!-- PARA QUIEN -->
+<section class="bg-light"><div class="wrap">
+  <p class="kick">¿Es para vos?</p>
+  <h2 class="sec">Para quién es</h2>
+  <div class="who2">
+    <div class="box yes"><h3>Es para vos si…</h3><ul>
+      <li>Tenés que defender tu tesis o presentar un proyecto.</li>
+      <li>Te bloqueás en entrevistas o reuniones.</li>
+      <li>Querés que tu forma de hablar esté a la altura de lo que sabés.</li>
+      <li>Te ponés nervioso, te tiembla la voz o te quedás en blanco al hablar frente a otros.</li>
+      <li>Usás muchas muletillas ("eh", "este", "o sea") y querés sacártelas.</li>
+      <li>Vendés, atendés clientes o liderás un equipo y necesitás convencer cuando hablás.</li>
+      <li>Querés ganar confianza y autoestima, no solo aprender técnicas.</li>
+      <li>Preferís aprender a tu ritmo, desde el celular o la compu, sin horarios fijos.</li>
+      <li>Nunca estudiaste oratoria y querés empezar desde cero.</li></ul></div>
+    <div class="box no"><h3>No es para vos si…</h3><ul>
+      <li>Buscás una fórmula mágica sin practicar.</li>
+      <li>No pensás aplicar nada de lo que veas.</li>
+      <li>Querés resultados de un día para el otro sin ver las clases.</li>
+      <li>Creés que hablar bien es un don y que no se puede entrenar.</li>
+      <li>No estás dispuesto a salir de tu zona de confort.</li>
+      <li>Buscás excusas en vez de oportunidades para hablar.</li></ul></div>
+  </div>
+</div></section>
+
+<!-- PRECIO -->
+<section class="bg-light" id="acceso" style="padding-top:10px"><div class="wrap">
+  <h2 class="sec">Tu acceso a GROW</h2>
+  <div class="pcard">
+    <div class="ph2">GROW Academy · Acceso completo</div>
+    <div class="body">
+      <div class="amount">100.000<small>Gs</small></div>
+      <p class="once">pago único · sin suscripciones</p>
+      <ul>
+        <li>16 clases en video, en 4 módulos</li>
+        <li>16 guías PDF, una por clase</li>
+        <li>Cuestionarios (31 preguntas) y vocabulario (40 términos)</li>
+        <li>Rangos, pines y certificado Orador GROW</li>
+        <li>A tu ritmo, desde compu, tablet o celular</li>
+      </ul>
+      <a class="btn block wa" href="#">Quiero acceder a GROW</a>
+      <p class="secure">Te respondo personalmente por WhatsApp.</p>
+    </div>
+  </div>
+  <div class="pack"><div><small>¿Querés los dos niveles?</small><b>Nivel 1 + Nivel 2 (Persuasión): 200.000 Gs</b></div><a href="nivel2/">Ver el nivel 2</a></div>
+  <div class="steps">
+    <div class="step"><span class="num">1</span><div><b>Tocás el botón</b><span>Se abre mi WhatsApp con el mensaje ya escrito.</span></div></div>
+    <div class="step"><span class="num">2</span><div><b>Me escribís</b><span>Te respondo con los datos para el pago.</span></div></div>
+    <div class="step"><span class="num">3</span><div><b>Entrás a GROW</b><span>Te paso tu acceso y empezás por la clase 1.</span></div></div>
+  </div>
+</div></section>
+
+<!-- FAQ -->
+<section class="bg-white"><div class="wrap">
+  <h2 class="sec">Preguntas frecuentes</h2>
+  <div class="faq">
+    <details><summary>¿Qué es GROW Academy?</summary><p>Una plataforma con 16 clases en video de oratoria y desarrollo personal, organizadas en 4 módulos, con guías, cuestionarios, vocabulario y certificado.</p></details>
+    <details><summary>¿Necesito experiencia previa?</summary><p>No. Está pensada para quien se bloquea o se pone nervioso al hablar, aunque nunca haya estudiado oratoria.</p></details>
+    <details><summary>¿Las clases son en vivo o grabadas?</summary><p>Son grabadas. Las ves cuando quieras y las veces que quieras, y la plataforma recuerda hasta dónde llegaste.</p></details>
+    <details><summary>¿Desde qué dispositivos la puedo ver?</summary><p>Desde la computadora, la tablet o el celular. Se adapta a cualquier pantalla.</p></details>
+    <details><summary>¿Cómo recibo el acceso?</summary><p>Me escribís por WhatsApp, coordinamos el pago y te paso tu acceso a la plataforma.</p></details>
+    <details><summary>¿Recibo un certificado?</summary><p>Sí. Al aprobar los 4 cuestionarios desbloqueás tu certificado Orador GROW.</p></details>
+    <details><summary>¿Cuánto cuesta?</summary><p>El nivel 1 cuesta 100.000 Gs, pago único. Si querés los dos niveles (Oratoria + Persuasión), los comprás juntos por 200.000 Gs.</p></details>
+    <details><summary>¿Hay un nivel más avanzado?</summary><p>Sí. Al completar el nivel 1 recibís tu certificado y podés acceder al nivel 2, Persuasión, que ya está disponible. El nivel 2 se paga aparte. <a href="nivel2/" style="color:var(--purple);font-weight:700">Ver el nivel 2</a></p></details>
+  </div>
+</div></section>
+
+<!-- FINAL -->
+<section class="final bg-purple"><div class="wrap">
+  <p class="kick">Tu próxima oportunidad de hablar ya tiene fecha.</p>
+  <h2>Empezá hoy a hablar con seguridad</h2>
+  <a class="btn dark wa" href="#">Quiero acceder a GROW</a>
+  <p class="wa-num">WhatsApp: <span id="numero">0986 809 911</span><button id="copiar" type="button">Copiar</button></p>
+  <div class="dots">• • •</div>
+</div></section>
+
+</div>
+
+<footer>GROW Academy · Por Jesús Ibarra · <a href="https://www.instagram.com/jesus_ibarraok/" target="_blank" rel="noopener">@jesus_ibarraok</a> · © 2026</footer>
+
+<div class="sticky" id="sticky"><div class="in">
+  <div><b>100.000 Gs</b><small>Pago único · GROW Academy</small></div>
+  <a class="btn wa" href="#">Quiero acceder</a>
+</div></div>
+
+<script>
+  const WA = "https://wa.me/595986809911?text=" + encodeURIComponent("Hola Jesús, quiero acceder a GROW Academy");
+  document.querySelectorAll("a.wa").forEach(a => { a.href = WA; a.target = "_blank"; a.rel = "noopener"; });
+
+  const sticky = document.getElementById("sticky"), hero = document.getElementById("inicio");
+  addEventListener("scroll", () => sticky.classList.toggle("show", scrollY > hero.offsetHeight * .8 && (innerHeight + scrollY) < document.body.scrollHeight - 260), {passive: true});
+
+  const cbtn = document.getElementById("copiar");
+  cbtn.addEventListener("click", () => {
+    const done = () => { cbtn.textContent = "Copiado"; setTimeout(() => cbtn.textContent = "Copiar", 1600); };
+    const sel = () => { const r = document.createRange(); r.selectNodeContents(document.getElementById("numero")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); };
+    try { navigator.clipboard.writeText("0986809911").then(done).catch(sel); } catch (e) { sel(); }
+  });
+
+  // Videos de testimonios: se bajan enteros cuando se acercan a la pantalla y se reproducen desde memoria
+  // (el navegador de Instagram en iPhone no siempre reproduce el archivo directo).
+  document.querySelectorAll(".tblock").forEach(bl => {
+    const v = bl.querySelector("video.tv"), st = bl.querySelector(".vstate"), fb = bl.querySelector(".vfb");
+    let started = false;
+    const fail = () => { st.textContent = "Si el video no se reproduce acá, miralo en Instagram:"; fb.hidden = false; };
+    v.addEventListener("error", () => { if (v.getAttribute("src")) fail(); });
+    v.addEventListener("play", () => document.querySelectorAll("video.tv").forEach(o => { if (o !== v) o.pause(); }));
+    const start = () => {
+      if (started) return; started = true;
+      const src = v.dataset.src;
+      const ready = u => { v.src = u; v.preload = "metadata"; st.textContent = "Tocá play para ver los testimonios."; };
+      fetch(src).then(r => { if (!r.ok) throw 0; return r.blob(); })
+        .then(b => ready(URL.createObjectURL(new Blob([b], {type: "video/mp4"}))))
+        .catch(() => { ready(src); setTimeout(() => { if (v.readyState === 0) fail(); }, 6000); });
+    };
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); start(); } }, {rootMargin: "400px"});
+      io.observe(bl);
+    } else start();
+  });
+</script>
+</body>
+</html>
